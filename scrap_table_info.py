@@ -1,3 +1,4 @@
+from typing import Dict, List
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from selenium.webdriver.remote.webelement import WebElement
@@ -8,9 +9,6 @@ from css_parser import css_parser
 from lecture import Lecture
 
 # 크롬 드라이버 자동으로 설치해주는 매니저
-
-# id = input("아이디 입력 : ")
-# password = input("비밀번호 입력 :")
 
 
 class loginError(Exception):
@@ -96,12 +94,12 @@ def get_time_period(browser: WebDriver):
     return time_period
 
 
-def get_lectures(browser: WebDriver, time_period: dict[int, str]):
+def get_lectures(browser: WebDriver, time_period: Dict[int, str]):
     """
     @params browser 현재 https://everytime.kr/timetable 위치에 있는 브라우저
     @params time_period get_time_period로 얻은 top-시간표 사이의 대응 정보 
     """
-    day_td: list[WebElement] = browser\
+    day_td: List[WebElement] = browser\
         .find_element(By.XPATH, "//table[@class='tablebody']")\
         .find_elements(By.TAG_NAME, 'td')[:-2]
     # 총 길이 7인데, 토, 일은 무시한다.
@@ -113,7 +111,7 @@ def get_lectures(browser: WebDriver, time_period: dict[int, str]):
     day_count = 0  # 무슨 요일인지 세는 숫자. 0 부터 월요일
 
     for day in day_td:
-        lectures: list[WebElement] = day.find_elements(
+        lectures: List[WebElement] = day.find_elements(
             By.CLASS_NAME, 'subject')
         for lec in lectures:
             # 과목 이름 가져오기
@@ -156,7 +154,7 @@ def get_lectures(browser: WebDriver, time_period: dict[int, str]):
     return lec_dict
 
 
-def get_user_TT_info(id: str, password: str) -> list[Lecture]:
+def get_user_TT_info(id: str, password: str) -> List[Lecture]:
     browser = user_login(id, password)
 
     timetable = browser.find_element(

@@ -1,4 +1,7 @@
-def css_parser(css_style : str) -> dict[str,float]:
+from typing import Dict
+
+
+def css_parser(css_style : str) -> Dict[str,float]:
     styles = css_style.split(';')
     result_dict = {}    
     for style in styles:
