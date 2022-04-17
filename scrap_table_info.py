@@ -177,7 +177,7 @@ def get_user_TT_info(id: str, password: str) -> list[Lecture]:
 
     return lec_dict.values()
 
-if __name__ == "__main__":
+def scrap_table_info():
     id = input("id 입력 :")
     password = input("패스워드 입력 :")
     lectures = get_user_TT_info(id, password)
