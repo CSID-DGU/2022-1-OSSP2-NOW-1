@@ -1,4 +1,3 @@
-""" tetris.py - Copyright 2016 Kenichiro Tanaka """
 import sys
 from math import sqrt
 from random import randint
@@ -104,7 +103,7 @@ class Block:
         self.type = BLOCK_DATA[randint(0, 6)]
         self.data = self.type[self.turn]
         self.size = int(sqrt(len(self.data)))
-        self.xpos = randint(2, 8 - self.size)
+        self.xpos = randint(1, 5 - self.size)
         self.ypos = 1 - self.size
         self.fire = count + INTERVAL
 
@@ -143,12 +142,12 @@ class Block:
 def erase_line():
     """ 행이 모두 찬 단을 지운다 """
     erased = 0
-    ypos = 20
+    ypos = 15
     while ypos >= 0:
         if all(FIELD[ypos]):
             erased += 1
             del FIELD[ypos]
-            FIELD.insert(0, [8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8])
+            FIELD.insert(0, [8, 0, 0, 0, 0, 0, 8])
         else:
             ypos -= 1
     return erased
@@ -181,7 +180,7 @@ def is_overlapped(xpos, ypos, turn):
 
 # 전역 변수
 pygame.init()
-pygame.key.set_repeat(30, 30)
+pygame.key.set_repeat(120, 120)
 SURFACE = pygame.display.set_mode([600, 600])
 FPSCLOCK = pygame.time.Clock()
 WIDTH = 7
@@ -221,7 +220,7 @@ def main():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            elif event.type == KEYUP:
+            elif event.type == KEYDOWN:
                 key = event.key
 
         game_over = is_game_over()
@@ -284,5 +283,5 @@ def main():
         FPSCLOCK.tick(15)
 
 if __name__ == '__main__':
-    scrap_table_info()
+    #scrap_table_info()
     main()
