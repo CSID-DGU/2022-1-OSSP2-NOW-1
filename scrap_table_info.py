@@ -1,4 +1,3 @@
-from typing import Dict, List
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from selenium.webdriver.remote.webelement import WebElement
@@ -42,7 +41,7 @@ def user_login(id: str, password: str):
 
     ############################################################################
     #사이트 지정 및 화면 사이즈 지정#
-    browser.set_window_size(1920, 1680)  # 화면 사이즈 지정
+    browser.set_window_size(800, 960)  # 화면 사이즈 지정
 
     browser.get("https://www.everytime.kr/login")  # 에브리타임 로그인 사이트 접근
 
@@ -53,7 +52,6 @@ def user_login(id: str, password: str):
     passwordElem = browser.find_element(By.NAME, "password")  # 비밀번호 입력
     loginElem = browser.find_element(
         By.XPATH, "//input[@value='로그인' ] | /input[@class='text']")
-
     # 아이디, 비밀번호 입력
     idElem.send_keys(id)
     passwordElem.send_keys(password)
@@ -94,12 +92,12 @@ def get_time_period(browser: WebDriver):
     return time_period
 
 
-def get_lectures(browser: WebDriver, time_period: Dict[int, str]):
+def get_lectures(browser: WebDriver, time_period: dict[int, str]):
     """
     @params browser 현재 https://everytime.kr/timetable 위치에 있는 브라우저
     @params time_period get_time_period로 얻은 top-시간표 사이의 대응 정보 
     """
-    day_td: List[WebElement] = browser\
+    day_td: list[WebElement] = browser\
         .find_element(By.XPATH, "//table[@class='tablebody']")\
         .find_elements(By.TAG_NAME, 'td')[:-2]
     # 총 길이 7인데, 토, 일은 무시한다.
@@ -111,7 +109,7 @@ def get_lectures(browser: WebDriver, time_period: Dict[int, str]):
     day_count = 0  # 무슨 요일인지 세는 숫자. 0 부터 월요일
 
     for day in day_td:
-        lectures: List[WebElement] = day.find_elements(
+        lectures: list[WebElement] = day.find_elements(
             By.CLASS_NAME, 'subject')
         for lec in lectures:
             # 과목 이름 가져오기
@@ -146,15 +144,39 @@ def get_lectures(browser: WebDriver, time_period: Dict[int, str]):
             start_p = float(time_period[start]) \
                 if len(time_period[start]) > 0 else 0
             # end는 끝난 다음 교시를 가리키므로, 0.5 빼서 원래 교시 가리키게 만든다
+
+            # 소수점으로 인해 발생하는 에러 검사
+            if end in time_period :
+                # 키 있으면 상관 없음
+                pass
+            elif (end + 1.0) in time_period:
+                # end + 1.0 있으면
+                end += 1.0
+            elif (end - 1.0) in time_period:
+                # end - 1.0 있으면
+                end -= 1.0
+
             end_p = float(time_period[end]) - 0.5 \
-                if len(time_period[end]) > 0 else 0
+            if len(time_period[end]) > 0 else 0
 
             lec_dict[lec_same].add_loc(day_count, start_p, end_p)
         day_count += 1
     return lec_dict
 
+def get_all_tables(browser:WebDriver) -> list[WebElement]:
+    """
+    유저가 생성해 둔 모든 테이블 반환
+    """
+    data_from = browser.find_element(By.XPATH, "//div[@class='menu']")
+    tables : list[WebElement] = data_from.find_elements(By.TAG_NAME, "li")
 
-def get_user_TT_info(id: str, password: str) -> List[Lecture]:
+    for t in tables:
+        if t.get_attribute('class') == 'extension' : # 시간표 만들기 창이면 클릭 안함
+            tables.remove(t)
+    
+    return tables
+
+def get_user_TT_info(id: str, password: str) -> dict[str, list[Lecture]]:
     browser = user_login(id, password)
 
     timetable = browser.find_element(
@@ -163,21 +185,37 @@ def get_user_TT_info(id: str, password: str) -> List[Lecture]:
     browser.implicitly_wait(3)
 
     ##################################################################
-    # 시간대 정보 가져오기
-    time_period = get_time_period(browser)
+    # 현재 학기의 모든 시간표 가져오기
+    tables = get_all_tables(browser)
 
-    ##################################################################
-    # 월화수목금 가져오기
-    lec_dict = get_lectures(browser, time_period)
+    ret_tables = {} # 사용자가 만든 시간표들
 
-    browser.implicitly_wait(5)
+    for t in tables:
+        t.click() # 시간표 클릭
+        table_name = t.get_attribute('innerText')
+        browser.implicitly_wait(1) # 정보를 가져오기 위한 대기 시간
+        ##################################################################
+        # 시간대 정보 가져오기
+        time_period = get_time_period(browser)
+
+        ##################################################################
+        # 월화수목금 가져오기
+        lec_dict = get_lectures(browser, time_period)
+        ret_tables[table_name] = lec_dict.values()
+
+    browser.implicitly_wait(3)
     browser.close()
 
-    return lec_dict.values()
+    return ret_tables
 
 if __name__ == "__main__":
     id = input("id 입력 :")
     password = input("패스워드 입력 :")
-    lectures = get_user_TT_info(id, password)
-    for lec in lectures:
-        lec.get_lec_info()
+    tables = get_user_TT_info(id, password)
+    # 정보를 잘 스크래핑 했는지 검사
+    for name in tables :
+        print(name)
+        for lec in tables[name]:
+            lec.get_lec_info()
+        print()
+        

@@ -1,10 +1,9 @@
-from typing import List
 
 
 class Lecture:
     name: str
     professor: str
-    loc: List[tuple[int, str]]
+    loc: list[tuple[int, str]]
 
     def __init__(self, name: str, professor: str):
         self.name = name
