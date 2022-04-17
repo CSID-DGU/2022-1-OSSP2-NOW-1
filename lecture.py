@@ -9,7 +9,7 @@ class Lecture:
         self.loc = []
 
     def add_loc(self, day: int, start: float, end: float):
-        self.loc.append((day, start, end))
+        self.loc.append((day, start, end+0.5))
 
     def get_locs(self):
         print(self.loc)
