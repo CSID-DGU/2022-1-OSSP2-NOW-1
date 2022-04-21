@@ -17,5 +17,11 @@ class Lecture:
     def get_lec_info(self):
         print(f"강의 : {self.name}, 교수님: {self.professor}, 강의(요일,시작,끝) : {self.loc}")
 
+    def return_name(self):
+        return self.name
+
+    def return_professor(self):
+        return self.professor
+
     def return_locs(self):
         return self.loc

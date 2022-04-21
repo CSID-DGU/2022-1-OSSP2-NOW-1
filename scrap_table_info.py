@@ -183,10 +183,3 @@ def scrap_table_info():
     lectures = get_user_TT_info(id, password)
     for lec in lectures:
         lec.get_lec_info()
-
-def save_table_info():
-    id = "leeminsuok"
-    pw = "052978a"
-    lectures = get_user_TT_info(id, pw)
-    for lec in lectures:
-        print(lec.return_locs())
