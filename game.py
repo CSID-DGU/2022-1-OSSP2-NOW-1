@@ -181,10 +181,10 @@ def is_overlapped(xpos, ypos, turn):
 # 전역 변수
 pygame.init()
 pygame.key.set_repeat(120, 120)
-SURFACE = pygame.display.set_mode([600, 600])
+SURFACE = pygame.display.set_mode([600, 800])
 FPSCLOCK = pygame.time.Clock()
-WIDTH = 7
-HEIGHT = 17
+WIDTH = 12
+HEIGHT = 27 #32가 맞는데 사이즈가 문제라
 INTERVAL = 40
 FIELD = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
 COLORS = ((0, 0, 0), (255, 165, 0), (0, 0, 255), (0, 255, 255), \
