@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e49b9c2-783f-4ce3-8310-47a5fc5ab17d" name="Changes" comment="" />
+    <list default="true" id="4153407f-c844-4996-becd-a3763d620f8d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/getloc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/2022-1-OSSP2-NOW-1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/2022-1-OSSP2-NOW-1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/css_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lecture.py" beforeDir="false" afterPath="$PROJECT_DIR$/lecture.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrap_table_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/scrap_table_info.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,31 +24,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="0174de94-dea1-4773-be70-bfb0db370d38" />
-        <option name="url" value="https://github.com/CSID-DGU/2022-1-OSSP2-NOW-1.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="27pZIQastzPYgGj8I5VQvZmwPZt" />
+  <component name="ProjectId" id="286JHwX5UUlra212Vi2xnNaBA1Q" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/penpenguin2018/2022-1-OSSP2-NOW-1&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
   }
-}</component>
-  <component name="RunManager" selected="Python.game">
+}]]></component>
+  <component name="RunManager" selected="Python.getloc">
     <configuration name="game" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="2022-1-OSSP2-NOW-1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -59,7 +60,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="lecture" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="getloc" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="2022-1-OSSP2-NOW-1" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -71,7 +72,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lecture.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getloc.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -103,8 +104,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.getloc" />
         <item itemvalue="Python.game" />
-        <item itemvalue="Python.lecture" />
         <item itemvalue="Python.scrap_table_info" />
       </list>
     </recent_temporary>
@@ -112,11 +113,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6e49b9c2-783f-4ce3-8310-47a5fc5ab17d" name="Changes" comment="" />
-      <created>1650018907567</created>
+      <changelist id="4153407f-c844-4996-becd-a3763d620f8d" name="Changes" comment="" />
+      <created>1650531020012</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1650018907567</updated>
+      <updated>1650531020012</updated>
     </task>
     <servers />
   </component>

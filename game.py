@@ -3,7 +3,7 @@ from math import sqrt
 from random import randint
 import pygame
 from pygame.locals import QUIT, KEYUP, KEYDOWN, K_LEFT, K_RIGHT, K_DOWN, K_SPACE, K_UP, K_z
-from scrap_table_info import scrap_table_info
+from scrap_table_info import *
 
 BLOCK_DATA = (
     (
@@ -147,7 +147,7 @@ def erase_line():
         if all(FIELD[ypos]):
             erased += 1
             del FIELD[ypos]
-            FIELD.insert(0, [8, 0, 0, 0, 0, 0, 8])
+            FIELD.insert(0, [8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8])
         else:
             ypos -= 1
     return erased
@@ -181,10 +181,10 @@ def is_overlapped(xpos, ypos, turn):
 # 전역 변수
 pygame.init()
 pygame.key.set_repeat(120, 120)
-SURFACE = pygame.display.set_mode([600, 600])
+SURFACE = pygame.display.set_mode([600, 800])
 FPSCLOCK = pygame.time.Clock()
-WIDTH = 7
-HEIGHT = 17
+WIDTH = 12
+HEIGHT = 27 #32가 맞는데 사이즈가 문제라
 INTERVAL = 40
 FIELD = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
 COLORS = ((0, 0, 0), (255, 165, 0), (0, 0, 255), (0, 255, 255), \
@@ -284,4 +284,5 @@ def main():
 
 if __name__ == '__main__':
     #scrap_table_info()
+    save_table_info()
     main()
