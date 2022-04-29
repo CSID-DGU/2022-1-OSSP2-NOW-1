@@ -1,3 +1,5 @@
+from typing import Union
+from functools import partial
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from selenium.webdriver.remote.webelement import WebElement
@@ -124,6 +126,7 @@ def get_lectures(browser: WebDriver, time_period: dict[int, str]):
 
             # 동일 과목인지 보기 위해 클래스 정보 가져오기
             # 동일 과목에 대한 다른 분반 정보를 가져오는 방식.
+            # lec_same 은 color~ 형태의 이름을 가져, 동일 이름의 교과목도 구분 가능.
             lec_same = lec\
                 .get_attribute('class').replace('subject', '').strip(' ')
 
@@ -212,9 +215,40 @@ def get_user_TT_info(id: str, password: str) -> dict[str, list[Lecture]]:
 
     return ret_tables
 
-def get_semesters(browser: WebDriver) :
-    browser.find_element(By.XPATH, "")
+def get_semester(browser: WebDriver, target: str):
+    '''
+    get_semesters 함수 내에서 사용하는 함수. 특정 학기에 대한 WebElement을 가져오는데 사용한다.
 
+    @params target selector로부터 target 이름을 가진 WebElement을 반환한다.
+
+
+    입력받은 원소가 없으면 에러난다 ...
+    '''
+    try:
+        target_semester = browser.find_element(By.XPATH, f'//select[@id="semesters"]/option[contains(text(),"{target}")]')
+        return (target, target_semester)
+    except: # 값이 존재하지 않는 경우.
+        return (target, None)
+
+def get_semesters(browser: WebDriver, target: list[str]) :
+    '''
+    선택한 강의들과 
+    @params browser 인터넷 브라우저
+    @params target 대상이 되는 학기들 (ex ["2022년 1학기", "2021년 2학기"])
+    '''
+    # selector : 학기를 의미하는 버튼
+    selector = browser.find_element(By.XPATH, "//select[@id='semesters']")
+
+    get_semester_from_browser = partial(get_semester, browser)
+    target_semesters : list[tuple[str,Union[WebElement,None]]] = list(map(get_semester_from_browser, target))
+
+    # 검색 안되는 학기가 있다면 삭제한다.
+    for v in target_semesters:
+        if v[1] == None: # Element 값
+            target_semesters.remove(v)
+
+    #결과 반환
+    return selector, target_semesters
 
 def get_lectures_info(id: str, password: str, target: list[str], path: list[str]):
     '''
@@ -230,18 +264,35 @@ def get_lectures_info(id: str, password: str, target: list[str], path: list[str]
         By.XPATH, "//a[@href='/timetable']")  # 시간표 창 클릭
     timetable.click() # 클릭
     browser.implicitly_wait(3) # 3초 대기
+
+    select, semesters = get_semesters(browser, target)
+
+    #가져온 강의 목록 출력
+    for semester in semesters:
+        print(semester[0])
+
+    select.click()
+    browser.implicitly_wait(1)
+    semesters[0][1].click()
+
+    while True:
+        pass
+
     
 
-
-
 if __name__ == "__main__":
-    id = input("id 입력 :")
-    password = input("패스워드 입력 :")
-    tables = get_user_TT_info(id, password)
-    # 정보를 잘 스크래핑 했는지 검사
-    for name in tables :
-        print(name)
-        for lec in tables[name]:
-            lec.get_lec_info()
-        print()
-        
+    try :
+        id = input("id 입력 :")
+        password = input("패스워드 입력 :")
+        # tables = get_user_TT_info(id, password)
+        # # 정보를 잘 스크래핑 했는지 검사
+        # for name in tables :
+        #     print(name)
+        #     for lec in tables[name]:
+        #         lec.get_lec_info()
+        #     print()
+        target = ['2021년 2학기', '2022년 1학기']
+        get_lectures_info(id, password, target, [])
+
+    except Exception as e:
+        print(e)
