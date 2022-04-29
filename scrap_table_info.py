@@ -123,6 +123,7 @@ def get_lectures(browser: WebDriver, time_period: dict[int, str]):
                 .get_attribute('innerText')
 
             # 동일 과목인지 보기 위해 클래스 정보 가져오기
+            # 동일 과목에 대한 다른 분반 정보를 가져오는 방식.
             lec_same = lec\
                 .get_attribute('class').replace('subject', '').strip(' ')
 
@@ -177,6 +178,9 @@ def get_all_tables(browser:WebDriver) -> list[WebElement]:
     return tables
 
 def get_user_TT_info(id: str, password: str) -> dict[str, list[Lecture]]:
+    '''
+    유저의 시간표 정보를 가져오는 함수.
+    '''
     browser = user_login(id, password)
 
     timetable = browser.find_element(
@@ -207,6 +211,28 @@ def get_user_TT_info(id: str, password: str) -> dict[str, list[Lecture]]:
     browser.close()
 
     return ret_tables
+
+def get_semesters(browser: WebDriver) :
+    browser.find_element(By.XPATH, "")
+
+
+def get_lectures_info(id: str, password: str, target: list[str], path: list[str]):
+    '''
+    @params id 유저 아이디
+    @params password 유저 비밀번호
+    @params target 대상이 되는 학기들 (ex ["2022년 1학기", "2021년 2학기"])
+    @params path 전공 영역에서 클릭하는 경로 (ex ["전공", "공과대학", "컴퓨터공학전공"])
+    '''
+
+    browser = user_login(id, password) # 로그인
+
+    timetable = browser.find_element(
+        By.XPATH, "//a[@href='/timetable']")  # 시간표 창 클릭
+    timetable.click() # 클릭
+    browser.implicitly_wait(3) # 3초 대기
+    
+
+
 
 if __name__ == "__main__":
     id = input("id 입력 :")
