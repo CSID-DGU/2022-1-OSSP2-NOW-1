@@ -1,7 +1,10 @@
+from time import sleep
 from typing import Union
 from functools import partial
 from selenium.webdriver.common.by import By
 from selenium import webdriver
+# from selenium.webdriver.support.expected_conditions 
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.chrome.service import Service
@@ -19,7 +22,6 @@ class loginError(Exception):
 
     def __init__(self):
         super().__init__('로그인에 실패했습니다')
-
 
 class NoBrowserError(Exception):
     """
@@ -215,6 +217,62 @@ def get_user_TT_info(id: str, password: str) -> dict[str, list[Lecture]]:
 
     return ret_tables
 
+###################학기 과목 정보 관련 코드들######################
+
+def get_lectures_from_semester(browser: WebDriver, path:list[str]):
+    '''
+    에브리타임 사이트 상의 "수업 목록에서 검색" 버튼 등을 검사하여
+    실제로 정보를 가져온다.
+    '''
+    search_button : WebElement
+    # 검색 버튼 (수업 목록에서 검색)
+    category : WebElement 
+    # 전공/영역: 전체 버튼
+
+    try :
+        search_button = browser.find_element(By.XPATH, "//li[@class='button search']")
+    except : # 수업 목록에서 검색 버튼이 없는 경우. (여름 학기나 겨울 학기 등)
+        search_button = None
+
+    if search_button: # 버튼이 있다면
+        search_button.click() # 클릭
+        WebDriverWait(browser, timeout= 10).until(lambda d : d.find_element(By.XPATH, '//div[@class="list"]/table/tbody/tr'))
+    
+        # 리스트 데이터가 존재할 때까지 대기...
+        try :
+            category =  browser.find_element(By.XPATH, "//span[text() = '전공/영역:']")
+        except : # 카테고리 자체가 없는 경우도 존재함...
+            print("no category")
+            category = None
+
+        if category : # 카테고리가 있다면       
+            category.click()
+
+            # try:
+            for p in path: # 전공/영역에서 경로 이동.
+                elem = browser.find_element(By.XPATH, f"//li[text() ='{p}']")
+                browser.implicitly_wait(2)
+                elem.click()
+            
+            sleep(2)
+            WebDriverWait(browser, timeout= 5).until(lambda d : d.find_element(By.XPATH, '//div[@class="list"]/table/tbody/tr')) # 리스트 내용이 나올 때까지 대기
+            lec_list = browser.find_element(By.XPATH, '//div[@class = "list"]')
+        #     # 브라우저 상에 강의 리스트 설정
+            while True:
+                height = browser.execute_script('return arguments[0].scrollHeight;', lec_list)
+                print(height)
+                browser.execute_script('arguments[0].scrollBy(0, arguments[0].scrollHeight);', lec_list)
+                sleep(3)
+                cond = browser.find_element(By.XPATH,'//div[@class="list"]/table/tfoot').get_attribute('style')
+                if cond == 'display: none;':
+                    break
+
+        #    # except:
+            #     print("path 내에 존재하지 않는 경로가 존재합니다.")
+            while True:
+                pass
+
+           
 def get_semester(browser: WebDriver, target: str):
     '''
     get_semesters 함수 내에서 사용하는 함수. 특정 학기에 대한 WebElement을 가져오는데 사용한다.
@@ -225,7 +283,7 @@ def get_semester(browser: WebDriver, target: str):
     입력받은 원소가 없으면 에러난다 ...
     '''
     try:
-        target_semester = browser.find_element(By.XPATH, f'//select[@id="semesters"]/option[contains(text(),"{target}")]')
+        target_semester = browser.find_element(By.XPATH, f'//select[@id="semesters"]/option[text()="{target}"]')
         return (target, target_semester)
     except: # 값이 존재하지 않는 경우.
         return (target, None)
@@ -267,32 +325,34 @@ def get_lectures_info(id: str, password: str, target: list[str], path: list[str]
 
     select, semesters = get_semesters(browser, target)
 
-    #가져온 강의 목록 출력
+    #가져온 학기 목록 출력
     for semester in semesters:
-        print(semester[0])
+        print(semester[0])    
 
-    select.click()
-    browser.implicitly_wait(1)
-    semesters[0][1].click()
+        select.click()
+        browser.implicitly_wait(1)
+        # 학기 선택 select 클릭
 
-    while True:
-        pass
+        semester[1].click()
+        browser.implicitly_wait(1)
+        # 해당 학기 클릭
 
-    
+        get_lectures_from_semester(browser,path)
 
 if __name__ == "__main__":
-    try :
-        id = input("id 입력 :")
-        password = input("패스워드 입력 :")
-        # tables = get_user_TT_info(id, password)
-        # # 정보를 잘 스크래핑 했는지 검사
-        # for name in tables :
-        #     print(name)
-        #     for lec in tables[name]:
-        #         lec.get_lec_info()
-        #     print()
-        target = ['2021년 2학기', '2022년 1학기']
-        get_lectures_info(id, password, target, [])
+    # try :
+    id = input("id 입력 :")
+    password = input("패스워드 입력 :")
+    # tables = get_user_TT_info(id, password)
+    # # 정보를 잘 스크래핑 했는지 검사
+    # for name in tables :
+    #     print(name)
+    #     for lec in tables[name]:
+    #         lec.get_lec_info()
+    #     print()
+    target = ['2022년 1학기', '2021년 2학기']
+    path = ["전공", "공과대학", "컴퓨터공학전공"]
+    get_lectures_info(id, password, target, path)
 
-    except Exception as e:
-        print(e)
+# except Exception as e:
+    # print(e)
