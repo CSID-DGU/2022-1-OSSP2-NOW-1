@@ -100,7 +100,7 @@ class Block:
     """ 블록 객체 """
     def __init__(self, count):
         self.turn = randint(0, 3)
-        self.type = BLOCK_DATA[randint(0, 6)]
+        self.type = BLOCK_DATA[randint(2, 6)]
         self.data = self.type[self.turn]
         self.size = int(sqrt(len(self.data)))
         self.xpos = randint(1, 5 - self.size)
@@ -142,7 +142,7 @@ class Block:
 def erase_line():
     """ 행이 모두 찬 단을 지운다 """
     erased = 0
-    ypos = 15
+    ypos = HEIGHT - 2
     while ypos >= 0:
         if all(FIELD[ypos]):
             erased += 1
@@ -284,5 +284,5 @@ def main():
 
 if __name__ == '__main__':
     #scrap_table_info()
-    save_table_info()
+    #save_table_info()
     main()
