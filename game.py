@@ -283,5 +283,5 @@ def main():
         FPSCLOCK.tick(15)
 
 if __name__ == '__main__':
-    #scrap_table_info()
+    scrap_table_info()
     main()
