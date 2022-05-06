@@ -16,7 +16,6 @@ services:
     #     condition: always
     #     delay: 3s
 
-
   my_db:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
@@ -25,4 +24,19 @@ services:
       - ./mysql.env
     # deploy:
     #   restart_policy:
-    #     condition: always  
+    #     condition: always
+  
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    mem_limit: 128m
+    ports:
+      - "80:80"
+    depends_on:
+      - my_server
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    deploy:
+      restart_policy:
+        condition: always
