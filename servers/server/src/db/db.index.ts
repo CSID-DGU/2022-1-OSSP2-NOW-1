@@ -1,8 +1,14 @@
 import { DataSource } from 'typeorm';
 import Key from '../key.js';
+import { DetailedLecture } from './entity/detailed_lec.entity.js';
+import { LecTime } from './entity/lec_time.entity.js';
+import { TetroPool } from './entity/tetro_pool.entity.js';
+import { University } from './entity/university.entity.js';
 import { User } from './entity/user.entity.js';
 
 let db: DataSource;
+
+let entities = [User, University, TetroPool, DetailedLecture, LecTime]
 
 db = new DataSource({
     type: 'mysql',
@@ -11,7 +17,7 @@ db = new DataSource({
     database: Key.DB_DATABASE,
     password: Key.DB_PASSWORD,
     timezone: '+09:00',
-    entities: [User],
+    entities: entities,
     synchronize: true
 });
 

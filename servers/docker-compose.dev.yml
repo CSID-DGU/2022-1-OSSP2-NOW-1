@@ -1,7 +1,9 @@
 version: "3.9"
 services:
   my_server:
-    image: blaxsior/OSSP_server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
     ports:
       - "8080:3000"
     volumes:
@@ -25,7 +27,9 @@ services:
     #     condition: always
   
   nginx:
-    image: blaxsior/OSSP_nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
     mem_limit: 128m
     ports:
       - "80:80"
