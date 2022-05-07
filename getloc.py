@@ -16,7 +16,8 @@ b_lec = 0 # 뒷 수업 길이
 block_a = []
 block_a_size = 0
 lec_time = []
-
+B_DATA = []
+BLOCK_DATA = []
 
 #강의 시간표 가져오기
 def get_lectures_info():
@@ -26,27 +27,46 @@ def get_lectures_info():
         lec_professor.append(lec.return_professor())
 
 def make_block_data(i):
-    wide = abs(lec_locs[i][0][0] - lec_locs[i][1][0]) + 1  # 가로길이
-    height = abs(lec_locs[i][0][1] - lec_locs[i][1][2])  # 세로길이
-    in_height = abs(lec_locs[i][0][2] - lec_locs[i][1][1])  # 안쪽 세로길이
-    interval = int(abs(lec_locs[i][0][2] - lec_locs[i][1][2]) + 0.5)  # 끝 - 끝
-    f_lec = int(abs(lec_locs[i][0][1] - lec_locs[i][0][2]) + 0.5)  # 앞 수업 길이
-    b_lec = int(abs(lec_locs[i][1][1] - lec_locs[i][1][2]) + 0.5)  # 뒷 수업 길이
+    if (len(lec_locs[i]) == 1):
+        block_a = []
+        block_a_size = int(abs(lec_locs[i][0][1] - lec_locs[i][0][2]) + 0.5)
+        for i in range(0, int(block_a_size * block_a_size)):
+            block_a.append(0)
+        for i in range(0, block_a_size):
+            lec_time.append(i * block_a_size)
+        for i in range(0, len(lec_time)):
+            a = lec_time.pop()
+            for g in range(0, int(block_a_size * block_a_size)):
+                if (g == a):
+                    block_a[g] = 1
+        print_block(block_a, block_a_size)
+        for i in range (0, 4):
+            B_DATA.append(block_a)
+        BLOCK_DATA.append(B_DATA)
+    elif (len(lec_locs[i]) == 2) :
+        wide = abs(lec_locs[i][0][0] - lec_locs[i][1][0]) + 1  # 가로길이
+        height = abs(lec_locs[i][0][1] - lec_locs[i][1][2])  # 세로길이
+        in_height = abs(lec_locs[i][0][2] - lec_locs[i][1][1])  # 안쪽 세로길이
+        interval = int(abs(lec_locs[i][0][2] - lec_locs[i][1][2]) + 0.5)  # 끝 - 끝
+        f_lec = int(abs(lec_locs[i][0][1] - lec_locs[i][0][2]) + 0.5)  # 앞 수업 길이
+        b_lec = int(abs(lec_locs[i][1][1] - lec_locs[i][1][2]) + 0.5)  # 뒷 수업 길이
 
-    block_a = []
-    block_a_size = max(height, in_height, wide)
-    for i in range(0, int(block_a_size * block_a_size)):
-        block_a.append(0)
-    make_lec_time(block_a, block_a_size, lec_time, wide, height, in_height, interval, f_lec, b_lec)
-    print(lec_time)
+        block_a = []
+        block_a_size = max(height, in_height, wide)
+        for i in range(0, int(block_a_size * block_a_size)):
+            block_a.append(0)
+        make_lec_time(block_a, block_a_size, lec_time, wide, height, in_height, interval, f_lec, b_lec)
+        print(lec_time)
 
-    for i in range (0, len(lec_time)):
-        a = lec_time.pop()
-        for g in range(0, int(block_a_size * block_a_size)):
-            if (g == a):
-                block_a[g] = 1
-    print_block(block_a, block_a_size)
-
+        for i in range(0, len(lec_time)):
+            a = lec_time.pop()
+            for g in range(0, int(block_a_size * block_a_size)):
+                if (g == a):
+                    block_a[g] = 1
+        print_block(block_a, block_a_size)
+        for i in range(0, 4):
+            B_DATA.append(block_a)
+        BLOCK_DATA.append(B_DATA)
 
 def make_lec_time(block_a, block_a_size, lec_time, wide, height, in_height, interval, f_lec, b_lec) :
     for i in range (0, f_lec) :
@@ -63,9 +83,6 @@ def print_block(block_a, block_a_size) :
         if (i % block_a_size == block_a_size - 1):
             print()
 
-def append_block_data(BLOCK_DATA) :
-    BLOCK_DATA.append(block_a)
-
 def getloc():
     get_lectures_info()
     # 가져온 강의 체크용
@@ -76,3 +93,5 @@ def getloc():
     for i in range(0, len(lec_locs)):
         print(lec_name[i])
         make_block_data(i)
+
+    return BLOCK_DATA
