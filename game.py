@@ -101,7 +101,8 @@ class Block:
     """ 블록 객체 """
     def __init__(self, count):
         self.turn = randint(0, 3)
-        self.type = BLOCK_DATA[randint(0, 6)]
+        self.type = BLOCK_DATA[randint(0, len(BLOCK_DATA)-1)]
+        #self.type = BLOCK_DATA[1]
         self.data = self.type[self.turn]
         self.size = int(sqrt(len(self.data)))
         self.xpos = randint(1, 10 - self.size)

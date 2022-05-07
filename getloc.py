@@ -27,6 +27,8 @@ def get_lectures_info():
         lec_professor.append(lec.return_professor())
 
 def make_block_data(i):
+    B_DATA = []
+    COUNT = 1 + i
     if (len(lec_locs[i]) == 1):
         block_a = []
         block_a_size = int(abs(lec_locs[i][0][1] - lec_locs[i][0][2]) + 0.5)
@@ -38,11 +40,13 @@ def make_block_data(i):
             a = lec_time.pop()
             for g in range(0, int(block_a_size * block_a_size)):
                 if (g == a):
-                    block_a[g] = 1
+                    block_a[g] = COUNT
+
         print_block(block_a, block_a_size)
         for i in range (0, 4):
             B_DATA.append(block_a)
         BLOCK_DATA.append(B_DATA)
+
     elif (len(lec_locs[i]) == 2) :
         wide = abs(lec_locs[i][0][0] - lec_locs[i][1][0]) + 1  # 가로길이
         height = abs(lec_locs[i][0][1] - lec_locs[i][1][2])  # 세로길이
@@ -62,7 +66,8 @@ def make_block_data(i):
             a = lec_time.pop()
             for g in range(0, int(block_a_size * block_a_size)):
                 if (g == a):
-                    block_a[g] = 1
+                    block_a[g] = COUNT
+
         print_block(block_a, block_a_size)
         for i in range(0, 4):
             B_DATA.append(block_a)
@@ -93,5 +98,7 @@ def getloc():
     for i in range(0, len(lec_locs)):
         print(lec_name[i])
         make_block_data(i)
-
+    print(BLOCK_DATA)
+    print(BLOCK_DATA[1])
+    print(BLOCK_DATA[1][0])
     return BLOCK_DATA
