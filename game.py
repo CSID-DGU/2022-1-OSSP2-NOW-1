@@ -6,7 +6,7 @@ from pygame.locals import QUIT, KEYUP, KEYDOWN, K_LEFT, K_RIGHT, K_DOWN, K_SPACE
 from scrap_table_info import *
 from getloc import *
 
-BLOCK_DATA = (
+BLOCK_DATA1 = (
     (
         (0, 0, 1, \
          1, 1, 1, \
@@ -96,6 +96,8 @@ BLOCK_DATA = (
          0, 0, 0, 0)
     )
 )
+
+BLOCK_DATA = ()
 
 class Block:
     """ 블록 객체 """
@@ -285,6 +287,8 @@ def main():
         FPSCLOCK.tick(15)
 
 if __name__ == '__main__':
-    scrap_table_info()
+    #scrap_table_info()
     #save_table_info()
-    main()
+
+    getloc()
+    #main()
