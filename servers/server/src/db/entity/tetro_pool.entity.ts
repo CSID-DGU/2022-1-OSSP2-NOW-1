@@ -1,7 +1,7 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
-import { Length, IsString, IsBoolean, IsInt } from 'class-validator';
-import { DetailedLecture } from './detailed_lec.entity';
-import { University } from './university.entity';
+import { Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Relation } from 'typeorm';
+import { IsInt } from 'class-validator';
+import { DetailedLecture } from './detailed_lec.entity.js';
+import { University } from './university.entity.js';
 
 /**
  * @description 파이썬 기반 스크래핑을 통해 얻은 코드를 작성된 테트로미노 더미.
@@ -16,13 +16,9 @@ export class TetroPool {
     id!: number;
 
     @ManyToOne(() => University, univ => univ.tetros)
-    // @JoinColumn([
-    //     {name: "tetros_id", referencedColumnName:"id"}
-    // ])
-    univ! : University;
+    univ! : Relation<University>;
 
 
-    @OneToMany(() => DetailedLecture, (dl) => dl.tetro, {cascade: ['remove']})
-    @JoinColumn({referencedColumnName: 'tetro_id'})
-    lectures? : DetailedLecture[];
+    @OneToMany(() => DetailedLecture, (dl) => dl.tetroPool, {cascade: ['remove']})
+    lectures? : Relation<DetailedLecture>[];
 }

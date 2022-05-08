@@ -1,6 +1,6 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
-import { Length, IsString, IsBoolean, IsInt, IsDecimal } from 'class-validator';
-import { DetailedLecture } from './detailed_lec.entity';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Relation } from 'typeorm';
+import { IsInt, IsDecimal } from 'class-validator';
+import { DetailedLecture } from './detailed_lec.entity.js';
 
 @Entity()
 export class LecTime {
@@ -10,22 +10,18 @@ export class LecTime {
 
     @Column({type: 'int'})
     @IsInt()
-    dow : number;
+    dow! : number;
 
-    @Column({type:'decimal'})
+    @Column({type:'decimal', precision: 5, scale: 2, default: 0})
     @IsDecimal()
-    start : number;
+    start! : number;
     
-    @Column({type:'decimal'})
+    @Column({type:'decimal', precision: 5, scale: 2, default: 0})
     @IsDecimal()
-    end : number;
+    end! : number;
 
     @ManyToOne(() => DetailedLecture, dl => dl.lec_times)
-    @JoinColumn([
-        {referencedColumnName: 'tetro_id'},
-        {referencedColumnName: 'c_num'}
-    ])
-    lecture?: DetailedLecture;
+    lecture?: Relation<DetailedLecture>;
 
     constructor(dow: number, start: number, end: number) {
         this.dow = dow;
