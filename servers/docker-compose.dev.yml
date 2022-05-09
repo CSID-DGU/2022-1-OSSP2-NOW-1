@@ -31,7 +31,7 @@ services:
   nginx:
     build:
       context: ./nginx
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     mem_limit: 128m
     ports:
       - "80:80"
