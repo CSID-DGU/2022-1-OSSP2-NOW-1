@@ -18,7 +18,12 @@ services:
     image: mysql
     cap_add:
       - SYS_NICE
-    command: --default-authentication-plugin=mysql_native_password
+    command:
+      - --default-authentication-plugin=mysql_native_password
+      - --character-set-server=utf8 
+      - --character-set-client=utf8
+      - --collation-server=utf8_general_ci
+      # utf8 처리 및 기본 비밀번호 정책 이용
     restart: always
     env_file:
       - ./mysql.env

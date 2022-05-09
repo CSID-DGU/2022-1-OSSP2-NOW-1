@@ -18,7 +18,8 @@ db = new DataSource({
     password: Key.DB_PASSWORD,
     timezone: '+09:00',
     entities: entities,
-    synchronize: true
+    synchronize: true,
+    charset:'utf8mb4'
 });
 
 export const initDB = async () => {

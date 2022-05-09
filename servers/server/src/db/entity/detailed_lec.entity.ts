@@ -13,7 +13,7 @@ export class DetailedLecture {
      */
     @PrimaryGeneratedColumn()
     @IsInt()
-    tetro_id : number;
+    tetro_id! : number;
 
     /**
      * 학수강좌번호
@@ -54,8 +54,7 @@ export class DetailedLecture {
     @ManyToOne(() => TetroPool, t => t.lectures, {onDelete:'CASCADE'})
     tetroPool?: Relation<TetroPool>; // 테트로 엔티티와 Many To One 관계를 가진다.
 
-    constructor(tetro_id: number, c_num: string, name: string, professor: string, note: string) {
-        this.tetro_id = tetro_id;
+    constructor(c_num: string, name: string, professor: string, note: string) {
         this.c_num = c_num;
         this.name = name;
         this.professor = professor;

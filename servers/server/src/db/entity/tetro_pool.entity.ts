@@ -1,4 +1,4 @@
-import { Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Relation } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Relation } from 'typeorm';
 import { IsInt } from 'class-validator';
 import { DetailedLecture } from './detailed_lec.entity.js';
 import { University } from './university.entity.js';
@@ -15,10 +15,28 @@ export class TetroPool {
     @IsInt()
     id!: number;
 
-    @ManyToOne(() => University, univ => univ.tetros)
+    /**
+     * 테트로미노 풀의 이름
+     */
+    @Column()
+    name: string;
+
+    /**
+     * 테트로미노 풀에 대한 설명
+     */
+    @Column()
+    description : string;
+
+    @ManyToOne(() => University, univ => univ.tetro_pools)
     univ! : Relation<University>;
 
 
     @OneToMany(() => DetailedLecture, (dl) => dl.tetroPool, {cascade: ['remove']})
     lectures? : Relation<DetailedLecture>[];
+
+    constructor(name: string, description: string)
+    {
+        this.name = name;
+        this.description = description;
+    }
 }
