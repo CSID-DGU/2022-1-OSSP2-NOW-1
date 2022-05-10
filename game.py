@@ -288,7 +288,5 @@ def main():
 if __name__ == '__main__':
     #scrap_table_info()
     #save_table_info()
-    #append_block_data(BLOCK_DATA)
-    #print(BLOCK_DATA)
     BLOCK_DATA = getloc()
     main()
