@@ -5,6 +5,7 @@ import pygame
 from pygame.locals import QUIT, KEYUP, KEYDOWN, K_LEFT, K_RIGHT, K_DOWN, K_SPACE, K_UP, K_z
 from scrap_table_info import *
 from getloc import *
+from rotate_block import *
 
 BLOCK_DATA = (
     (
@@ -286,7 +287,9 @@ def main():
         FPSCLOCK.tick(15)
 
 if __name__ == '__main__':
-    #scrap_table_info()
-    #save_table_info()
     BLOCK_DATA = getloc()
+    for i in range (0, len(BLOCK_DATA)):
+        BLOCK_DATA[i][1] = rotate_block(BLOCK_DATA[i][1])
+        BLOCK_DATA[i][2] = rotate_block(rotate_block(BLOCK_DATA[i][2]))
+        BLOCK_DATA[i][3] = rotate_block(rotate_block(rotate_block(BLOCK_DATA[i][3])))
     main()
