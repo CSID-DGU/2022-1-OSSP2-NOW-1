@@ -15,7 +15,7 @@ class GameCanvas(Canvas):
             self.move(box, 0, Tetris.BOX_SIZE)
         self.update()
 
-    def completed_lines(self, y_coords):
+    def completed_lines(self, y_coords) :
         cleaned_lines = 0
         y_coords = sorted(y_coords)
         for y in y_coords:
@@ -193,7 +193,7 @@ class Piece():
         return True
 
 class Tetris():
-    SHAPES = ([(0, 0), (1, 0), (0, 1), (1, 1)],     # Square
+    SHAPES = ([(0, 0), (1, 0), (0, 1), (1, 1)] ,    # Square
               [(0, 0), (1, 0), (2, 0), (3, 0)],     # Line
               [(2, 0), (0, 1), (1, 1), (2, 1)],     # Right L
               [(0, 0), (0, 1), (1, 1), (2, 1)],     # Left L
@@ -202,7 +202,6 @@ class Tetris():
               [(1, 0), (0, 1), (1, 1), (2, 1)])     # T
 
     BOX_SIZE = 20
-
     GAME_WIDTH = 300
     GAME_HEIGHT = 500
     GAME_START_POINT = GAME_WIDTH / 2 / BOX_SIZE * BOX_SIZE - BOX_SIZE
@@ -387,3 +386,4 @@ class Tetris():
 if __name__ == '__main__':
     game = Tetris(predictable = True)
     game.start()
+

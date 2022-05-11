@@ -1,7 +1,7 @@
 import numpy as np
 #튜플 연산불가
 # 리스트형, 근데 2배씩 하면 이렇게 계속 진행해도 되는가
-data_list = [[0, 4.0, 5.0], [2, 3.0, 4.0]]
+data_list = [(0, 4.0, 5.0), (2, 3.0, 4.0)]
 print("Data List", str(data_list))
 # code to split it into 3 lists (요일리스트, 시작교시리스트, 끝교시리스트)
 day_b = [i[0] for i in data_list]
@@ -20,11 +20,15 @@ else:
     width = end[1]-sts[1]
 # 0벡터 만들기
 if height > width :
-  basic = np.zeros((height,height))
+  basic = np.zeros(height*height)
   print(basic)
 else :
-    basic = np.zeros((width,width))
+    basic = np.zeros((width*width))
     print(basic)
+
+for i in range(len(basic)) :
+
+
 
 
 
