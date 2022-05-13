@@ -9,9 +9,9 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from css_parser import css_parser
-from detailed_cource_info import DetailedLecture
-from lecture import Lecture
+from util.css_parser import css_parser
+from util.detailed_cource_info import DetailedLecture
+from util.lecture import Lecture
 
 # 크롬 드라이버 자동으로 설치해주는 매니저
 

@@ -26,11 +26,11 @@ def get_lectures_info():
     id = input("id 입력 :")
     password = input("패스워드 입력 :")
     lectures = get_user_TT_info(id, password)
-    for lec in lectures:
-        lec_locs.append(lec.return_locs())
-        lec_name.append(lec.return_name())
-        lec_professor.append(lec.return_professor())
-
+    for lec in list(lectures.values())[0]:
+        lec_locs.append(lec.loc)
+        lec_name.append(lec.name)
+        lec_professor.append(lec.professor)
+        
 def make_block_data(i):
     B_DATA = []
     COUNT = 1 + i

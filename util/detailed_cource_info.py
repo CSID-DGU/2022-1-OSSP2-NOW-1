@@ -1,6 +1,4 @@
-import string
-from lecture import Lecture
-
+from util.lecture import Lecture
 
 class DetailedLecture(Lecture):
     '''
@@ -12,8 +10,8 @@ class DetailedLecture(Lecture):
 
     추가된 것은 강좌번호 / 비고
     '''
-    c_num: string  # 학수강좌번호
-    note: string  # 비고
+    c_num: str  # 학수강좌번호
+    note: str  # 비고
 
     def __init__(self, c_num: str, name: str, professor: str, t: str, note: str):
         self.c_num = c_num  # 학수 번호
