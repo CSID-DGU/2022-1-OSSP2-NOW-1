@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d06a7ce-5ed8-4ccb-b0bf-0f2b4e0d57c1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/clickedQuitIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clickedStartIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/quiticon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/starticon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/title.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/2022-1-OSSP2-NOW-1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/2022-1-OSSP2-NOW-1.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/button.py" beforeDir="false" afterPath="$PROJECT_DIR$/button.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
