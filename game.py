@@ -3,7 +3,6 @@ from math import sqrt
 from random import randint
 import pygame
 from pygame.locals import QUIT, KEYUP, KEYDOWN, K_LEFT, K_RIGHT, K_DOWN, K_SPACE, K_UP, K_z
-from scrap_table_info import *
 from getloc import *
 from rotate_block import *
 
