@@ -1,14 +1,10 @@
-from lecture import *
 from scrap_table_info import *
-from lecture import Lecture
 
-lec_locs = []
+lec_locs : list[list[list[int, float,float]]] = []
 lec_name = []
 lec_professor = []
 id = 0
 password = 0
-lectures = 0
-
 
 #전역변수들
 wide = 0 #가로길이
@@ -19,12 +15,16 @@ f_lec = 0 # 앞 수업 길이
 b_lec = 0 # 뒷 수업 길이
 block_a = []
 block_a_size = 0
-lec_time = []
+lec_time : list[int] = []
 B_DATA = []
 BLOCK_DATA = []
 
+def get_interval():
+    lec_locs
+
 #강의 시간표 가져오기
 def get_lectures_info():
+
     id = input("id 입력 :")
     password = input("패스워드 입력 :")
     lectures = get_user_TT_info(id, password)
@@ -39,8 +39,9 @@ def make_block_data(i):
     if (len(lec_locs[i]) == 1):
         block_a = []
         block_a_size = int(abs(lec_locs[i][0][1] - lec_locs[i][0][2]) + 0.5)
-        for i in range(0, int(block_a_size * block_a_size)):
-            block_a.append(0)
+       
+        block_a = [0 for _ in range(block_a_size**2)]
+        
         for i in range(0, block_a_size):
             lec_time.append(i * block_a_size)
         for i in range(0, len(lec_time)):
