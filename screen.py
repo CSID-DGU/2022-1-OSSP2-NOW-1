@@ -34,19 +34,8 @@ def start_screen(x,y):
     #pygame.draw.rect(SURFACE,GREEN,(250,480,180,68))
     #pygame.draw.rect(SURFACE,RED,(870,480,180,68))
 
-    #마우스 갖다 대면 색 변하기
-    # 마우스
-    # 평소에는 파란색이다가 마우스 갖다대면 파란색으로 변함
-
-
-
-# 반대편도 하려는데 동시에 start 버튼을 누르니 두 색깔이 바뀌는 오류 발생 -> 해결해봐야함
-   # if 870 + 180 > mouse[0] and 480+68 > mouse[1] > 480 :
-    #    pygame.draw.rect(SURFACE,RED,(870,480,180,68))
-    #else:
-      #  pygame.draw.rect(SURFACE,BLACK,(870,480,180,68))
-
-def button(x,y,w,h,ic,ac,img,imgon,action = None):
+# 버튼
+def button(x,y,w,h,ic,ac,strt,cstrt,action = None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
@@ -54,10 +43,10 @@ def button(x,y,w,h,ic,ac,img,imgon,action = None):
     on_button = rect.collidepoint(mouse)
     if on_button :
         pygame.draw.rect(SURFACE, ac, rect)
-        SURFACE.blit (imgon,imgon.get_rect(center = rect.center))
+        SURFACE.blit (cstrt,cstrt.get_rect(center = rect.center))
     else :
         pygame.draw.rect(SURFACE, ic, (x,y,w,h))
-        SURFACE.blit (img,img.get_rect(center = rect.center))
+        SURFACE.blit (strt,strt.get_rect(center = rect.center))
 
     if on_button :
       if click[0]==1 and action != None:
@@ -65,8 +54,11 @@ def button(x,y,w,h,ic,ac,img,imgon,action = None):
               game()
 
 
-img = pygame.image.load("starticon.png").convert_alpha()
-imgOn = pygame.image.load("clickedStartIcon.png").convert_alpha()
+
+strt = pygame.image.load("starticon.png").convert_alpha()
+cstrt = pygame.image.load("clickedStartIcon.png").convert_alpha()
+qt = pygame.image.load("quiticon.png").convert_alpha()
+cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 
 #event handling logic
 finished = False
@@ -80,6 +72,7 @@ while not finished :
     SURFACE.fill((255,255,255)) #배경색 지정
     start_screen(x,y) #이미지 그리기
     pygame.display.flip()
-    button(250, 480, 180, 68, WHITE, WHITE, img, imgOn, "continue")
+    button(250, 480, 180, 68, WHITE, WHITE, strt, cstrt, "continue")
+    button(870,480,180,68,WHITE,WHITE,qt,cqt,"quit")
     pygame.display.update()
 
