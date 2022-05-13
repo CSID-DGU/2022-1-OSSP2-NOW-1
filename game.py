@@ -4,7 +4,7 @@ from random import randint
 import pygame
 from pygame.locals import QUIT, KEYUP, KEYDOWN, K_LEFT, K_RIGHT, K_DOWN, K_SPACE, K_UP, K_z
 from getloc import *
-from rotate_block import *
+from util.getloc2 import getloc2
 
 BLOCK_DATA = (
     (
@@ -286,9 +286,9 @@ def main():
         FPSCLOCK.tick(30)
 
 if __name__ == '__main__':
-    BLOCK_DATA = getloc()
-    for i in range (0, len(BLOCK_DATA)):
-        BLOCK_DATA[i][1] = rotate_block(BLOCK_DATA[i][1])
-        BLOCK_DATA[i][2] = rotate_block(rotate_block(BLOCK_DATA[i][2]))
-        BLOCK_DATA[i][3] = rotate_block(rotate_block(rotate_block(BLOCK_DATA[i][3])))
+    BLOCK_DATA = getloc2()
+    # for i in range (0, len(BLOCK_DATA)):
+    #     BLOCK_DATA[i][1] = rotate_block(BLOCK_DATA[i][1])
+    #     BLOCK_DATA[i][2] = rotate_block(rotate_block(BLOCK_DATA[i][2]))
+    #     BLOCK_DATA[i][3] = rotate_block(rotate_block(rotate_block(BLOCK_DATA[i][3])))
     main()

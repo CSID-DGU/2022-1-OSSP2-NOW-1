@@ -49,8 +49,8 @@ def print_square(arr: tuple):
 def idx2loc(row: int, col: int, row_len: int):
     '''
     @desc 2차원 배열 기준 인덱스를 1차원 배열의 인덱스로 변환
-    @input row 1차원 기준 x 좌표
-    @input col 1차원 기준 y 좌표
+    @input row 1차원 기준 y 좌표
+    @input col 1차원 기준 x 좌표
     @input row_len 정사각형의 한변 길이
     @return 1차원 배열 형태에서의 인덱스
     '''
