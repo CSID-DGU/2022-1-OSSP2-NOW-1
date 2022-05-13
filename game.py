@@ -284,7 +284,7 @@ def main():
             SURFACE.blit(message_over, message_rect)
 
         pygame.display.update()
-        FPSCLOCK.tick(15)
+        FPSCLOCK.tick(30)
 
 if __name__ == '__main__':
     BLOCK_DATA = getloc()
