@@ -22,7 +22,7 @@ def make_block_data(lectures: list[Lecture]):
     block data를 만들어서 반환.
     '''
     BLOCK_DATA = []
-    block_id = 1 # 처음 블럭의 id를 10으로 임의대로 지정한다.
+    block_id = 2 # 처음 블럭의 id를 2로 임의대로 지정한다. 테두리 블럭을 1로 설정했음
     for lecture in lectures:
         loc = lecture.loc
 

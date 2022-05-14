@@ -393,6 +393,7 @@ def get_lectures_info(id: str, password: str, target: list[str], path: list[str]
     
     return lectures_all_semesters
 
+
 if __name__ == "__main__":
     # try :
     id = input("id 입력 :")

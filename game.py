@@ -149,7 +149,7 @@ def erase_line():
         if all(FIELD[ypos]):
             erased += 1
             del FIELD[ypos]
-            FIELD.insert(0, [8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8])
+            FIELD.insert(0, [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
         else:
             ypos -= 1
     return erased
@@ -189,8 +189,8 @@ WIDTH = 12
 HEIGHT = 32 #32가 맞는데 사이즈가 문제라
 INTERVAL = 40
 FIELD = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
-COLORS = ((0, 0, 0), (255, 165, 0), (0, 0, 255), (0, 255, 255), \
-          (0, 255, 0), (255, 0, 255), (255, 255, 0), (255, 0, 0), (128, 128, 128))
+COLORS = ((0, 0, 0), (128, 128, 128) , (255, 165, 0), (0, 0, 255), (0, 255, 255), \
+          (0, 255, 0), (255, 0, 255), (255, 255, 0), (255, 0, 0))
 BLOCK = None
 BLOCK_SIZE = 20
 NEXT_BLOCK = None
@@ -212,10 +212,10 @@ def main():
 
     for ypos in range(HEIGHT):
         for xpos in range(WIDTH):
-            FIELD[ypos][xpos] = 8 if xpos == 0 or \
+            FIELD[ypos][xpos] = 1 if xpos == 0 or \
                 xpos == WIDTH - 1 else 0
     for index in range(WIDTH):
-        FIELD[HEIGHT-1][index] = 8
+        FIELD[HEIGHT-1][index] = 1
 
     while True:
         key = None
