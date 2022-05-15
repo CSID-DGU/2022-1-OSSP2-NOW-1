@@ -20,7 +20,7 @@ export class LecTime {
     @IsDecimal()
     end! : number;
 
-    @ManyToOne(() => DetailedLecture, dl => dl.lec_times)
+    @ManyToOne(() => DetailedLecture, dl => dl.lec_times, {onDelete:'CASCADE', onUpdate:'CASCADE'})
     lecture?: Relation<DetailedLecture>;
 
     constructor(dow: number, start: number, end: number) {

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./dist/index.js",
-    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\""
+    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\"",
+    "insert": "tsc & node ./dist/insert_index.js"
   },
   "author": "blaxsior",
   "license": "ISC",

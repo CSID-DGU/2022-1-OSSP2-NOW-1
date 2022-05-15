@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import Key from '../key.js';
+import Key from '../util/key.js';
 import { DetailedLecture } from './entity/detailed_lec.entity.js';
 import { LecTime } from './entity/lec_time.entity.js';
 import { TetroPool } from './entity/tetro_pool.entity.js';

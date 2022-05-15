@@ -14,13 +14,13 @@ import { resolve } from "path";
  * @controller getUsers
  * 현재 서버상에 저장된 유저들의 정보를 가져오는 컨트롤러 
  */
-export const getUsers: RequestHandler = async (req, res, next) => {
-    const userRepository = db.getRepository(User);
-    const users = await userRepository.find();
-    res.status(200).send({
-        user: users
-    });
-};
+// export const getUsers: RequestHandler = async (req, res, next) => {
+//     const userRepository = db.getRepository(User);
+//     const users = await userRepository.find();
+//     res.status(200).send({
+//         user: users
+//     });
+// };
 
 /**
  * @controller showUserPage
@@ -31,7 +31,13 @@ export const showUserPage: RequestHandler = async (req, res, next) => {
 };
 
 export const setUser: RequestHandler = async (req, res, next) => {
-    const userRepository = db.getRepository(User);
+    const userRepo = db.getRepository(User);
+
+    const test = await userRepo.findOneBy({id:1});
+    if(test)
+    {
+        return res.status(200).send('이미 유저가 존재');
+    }
     const user = new User("John", "Doe", true);
 
     const err = await validate(user);
@@ -39,7 +45,7 @@ export const setUser: RequestHandler = async (req, res, next) => {
         return res.status(400).send(err);
     }
     else {
-        await userRepository.save(user);
+        // await userRepository.save(user);
         res.status(200).send("유저가 생성됨!");
     }
 };

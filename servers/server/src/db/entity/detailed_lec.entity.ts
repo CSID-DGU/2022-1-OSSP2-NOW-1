@@ -2,12 +2,13 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, Primar
 import { IsString, IsInt } from 'class-validator';
 import { TetroPool } from './tetro_pool.entity.js';
 import { LecTime } from './lec_time.entity.js';
+import { ILecBase } from '../../interface/lecture.interface.js';
 
 /**
  * @description 테트로미노 풀 속에 있는 강의
  */
 @Entity()
-export class DetailedLecture {
+export class DetailedLecture implements ILecBase {
     /**
      * 테트로미노 풀의 id
      */
@@ -18,6 +19,7 @@ export class DetailedLecture {
     /**
      * 학수강좌번호
      */
+    @Column()
     @IsString()
     c_num!: string;
 
@@ -51,7 +53,7 @@ export class DetailedLecture {
     /**
      * join 관계를 가지는 테트로미노 풀
      */
-    @ManyToOne(() => TetroPool, t => t.lectures, {onDelete:'CASCADE'})
+    @ManyToOne(() => TetroPool, t => t.lectures, {onDelete:'CASCADE', onUpdate:'CASCADE'})
     tetroPool?: Relation<TetroPool>; // 테트로 엔티티와 Many To One 관계를 가진다.
 
     constructor(c_num: string, name: string, professor: string, note: string) {

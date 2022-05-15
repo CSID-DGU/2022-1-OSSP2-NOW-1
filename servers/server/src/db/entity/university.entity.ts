@@ -1,12 +1,13 @@
-import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, Relation } from 'typeorm';
+import { Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, Relation, Unique } from 'typeorm';
 import { IsString, IsInt } from 'class-validator';
 import { TetroPool } from './tetro_pool.entity.js';
+import { IUnivInfo } from '../../interface/university.interface.js';
 
 /**
  * @description
  */
 @Entity()
-export class University {
+export class University implements IUnivInfo {
     /**
      * 학교 id. 자동으로 생성.
      */
@@ -16,8 +17,9 @@ export class University {
 
     /**
      * 학교의 이름
+     * 이름은 동일하면 안된다.
      */
-    @Column()
+    @PrimaryColumn()
     @IsString()
     name: string;
 
