@@ -20,8 +20,8 @@ export const getSpecificTetroPool : RequestHandler = async (req, res, next) => {
                     lec_times: true
                 }
             }});
-
-            if (tetro_pool) { // 요청한 테트로미노 풀이 존재할 때
+            console.log(tetro_pool);
+            if (tetro_pool.length > 0) { // 요청한 테트로미노 풀이 존재할 때
                 const lec_list : ILec[] = []; // 강의 풀
 
                 const lectures = tetro_pool[0].lectures;
