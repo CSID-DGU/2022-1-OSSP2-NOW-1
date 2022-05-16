@@ -5,11 +5,9 @@ import sys
 
 pygame.init()
 clock = pygame.time.Clock()
-
-#basic type for user typed
-base_font = pygame.font.Font(None,32)
-user_id = ''
-user_pw = ''
+COLOR_INACTIVE = pygame.Color('lightskyblue3')
+COLOR_ACTIVE = pygame.Color('dodgerblue2')
+FONT = pygame.font.Font(None, 32)
 
 #display_width, display_height 고정, 색 설정, 창 이름 설정
 display_width = 1200
@@ -23,59 +21,51 @@ x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
 
+class InputBox :
+    def __init__(self,x,y,w,h, text = ''):
+        self.rect = pygame.Rect(x,y,w,h)
+        self.color = COLOR_INACTIVE
+        self.text = text
+        self.txt_surface = FONT.render(text,True,self.color)
+        self.active = False
+
+    def handle_event(self,event):
+        if event.type ==pygame.MOUSEBUTTONDOWN:
+            #IF THE USER CLICKED ON THE INPUT_BOX RECT
+          if self.rect.collidepoint(event.pos):
+              #TOGGLE THE ACTIVE VARIABLE
+             self.active = not self.active
+          else :
+              self.active = False
+          #CHANGE THE COLOR OF THE INPUT BOX
+          self.color = COLOR_ACTIVE if self.active else COLOR_INACTIVE
+        if event.type ==pygame.KEYDOWN:
+            if self.active :
+                if event.key == pygame.K_RETURN:
+                    print(self.text)
+                    self.text = ''
+                elif event.key ==pygame.K_BACKSPACE:
+                    self.text = self.text[:-1]
+                else:
+                    self.text +=event.unicode
+                #RE-RENDER THE TEXT
+                self.txt_surface = FONT.render(self.text,True, self.color)
+
+    def update(self):
+        #RESIZE THE BOX IF THE TEXT IS TOO LONG
+        width = max(200,self.txt_surface.get_width()+10)
+        self.rect.w = width
+
+    def draw(self, SURFACE):
+        #BLIT THE TEXT
+        SURFACE.blit(self.txt_surface, (self.rect.x+5, self.rect.y+5))
+        #BLIT THE RECT
+        pygame.draw.rect(SURFACE, self.color, self.rect, 2)
 
 # 시작 화면 그리기
 def mode_screen(x,y):
     myImg = pygame.image.load('everytime_bgr.png')
     SURFACE.blit(myImg,(x,y))
-
-def user_input(user_id,user_pw) :
-    # input_id 받을 사각형 그리기
-    input_id = pygame.Rect(200, 200, 140, 32)
-    input_pw = pygame.Rect(200, 300, 140, 32)
-
-    # 사용자에 의해 input 박스가 눌러졌을 때 활성화 될 색깔 설정
-    color_active = pygame.Color('lightskyblue3')
-    # input 박스 자체의 색깔 설정
-    color_passive = pygame.Color('chartreuse4')
-    color = color_passive
-    active = False
-
-    if event.type == pygame.MOUSEBUTTONDOWN:
-        if input_id.collidepoint(event.pos):
-            active = True
-        else:
-            active = False
-        if input_pw.collidepoint(event.pos):
-            active = True
-        else:
-            active = False
-
-    if event.type == pygame.KEYDOWN :
-        #CHECK FOR BACKSPACE
-        if event.key == pygame.K_BACKSPACE :
-          #GET TEXT INPUT FROM 0 TO -1 I.E. END.
-           user_id = user_id[:-1]
-           user_pw = user_pw[:-1]
-        else :
-            #UNICODE STANDARD IS USED FOR STRING
-            #FORMATION
-          user_id += event.unicode
-          user_pw += event.unicode
-
-    pygame.draw.rect(SURFACE, WHITE,input_id)
-    pygame.draw.rect(SURFACE, WHITE,input_pw)
-    text_surface1 = base_font.render(user_id,True,WHITE)
-    text_surface2 = base_font.render(user_pw,True,WHITE)
-
-    #render at position
-    SURFACE.blit(text_surface1,(input_id.x+5, input_id.y+5))
-    SURFACE.blit(text_surface2,(input_pw.x+5, input_pw.y+5))
-
-    #set width of text_field so that text cannot get outside of user's text output
-    input_id.w = max(100,text_surface1.get_width()+10)
-    input_pw.w = max(100,text_surface2.get_width()+10)
-
 
 # 버튼 (only for quit)
 def button(x,y,w,h,ic,ac,quit,cquit,action = None):
@@ -99,7 +89,9 @@ def button(x,y,w,h,ic,ac,quit,cquit,action = None):
 
 qt = pygame.image.load("quiticon.png").convert_alpha()
 cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
-
+input_id = InputBox(250,250,140,32)
+input_pw = InputBox(500,500,140,32)
+input_boxes = [input_id, input_pw]
 
 #event handling logic
 finished = False
@@ -107,12 +99,19 @@ while not finished :
     for event in pygame.event.get():
         if event.type == QUIT:
             finished = True
-            pygame.quit()
-            quit()
+            #pygame.quit()
+            #quit()
+        for box in input_boxes:
+            box.handle_event(event)
+
+    for box in input_boxes:
+        box.update()
 
     SURFACE.fill((255,255,255)) #배경색 지정
+    SURFACE.fill((30,30,30))
+    for box in input_boxes:
+        box.draw(SURFACE)
     mode_screen(x,y) #이미지 그리기
-    user_input(user_id,user_pw) # 아이디입력하기
     pygame.display.flip()
     button(920,530,180,68,WHITE,WHITE,qt,cqt,"quit")
     pygame.display.update()
