@@ -3,8 +3,8 @@ import e from 'express';
 import { NotFound } from "./controller/404.controller.js";
 import userRouter from "./router/user.router.js";
 import { initDB } from "./db/db.index.js";
-import { insert_json } from "./util/insert_json.js";
 import tetroRouter from "./router/tetro.router.js";
+import infoRouter from "./router/info.router.js";
 
 const server = e();
 
@@ -17,7 +17,8 @@ server.use(e.static("public", { extensions: ['js'] }));
 /* 라우터 */
 
 server.use('/user', userRouter);
-server.use('/tetro', tetroRouter)
+server.use('/tetro', tetroRouter);
+server.use('/info', infoRouter);
 server.use('*', NotFound);
 
 try {

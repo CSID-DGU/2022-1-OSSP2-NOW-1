@@ -1,11 +1,13 @@
+import { validate } from "class-validator";
 import { RequestHandler } from "express";
 import db from "../db/db.index.js";
 import { TetroPool } from "../db/entity/tetro_pool.entity.js";
+import { UserScore } from "../db/entity/user_score.entity.js";
 import { ILec } from '../interface/lecture.interface.js';
 
 /**
  *  요청된 특정 테트로미노 풀을 반환.
- * @route /api/get/:tid
+ * @route /api/tetro/get-tetro/:tid
  */
 export const getSpecificTetroPool: RequestHandler = async (req, res, next) => {
     let params = req.params;
@@ -74,9 +76,56 @@ export const getSpecificTetroPool: RequestHandler = async (req, res, next) => {
 
 
 /**
- * 경쟁 모드에서 특정 테트로미노 풀에 대한 id 값을 반환.
- * @route /api/get/:tid
+ * 경쟁 모드에서 특정 테트로미노 풀에 대한 점수 목록을 반환
+ * @route /api/tetro/get-scores/:tid
  */
 export const getUsersScore : RequestHandler = async (req, res, next) => {
-    
+    const tid = parseInt(req.params['tid']);
+    if(isNaN(tid)) {
+        return res.status(400).json({message: '잘못된 인덱스입니다.'});
+    }
+    const scores = await db.getRepository(UserScore)
+                        .createQueryBuilder()
+                        .orderBy('score',"DESC")
+                        .limit(10)
+                        .getMany();
+
+    return res.json(scores);
+};
+
+/**
+ * 경쟁 모드에서 특정 테트로미노 풀에 대한 점수를 기록
+ * @route /api/tetro/set-score/:tid
+ */
+export const setUserScore : RequestHandler = async (req, res, next) => {
+    const tid = parseInt(req.params['tid']);
+    const tetro = await db.getRepository(TetroPool).findOneBy({id: tid});
+
+    if(!isNaN(tid))
+    {
+        if(tetro == null)
+        {
+            return res.status(404).json({message: '존재하지 않는 테트로미노 풀'});
+        }
+    }
+    else {
+        return res.status(400).json({message: '잘못된 테트로미노 id'});
+    }
+
+    const name = req.body.name;
+    const score = parseInt(req.body.score);
+
+    const usRepo = db.getRepository(UserScore);
+    const user_score = new UserScore(name, score);
+    user_score.tetro_pool = tetro;
+
+    const validation = await validate(user_score);
+    if(validation.length > 0)
+    {
+        return res.status(400).json({message: validation});
+    }
+
+    await usRepo.save(user_score);
+
+    return res.status(200).json({message: '유저 등록 성공!'});
 };

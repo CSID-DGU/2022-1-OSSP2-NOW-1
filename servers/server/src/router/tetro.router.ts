@@ -1,6 +1,5 @@
 import express from 'express';
-import { getSpecificTetroPool } from '../controller/data.controller.js';
-import { showAvailableTetroPool, showAvailableUniv } from '../controller/info.controller.js';
+import { getSpecificTetroPool, getUsersScore, setUserScore } from '../controller/data.controller.js';
 
 const tetroRouter = express.Router();
 
@@ -11,9 +10,8 @@ tetroRouter.get('/', (req,res,next) =>{
 tetroRouter.get('/get', (req,res,next) =>{
     res.send('tetro!!!');
 })
-tetroRouter.get('/get/:tid', getSpecificTetroPool);
-
-tetroRouter.get('/info/univs', showAvailableUniv);
-tetroRouter.get('/info/:uid/tetro-pools', showAvailableTetroPool);
+tetroRouter.get('/get-tetro/:tid', getSpecificTetroPool);
+tetroRouter.get('/get-scores/:tid', getUsersScore);
+tetroRouter.post('/set-score/:tid', setUserScore);
 
 export default tetroRouter;
