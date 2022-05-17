@@ -67,25 +67,23 @@ export const insert_json = async (univInfo: IUnivInfo, tetroInfo: ITetroInfo, js
     await lectureRepo.save(lecs); // 데이터베이스 내에 강의들 삽입
 
     tetro_pool.lectures = lecs; // 테트로미노 풀 데이터베이스에 삽입
-    await tetroRepo.save(tetro_pool); // 테트로 풀 삽입함!
 
     // 이전에 저장된 놈이 있는지 검사.
     const before_univ = await univRepo.findOne({ where: { name: univ.name } });
-    
+    console.log(before_univ?.id, before_univ?.name);
     //이미 저장된 놈이 있다면
     if (before_univ) {
-        if(before_univ.tetro_pools) // 저장된 놈이 테트로미노 풀을 가진다면
-        {
-            before_univ.tetro_pools.push(tetro_pool);
-        }
-        univ = before_univ;
+        // before_univ은 join 조건을 따로 안줬기 때문에 tetro_pools가 항상 없음!
+        tetro_pool.univ = before_univ;
+        await tetroRepo.save(tetro_pool); // 테트로 풀 삽입함!
     }
     else {
+        await tetroRepo.save(tetro_pool);
         univ.tetro_pools = [tetro_pool];
+        await univRepo.save(univ);
     }
 
     // tetro_pool.univ = univ;
-
-    await univRepo.save(univ);
     console.log("success!");
+
 }

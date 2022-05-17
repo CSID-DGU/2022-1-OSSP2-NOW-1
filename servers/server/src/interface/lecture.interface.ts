@@ -7,3 +7,4 @@ export interface ILecBase {
 export interface ILec extends ILecBase {
     loc: number[][]
 }
+
