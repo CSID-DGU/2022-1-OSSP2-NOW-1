@@ -5,6 +5,7 @@ import { ILec } from '../interface/lecture.interface.js';
 
 /**
  *  요청된 특정 테트로미노 풀을 반환.
+ * @route /api/get/:tid
  */
 export const getSpecificTetroPool: RequestHandler = async (req, res, next) => {
     let params = req.params;
@@ -14,8 +15,7 @@ export const getSpecificTetroPool: RequestHandler = async (req, res, next) => {
     {
         const tetroRepo = db.getRepository(TetroPool);
         try {
-
-            const tetro_pool = await tetroRepo.find({
+            const tetro_pool = await tetroRepo.findOne({
                 where: { id: id }, relations: {
                     lectures: {
                         lec_times: true
@@ -23,10 +23,10 @@ export const getSpecificTetroPool: RequestHandler = async (req, res, next) => {
                 }
             });
             console.log(tetro_pool);
-            if (tetro_pool.length > 0) { // 요청한 테트로미노 풀이 존재할 때
+            if (tetro_pool) { // 요청한 테트로미노 풀이 존재할 때
                 const lec_list: ILec[] = []; // 강의 풀
 
-                const lectures = tetro_pool[0].lectures;
+                const lectures = tetro_pool.lectures;
                 if (lectures) {
                     for (const ldata of lectures) {
                         const lec_times = ldata.lec_times; // loc에 대응
@@ -62,6 +62,7 @@ export const getSpecificTetroPool: RequestHandler = async (req, res, next) => {
 
         }
         catch {
+            return res.status(404).json({ message: '알수 없는 오류' });
         }
     }
     else {
@@ -69,4 +70,13 @@ export const getSpecificTetroPool: RequestHandler = async (req, res, next) => {
             .json({ message: '부적절한 id를 지정' });
     }
 
-}
+};
+
+
+/**
+ * 경쟁 모드에서 특정 테트로미노 풀에 대한 id 값을 반환.
+ * @route /api/get/:tid
+ */
+export const getUsersScore : RequestHandler = async (req, res, next) => {
+    
+};
