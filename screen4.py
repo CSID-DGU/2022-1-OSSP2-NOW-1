@@ -1,25 +1,48 @@
 import pygame
 import sys
 
-# pygame.init() will initialize all
-# imported module
+
 pygame.init()
 clock = pygame.time.Clock()
-
-# it will display on screen
 display_width = 1200
 display_height = 650
-
+WHITE = (255,255,255)
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
 pygame.display.set_caption("시간표 테트리스, 시간표팡!")
 
 
-
 def mode_screen(x,y):
     myImg = pygame.image.load('nickname_bgr.png')
     SURFACE.blit(myImg,(x,y))
+def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+
+    rect = pygame.Rect(x,y,w,h)
+    on_button = rect.collidepoint(mouse)
+    if on_button :
+        pygame.draw.rect(SURFACE, ac, rect)
+        SURFACE.blit (clickOne,clickOne.get_rect(center = rect.center))
+    else :
+        pygame.draw.rect(SURFACE, ic, (x,y,w,h))
+        SURFACE.blit (oneP,oneP.get_rect(center = rect.center))
+
+#버튼 클릭 수행
+    if on_button :
+      if click[0]==1 and action != None:
+          if action == "replay" :
+              game()
+          elif action =="quit":
+              quit()
+
+#이미지 로딩
+rep = pygame.image.load("replayicon.png").convert_alpha()
+crep = pygame.image.load("clickedReplayIcon.png").convert_alpha()
+qt = pygame.image.load("quiticon.png").convert_alpha()
+cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
+
 
 # basic font for user typed
 base_font = pygame.font.Font(None, 60)
@@ -84,6 +107,8 @@ while True:
     # set width of textfield so that text cannot get
     # outside of user's text input
     input_rect.w = max(100, text_surface.get_width() + 10)
+    button(220, 480, 180, 60, WHITE, WHITE, rep, crep, "continue")
+    button(900, 480, 180, 60, WHITE, WHITE, qt, cqt, "quit")
     # display.flip() will update only a portion of the
     # screen to updated, not full area
     pygame.display.flip()
