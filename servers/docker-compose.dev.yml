@@ -44,7 +44,7 @@ services:
     depends_on:
       - my_server
     # volumes:
-    #   - ./nginx:/etc/nginx/conf.d
+    #   - ./nginx/server.conf:/etc/nginx/conf.d/server.conf
     deploy:
       restart_policy:
         condition: always

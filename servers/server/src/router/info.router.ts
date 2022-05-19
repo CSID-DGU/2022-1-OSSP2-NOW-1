@@ -3,7 +3,7 @@ import { showAvailableTetroPool, showAvailableUniv } from '../controller/info.co
 
 const infoRouter = express.Router();
 
-infoRouter.get('/info/univs', showAvailableUniv);
-infoRouter.get('/info/:uid/tetro-pools', showAvailableTetroPool);
+infoRouter.get('/univs', showAvailableUniv);
+infoRouter.get('/:uid/tetro-pools', showAvailableTetroPool);
 
 export default infoRouter;

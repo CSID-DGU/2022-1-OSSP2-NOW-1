@@ -12,7 +12,9 @@ const server = e();
 
 /* 서버에서 사용되는 미들웨어들 */
 server.use(e.urlencoded({ extended: true }));
+server.use(e.json());
 server.use(e.static("public", { extensions: ['js'] }));
+
 
 /* 라우터 */
 

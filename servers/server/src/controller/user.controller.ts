@@ -30,6 +30,10 @@ export const showUserPage: RequestHandler = async (req, res, next) => {
     res.sendFile(resolve('public/view/index.html'));
 };
 
+/**
+ * @controller setUser 
+ * 유저 설정 
+ */
 export const setUser: RequestHandler = async (req, res, next) => {
     const userRepo = db.getRepository(User);
 

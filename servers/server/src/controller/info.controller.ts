@@ -25,7 +25,7 @@ export const showAvailableUniv: RequestHandler = async (req, res, next) => {
  * @route /api/info/:uid/tetro-pools
  */
 export const showAvailableTetroPool: RequestHandler = async (req, res, next) => {
-    const univ_id = parseInt(req.params['univ-name']);
+    const univ_id = parseInt(req.params['uid']);
     if (isNaN(univ_id)) {
         return res.status(400).json({ message: '잘봇된 대학 id' });
     }

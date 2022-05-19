@@ -89,8 +89,14 @@ export const getUsersScore : RequestHandler = async (req, res, next) => {
                         .orderBy('score',"DESC")
                         .limit(10)
                         .getMany();
+    const score_json = scores.map(s => {
+        return {
+            name : s.name,
+            score : s.score
+        };
+    })
 
-    return res.json(scores);
+    return res.json(score_json);
 };
 
 /**
@@ -101,6 +107,7 @@ export const setUserScore : RequestHandler = async (req, res, next) => {
     const tid = parseInt(req.params['tid']);
     const tetro = await db.getRepository(TetroPool).findOneBy({id: tid});
 
+    console.log(req.body);
     if(!isNaN(tid))
     {
         if(tetro == null)
@@ -122,7 +129,13 @@ export const setUserScore : RequestHandler = async (req, res, next) => {
     const validation = await validate(user_score);
     if(validation.length > 0)
     {
-        return res.status(400).json({message: validation});
+        const message = validation.map(c => {
+            return {
+                property: c.property,
+                constraints : c.constraints
+            }
+        })
+        return res.status(400).json({message: message});
     }
 
     await usRepo.save(user_score);
