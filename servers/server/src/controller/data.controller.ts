@@ -24,7 +24,6 @@ export const getSpecificTetroPool: RequestHandler = async (req, res, next) => {
                     }
                 }
             });
-            console.log(tetro_pool);
             if (tetro_pool) { // 요청한 테트로미노 풀이 존재할 때
                 const lec_list: ILec[] = []; // 강의 풀
 
@@ -107,7 +106,6 @@ export const setUserScore : RequestHandler = async (req, res, next) => {
     const tid = parseInt(req.params['tid']);
     const tetro = await db.getRepository(TetroPool).findOneBy({id: tid});
 
-    console.log(req.body);
     if(!isNaN(tid))
     {
         if(tetro == null)

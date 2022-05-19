@@ -32,13 +32,11 @@ export const insert_json = async (univInfo: IUnivInfo, tetroInfo: ITetroInfo, js
     let buffer = await readFile(data_path, { encoding: 'utf8' });
     let str = buffer.toString();
     let json = JSON.parse(str);
-    console.log(json);
 
     let univ = new University(univInfo.name);
 
     let values: ILec[] = (Object.values(json) as ILec[][]).reduce((prev, cur) => prev.concat(cur), []); // 배열 붙이기
 
-    console.log(values)
 
     let lecs: DetailedLecture[] = [];
     const tetro_pool = new TetroPool(tetroInfo.name, tetroInfo.description);
@@ -70,7 +68,6 @@ export const insert_json = async (univInfo: IUnivInfo, tetroInfo: ITetroInfo, js
 
     // 이전에 저장된 놈이 있는지 검사.
     const before_univ = await univRepo.findOne({ where: { name: univ.name } });
-    console.log(before_univ?.id, before_univ?.name);
     //이미 저장된 놈이 있다면
     if (before_univ) {
         // before_univ은 join 조건을 따로 안줬기 때문에 tetro_pools가 항상 없음!
