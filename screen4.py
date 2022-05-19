@@ -1,7 +1,6 @@
 import pygame
 import sys
 
-
 pygame.init()
 clock = pygame.time.Clock()
 display_width = 1200
@@ -37,19 +36,19 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
           elif action =="quit":
               quit()
 
-#이미지 로딩
+#버튼 이미지 로딩
 rep = pygame.image.load("replayicon.png").convert_alpha()
 crep = pygame.image.load("clickedReplayIcon.png").convert_alpha()
 qt = pygame.image.load("quiticon.png").convert_alpha()
 cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 
-
 # basic font for user typed
 base_font = pygame.font.Font(None, 60)
 user_text = ''
 
-# create rectangle
-input_rect = pygame.Rect(540, 300, 140, 60)
+# create rectangle INPUT_RECT
+input_rect = pygame.Rect(533, 300, 140, 60)
+#최대 12글자까지 저장하게끔
 
 # color_active stores color(lightskyblue3) which
 # gets active when input box is clicked by user
@@ -80,15 +79,16 @@ while True:
 
             # Check for backspace
             if event.key == pygame.K_BACKSPACE:
-
                 # get text input from 0 to -1 i.e. end.
-                user_text = user_text[:-1]
-
+                 user_text = user_text[:-1]
             # Unicode standard is used for string
             # formation
             else:
                 user_text += event.unicode
-
+                #LIMIT THE INPUT_RECT CHARACTER
+                #-20 FOR BORDER WIDTH
+                if text_surface.get_width() > input_rect.w - 10:
+                    user_text = user_text[:-1]
     # it will set background color of screen
     SURFACE.fill((255, 255, 255))
     mode_screen(x,y)
@@ -106,12 +106,8 @@ while True:
     SURFACE.blit(text_surface, (input_rect.x + 5, input_rect.y + 5))
     # set width of textfield so that text cannot get
     # outside of user's text input
-    input_rect.w = max(100, text_surface.get_width() + 10)
-    button(220, 480, 180, 60, WHITE, WHITE, rep, crep, "continue")
+    input_rect.w = max(50, text_surface.get_width() + 10)
+    button(220, 480, 180, 60, WHITE, WHITE, rep, crep, "replay")
     button(900, 480, 180, 60, WHITE, WHITE, qt, cqt, "quit")
-    # display.flip() will update only a portion of the
-    # screen to updated, not full area
     pygame.display.flip()
-    # clock.tick(60) means that for every second at most
-    # 60 frames should be passed.
     clock.tick(60)
