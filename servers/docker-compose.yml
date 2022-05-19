@@ -9,10 +9,10 @@ services:
     #   - ./server:/home/node/app
     depends_on:
       - my_db
-    # deploy:
-    #   restart_policy:
-    #     condition: always
-    #     delay: 3s
+    deploy:
+      restart_policy:
+        condition: always
+        delay: 3s
 
   my_db:
     image: mysql
@@ -27,13 +27,13 @@ services:
     restart: always
     env_file:
       - ./mysql.env
-    # deploy:
-    #   restart_policy:
-    #     condition: always
+    deploy:
+      restart_policy:
+        condition: always
   
   nginx:
     image: blaxsior/ossp-nginx
-    mem_limit: 128m
+    mem_limit: 128m # 메모리 제한
     ports:
       - "80:80"
       - "443:443"
