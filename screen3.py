@@ -15,7 +15,6 @@ display_height = 650
 WHITE=(255,255,255)
 pygame.display.set_caption("시간표 테트리스, 시간표팡!")
 
-
 # 배경 이미지 위치 지정
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)

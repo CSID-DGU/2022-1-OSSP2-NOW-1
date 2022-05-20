@@ -11,7 +11,6 @@ y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
 pygame.display.set_caption("시간표 테트리스, 시간표팡!")
 
-
 def mode_screen(x,y):
     myImg = pygame.image.load('nickname_bgr.png')
     SURFACE.blit(myImg,(x,y))
@@ -47,7 +46,7 @@ base_font = pygame.font.Font(None, 60)
 user_text = ''
 
 # create rectangle INPUT_RECT
-input_rect = pygame.Rect(533, 300, 140, 60)
+input_rect = pygame.Rect(565, 300, 140, 60)
 #최대 12글자까지 저장하게끔
 
 # color_active stores color(lightskyblue3) which
@@ -87,7 +86,7 @@ while True:
                 user_text += event.unicode
                 #LIMIT THE INPUT_RECT CHARACTER
                 #-20 FOR BORDER WIDTH
-                if text_surface.get_width() > input_rect.w - 10:
+                if text_surface.get_width() > input_rect.w - 40:
                     user_text = user_text[:-1]
     # it will set background color of screen
     SURFACE.fill((255, 255, 255))
@@ -106,7 +105,7 @@ while True:
     SURFACE.blit(text_surface, (input_rect.x + 5, input_rect.y + 5))
     # set width of textfield so that text cannot get
     # outside of user's text input
-    input_rect.w = max(50, text_surface.get_width() + 10)
+    input_rect.w = max(100, text_surface.get_width() + 10)
     button(220, 480, 180, 60, WHITE, WHITE, rep, crep, "replay")
     button(900, 480, 180, 60, WHITE, WHITE, qt, cqt, "quit")
     pygame.display.flip()
