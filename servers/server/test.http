@@ -20,7 +20,7 @@ Content-Type: : application/json
 
 {
     "name": "test",
-    "score": 700
+    "score": 900
 }
 
 
