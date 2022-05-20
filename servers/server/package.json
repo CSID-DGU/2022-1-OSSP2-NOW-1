@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./dist/index.js",
     "dev": "tsc-watch --onSuccess \"node ./dist/index.js\"",
-    "insert": "tsc & node ./dist/insert_index.js"
+    "insert1": "TETRO_TARGET=0 node ./dist/insert_index.js",
+    "insert2": "TETRO_TARGET=1 node ./dist/insert_index.js",
+    "insert3": "TETRO_TARGET=2 node ./dist/insert_index.js",
+    "insert4": "TETRO_TARGET=3 node ./dist/insert_index.js" 
   },
   "author": "blaxsior",
   "license": "ISC",

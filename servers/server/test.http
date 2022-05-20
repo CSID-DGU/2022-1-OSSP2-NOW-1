@@ -1,15 +1,13 @@
-@baseUrl = http://localhost:80
-# @baseUrl = http://www.ttpang.site/
+#@baseUrl = http://localhost:80
+@baseUrl = http://ttpang.site/
 
 ### 특정 테트로미노 풀 요구
 GET {{baseUrl}}/api/tetro/get-tetro/1 HTTP/1.1
 Accept: application/json
 
-
 ### 존재하지 않는 테트로미노 풀 요구
 GET {{baseUrl}}/api/tetro/get-tetro/10 HTTP/1.1
 Accept: application/json
-
 
 ### 특정 테트로미노 풀에 대한 점수 요청
 GET {{baseUrl}}/api/tetro/get-scores/1 HTTP/1.1
