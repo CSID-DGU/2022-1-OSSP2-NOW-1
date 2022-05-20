@@ -106,7 +106,7 @@ class Block:
         self.data = self.type[self.turn]
         self.size = int(sqrt(len(self.data)))
         self.xpos = randint(1, 10 - self.size)
-        self.ypos = 1 - self.size
+        self.ypos = 1 - self.size + 4
         self.fire = count + INTERVAL
 
     def update(self, count):
@@ -173,10 +173,8 @@ def is_overlapped(xpos, ypos, turn):
     data = BLOCK.type[turn]
     for y_offset in range(BLOCK.size):
         for x_offset in range(BLOCK.size):
-            if 0 <= xpos+x_offset < WIDTH and \
-                0 <= ypos+y_offset < HEIGHT:
-                if data[y_offset*BLOCK.size + x_offset] != 0 and \
-                    FIELD[ypos+y_offset][xpos+x_offset] != 0:
+            if 0 <= xpos+x_offset < WIDTH and 0 <= ypos+y_offset < HEIGHT:
+                if data[y_offset*BLOCK.size + x_offset] != 0 and FIELD[ypos+y_offset][xpos+x_offset] != 0:
                     return True
     return False
 
@@ -186,7 +184,7 @@ pygame.key.set_repeat(120, 120)
 SURFACE = pygame.display.set_mode([600, 800])
 FPSCLOCK = pygame.time.Clock()
 WIDTH = 12
-HEIGHT = 32 #32가 맞는데 사이즈가 문제라
+HEIGHT = 32
 INTERVAL = 40
 FIELD = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
 COLORS = ((0, 0, 0), (128, 128, 128) , (255, 165, 0), (0, 0, 255), (0, 255, 255), \
@@ -212,8 +210,7 @@ def main():
 
     for ypos in range(HEIGHT):
         for xpos in range(WIDTH):
-            FIELD[ypos][xpos] = 1 if xpos == 0 or \
-                xpos == WIDTH - 1 else 0
+            FIELD[ypos][xpos] = 1 if xpos == 0 or xpos == WIDTH - 1 else 0
     for index in range(WIDTH):
         FIELD[HEIGHT-1][index] = 1
 
@@ -275,20 +272,24 @@ def main():
 
         # 점수 나타내기
         score_str = str(score).zfill(6)
-        score_image = smallfont.render(score_str,
-                                       True, (0, 255, 0))
+        score_image = smallfont.render(score_str, True, (0, 255, 0))
         SURFACE.blit(score_image, (500, 30))
+
+        """
+        # 과목 정보 나타내기
+        lec_name_str = str(lec_name).zfill(6)
+        lec_name_image = smallfont.render(lec_name_str, True, (0, 255, 0))
+        SURFACE.blit(lec_name_image, (500, 120))
+        """
 
         if game_over:
             SURFACE.blit(message_over, message_rect)
 
         pygame.display.update()
-        FPSCLOCK.tick(30)
+
+        # 게임 속도 조절 및 중복 입력 방지
+        FPSCLOCK.tick(30) 
 
 if __name__ == '__main__':
     BLOCK_DATA = getloc2()
-    # for i in range (0, len(BLOCK_DATA)):
-    #     BLOCK_DATA[i][1] = rotate_block(BLOCK_DATA[i][1])
-    #     BLOCK_DATA[i][2] = rotate_block(rotate_block(BLOCK_DATA[i][2]))
-    #     BLOCK_DATA[i][3] = rotate_block(rotate_block(rotate_block(BLOCK_DATA[i][3])))
     main()
