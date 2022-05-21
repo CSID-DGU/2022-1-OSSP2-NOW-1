@@ -1,5 +1,7 @@
 import pygame
 import sys
+import textwrap
+
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -33,7 +35,7 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
           if action == "replay" :
               game()
           elif action =="quit":
-              quit()
+              pygame.quit()
 
 #버튼 이미지 로딩
 rep = pygame.image.load("replayicon.png").convert_alpha()
@@ -57,6 +59,7 @@ color_active = pygame.Color('lightskyblue3')
 # color of input box.
 color_passive = pygame.Color('chartreuse4')
 color = color_passive
+
 
 active = False
 
@@ -84,10 +87,10 @@ while True:
             # formation
             else:
                 user_text += event.unicode
-                #LIMIT THE INPUT_RECT CHARACTER
-                #-20 FOR BORDER WIDTH
-                if text_surface.get_width() > input_rect.w - 40:
-                    user_text = user_text[:-1]
+                if len(user_text) > 11:
+                    user_text= user_text[0:9]
+
+
     # it will set background color of screen
     SURFACE.fill((255, 255, 255))
     mode_screen(x,y)
