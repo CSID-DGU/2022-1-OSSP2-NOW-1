@@ -85,6 +85,7 @@ export const getUsersScore : RequestHandler = async (req, res, next) => {
     }
     const scores = await db.getRepository(UserScore)
                         .createQueryBuilder()
+                        .where('tetro_id = :tid', {tid : tid})
                         .orderBy('score',"DESC")
                         .limit(10)
                         .getMany();

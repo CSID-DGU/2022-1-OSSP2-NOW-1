@@ -15,7 +15,7 @@ Accept: application/json
 
 
 ### 특정 점수를 삽입
-POST {{baseUrl}}/api/tetro/set-score/1 HTTP/1.1
+POST {{baseUrl}}/api/tetro/set-score/2 HTTP/1.1
 Content-Type: : application/json
 
 {
