@@ -22,7 +22,7 @@ def make_block_data(lectures: list[Lecture]):
     block data를 만들어서 반환.
     '''
     BLOCK_DATA = []
-    block_id = 2 # 처음 블럭의 id를 2로 임의대로 지정한다. 테두리 블럭을 1로 설정했음
+    block_id = 3 # 처음 블럭의 id를 3으로 임의대로 지정한다. 테두리 블럭을 1로 설정했음
     for lecture in lectures:
         loc = lecture.loc
 
@@ -82,7 +82,7 @@ def get_normal_indices(loc : list[tuple[int,float,float]], R: int, start_day: in
         ### 기준점 보정
         st = round_05(st) - start_time # 정수화 + 기준점 보정
         ed = round_05(ed) - start_time # 정수화 + 기준점 보정
-        x = d  - start_day # x축 기준점 보정해서 결과 얻기
+        x = d - start_day # x축 기준점 보정해서 결과 얻기
 
         y_list = [t for t in range(st, ed)] # y축 기준점들 얻기.
 
@@ -114,5 +114,5 @@ def getloc2():
     print("인덱스 선택")
     name = lec_names[0]
 
-    cur_lecture = lectures[name]
-    return make_block_data(cur_lecture)
+    cur_lecture = list(lectures[name])
+    return cur_lecture, make_block_data(cur_lecture)
