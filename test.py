@@ -1,19 +1,11 @@
-myl = [1,None, 2,None, 3,None]
+from util.http import get_tetro, get_scores, set_score 
 
-print(myl, len(myl))
 
-for v in myl:
-    if v == None:
-        myl.remove(v)
-
-print(myl)
-
-print("월화수"[0:2])
-print(len("   ".strip()))
-
-myl2 = [1,2,3,4,5]
-
-for i in range(len(myl2)):
-    myl2[i] += 3
-
-print(myl2)
+get_tetro(1)
+print(get_scores(1))
+code, val = set_score(id=3, name='testtt', score=150)
+if code == 200:
+    print(val['message'])
+else:
+    print(val.message)
+print(get_scores(1))
