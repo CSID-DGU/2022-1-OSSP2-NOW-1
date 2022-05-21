@@ -44,11 +44,11 @@ qt = pygame.image.load("quiticon.png").convert_alpha()
 cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 
 # basic font for user typed
-base_font = pygame.font.Font(None, 60)
+base_font = pygame.font.Font(None, 55)
 user_text = ''
 
 # create rectangle INPUT_RECT
-input_rect = pygame.Rect(565, 300, 140, 60)
+input_rect = pygame.Rect(563, 300, 140, 60)
 #최대 12글자까지 저장하게끔
 
 # color_active stores color(lightskyblue3) which
@@ -88,7 +88,7 @@ while True:
             else:
                 user_text += event.unicode
                 if len(user_text) > 11:
-                    user_text= user_text[0:9]
+                    user_text= user_text[0:10]
 
 
     # it will set background color of screen
