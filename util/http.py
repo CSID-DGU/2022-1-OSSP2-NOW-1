@@ -25,6 +25,7 @@ def get_error_message(err : req.Response):
 
 '''
 @테트로미노 풀을 가져온다.
+@error : 에러 메시지 반환
 '''
 def get_tetro(id: Union[int,str]):
     res = req.get(f'{baseUrl}/api/tetro/get-tetro/{id}', headers=headers_get)
@@ -53,6 +54,7 @@ def get_tetro(id: Union[int,str]):
 
 '''
 @테트로미노 점수를 가져온다.
+@error 에러 메시지 반환
 '''    
 def get_scores(id: Union[int,str]):
     res = req.get(f'{baseUrl}/api/tetro/get-scores/{id}', headers=headers_get)
@@ -75,6 +77,7 @@ def get_scores(id: Union[int,str]):
 @params score : 유저의 점수
 
 # 성공하면 message 가 있는 dict 로 반환된다. {message : ~}
+@error 에러 메시지 반환
 '''
 def set_score(id: Union[int,str], name: str, score: int):
     body : dict = {}
@@ -114,6 +117,7 @@ def get_univs():
 '''
 @사용 가능한 풀 목록 정보를 가져온다.
 
+@error 에러 메시지 반환
 '''
 def get_tetro_list(id: Union[int,str]):
     res = req.get(f'{baseUrl}/api/info/{id}/tetro-pools', headers=headers_get)
