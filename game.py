@@ -106,7 +106,7 @@ class Block:
         self.data = self.type[self.turn]
         self.size = int(sqrt(len(self.data)))
         self.xpos = randint(1, 10 - self.size)
-        self.ypos = 1 - self.size + 4
+        self.ypos = 1 - self.size + 4 #필드에서 벗어나지 않도록 시작 위치를 아래로 내림
         self.fire = count + INTERVAL
 
     def update(self, count):
@@ -179,21 +179,27 @@ def is_overlapped(xpos, ypos, turn):
     return False
 
 # 전역 변수
-pygame.init()
-pygame.key.set_repeat(120, 120)
-SURFACE = pygame.display.set_mode([600, 800])
-FPSCLOCK = pygame.time.Clock()
+
 WIDTH = 12
 HEIGHT = 32
 INTERVAL = 40
+SURFACE = pygame.display.set_mode([600, 800])
 FIELD = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
-COLORS = ((0, 0, 0), (128, 128, 128) , (255, 165, 0), (0, 0, 255), (0, 255, 255), \
-          (0, 255, 0), (255, 0, 255), (255, 255, 0), (255, 0, 0))
+COLORS = ((0, 0, 0), (128, 128, 128) ,(205, 116, 102),(204, 168, 92), (76, 62, 34),
+        (167, 202, 109), (137, 116, 193), (106, 142, 202), (110, 180, 166), (255, 178, 126),
+        (255, 165, 0), (0, 0, 255), (0, 255, 255), (0, 255, 0), (255, 0, 255),
+        (255, 255, 0),
+        (255, 0, 0))
 BLOCK = None
 BLOCK_SIZE = 20
 NEXT_BLOCK = None
 
+
 def main():
+    pygame.init()
+    pygame.key.set_repeat(120, 120)
+    SURFACE = pygame.display.set_mode([600, 800])
+    FPSCLOCK = pygame.time.Clock()
     """ 메인 루틴 """
     global INTERVAL
     count = 0
@@ -275,12 +281,16 @@ def main():
         score_image = smallfont.render(score_str, True, (0, 255, 0))
         SURFACE.blit(score_image, (500, 30))
 
-        """
+
         # 과목 정보 나타내기
-        lec_name_str = str(lec_name).zfill(6)
-        lec_name_image = smallfont.render(lec_name_str, True, (0, 255, 0))
-        SURFACE.blit(lec_name_image, (500, 120))
-        """
+        val = NEXT_BLOCK.data[xpos + ypos * NEXT_BLOCK.size]
+        lec_name_str = str(cur_lecture[val-3].name).zfill(6)
+        k_font = pygame.font.SysFont('malgungothic',20)
+        lec_name_image = k_font.render(lec_name_str, True, (0, 255, 0))
+        SURFACE.blit(lec_name_image, (400, 240))
+        lec_professor_str = str(cur_lecture[val-3].professor).zfill(3)
+        lec_professor_image = k_font.render(lec_professor_str, True, (0, 255, 0))
+        SURFACE.blit(lec_professor_image, (400, 300))
 
         if game_over:
             SURFACE.blit(message_over, message_rect)
@@ -291,5 +301,11 @@ def main():
         FPSCLOCK.tick(30) 
 
 if __name__ == '__main__':
-    BLOCK_DATA = getloc2()
+    #강의 정보 불러오기
+    cur_lecture, BLOCK_DATA = getloc2()
+
+    for i in range(len(cur_lecture)):
+        print(cur_lecture[i].name)
+        print(cur_lecture[i].professor)
+
     main()
