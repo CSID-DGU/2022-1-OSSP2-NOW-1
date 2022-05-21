@@ -80,6 +80,7 @@ def set_score(id: Union[int,str], name: str, score: int):
     body : dict = {}
     body['name'] = name
     body['score'] = score
+    
     res = req.post(f'{baseUrl}/api/tetro/set-score/{id}', headers=headers_post, json = {
         "name" : name,
         "score" : score
@@ -120,11 +121,11 @@ def get_tetro_list(id: Union[int,str]):
 
 
     if res.status_code == 200 :
-        tetro_pools  : list[UserScore] = []
+        tetro_pools  : list[TetroPool] = []
 
         for t in target:
             tp = TetroPool(t['id'], t['name'], t['description'])
             tetro_pools.append(tp)
-            return (res.status_code, tetro_pools)
+        return (res.status_code, tetro_pools)
     else:
         return get_error_message(res)
