@@ -134,8 +134,7 @@ class Block:
             xpos = index % self.size
             ypos = index // self.size
             val = self.data[index]
-            if 0 <= ypos + self.ypos < HEIGHT and \
-               0 <= xpos + self.xpos < WIDTH and val != 0:
+            if 0 <= ypos + self.ypos < HEIGHT and 0 <= xpos + self.xpos < WIDTH and val != 0:
                 x_pos = BLOCK_SIZE + (xpos + self.xpos) * BLOCK_SIZE
                 y_pos = BLOCK_SIZE + (ypos + self.ypos) * BLOCK_SIZE
                 pygame.draw.rect(SURFACE, COLORS[val],
@@ -182,7 +181,7 @@ def is_overlapped(xpos, ypos, turn):
 
 WIDTH = 12
 HEIGHT = 32
-INTERVAL = 40
+INTERVAL = 80
 SURFACE = pygame.display.set_mode([600, 800])
 FIELD = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
 COLORS = ((0, 0, 0), (128, 128, 128) ,(205, 116, 102),(204, 168, 92), (76, 62, 34),
@@ -200,6 +199,7 @@ def main():
     pygame.key.set_repeat(120, 120)
     SURFACE = pygame.display.set_mode([600, 800])
     FPSCLOCK = pygame.time.Clock()
+    k_font = pygame.font.SysFont('malgungothic', 20)
     """ 메인 루틴 """
     global INTERVAL
     count = 0
@@ -273,24 +273,23 @@ def main():
         for ypos in range(NEXT_BLOCK.size):
             for xpos in range(NEXT_BLOCK.size):
                 val = NEXT_BLOCK.data[xpos + ypos*NEXT_BLOCK.size]
-                pygame.draw.rect(SURFACE, COLORS[val],
-                                 (xpos*BLOCK_SIZE + 460, ypos*BLOCK_SIZE + BLOCK_SIZE*4, BLOCK_SIZE-1, BLOCK_SIZE-1))
+
+                lec_name_str = str(cur_lecture[val - 3].name).zfill(6)
+                lec_name_image = k_font.render(lec_name_str, True, (0, 255, 0))
+
+                lec_professor_str = str(cur_lecture[val - 3].professor).zfill(3)
+                lec_professor_image = k_font.render(lec_professor_str, True, (0, 255, 0))
+
+                SURFACE.blit(lec_name_image, (400, 240))
+                SURFACE.blit(lec_professor_image, (400, 300))
+                pygame.draw.rect(SURFACE, COLORS[val], (xpos*BLOCK_SIZE + 460, ypos*BLOCK_SIZE + BLOCK_SIZE*4, BLOCK_SIZE-1, BLOCK_SIZE-1))
 
         # 점수 나타내기
         score_str = str(score).zfill(6)
         score_image = smallfont.render(score_str, True, (0, 255, 0))
         SURFACE.blit(score_image, (500, 30))
 
-
         # 과목 정보 나타내기
-        val = NEXT_BLOCK.data[xpos + ypos * NEXT_BLOCK.size]
-        lec_name_str = str(cur_lecture[val-3].name).zfill(6)
-        k_font = pygame.font.SysFont('malgungothic',20)
-        lec_name_image = k_font.render(lec_name_str, True, (0, 255, 0))
-        SURFACE.blit(lec_name_image, (400, 240))
-        lec_professor_str = str(cur_lecture[val-3].professor).zfill(3)
-        lec_professor_image = k_font.render(lec_professor_str, True, (0, 255, 0))
-        SURFACE.blit(lec_professor_image, (400, 300))
 
         if game_over:
             SURFACE.blit(message_over, message_rect)
@@ -298,7 +297,7 @@ def main():
         pygame.display.update()
 
         # 게임 속도 조절 및 중복 입력 방지
-        FPSCLOCK.tick(30) 
+        FPSCLOCK.tick(60)
 
 if __name__ == '__main__':
     #강의 정보 불러오기
