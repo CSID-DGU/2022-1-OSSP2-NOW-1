@@ -7,8 +7,6 @@
     <list default="true" id="4153407f-c844-4996-becd-a3763d620f8d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/getloc2.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/getloc2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/scrap_table_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/scrap_table_info.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
