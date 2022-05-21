@@ -13,11 +13,12 @@ class DetailedLecture(Lecture):
     c_num: str  # 학수강좌번호
     note: str  # 비고
 
-    def __init__(self, c_num: str, name: str, professor: str, t: str, note: str):
+    def __init__(self, c_num: str, name: str, professor: str, t: str = None, note: str = ''):
         self.c_num = c_num  # 학수 번호
         self.note = note  # 비고
         super().__init__(name, professor)  # 과목 이름 / 교수
-        self.parse_time(t)
+        if t:
+            self.parse_time(t)
 
     def parse_time(self, t: str):
         # 수5.0-6.5/13:00-15:00,목2.0-3.5/10:00-12:00

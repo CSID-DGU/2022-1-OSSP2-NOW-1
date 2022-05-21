@@ -1,19 +1,32 @@
-myl = [1,None, 2,None, 3,None]
+from util.detailed_cource_info import DetailedLecture
+from util.http import get_tetro, get_scores, get_tetro_list, get_univs, set_score
+from util.tetro_pool import TetroPool
+from util.user_score import UserScore 
 
-print(myl, len(myl))
 
-for v in myl:
-    if v == None:
-        myl.remove(v)
+get_tetro(1)
+code, val = get_scores(1)
+if code == 200:
+    val : list[UserScore]
+    for score in val:
+        print(score.name, score.score)
+        
+# code, val = set_score(id=3, name='testtt', score=150)
+# if code == 200:
+#     print(val['message'])
+# else:
+#     print(val.message)
 
-print(myl)
+univs = get_univs()
 
-print("월화수"[0:2])
-print(len("   ".strip()))
+for u in univs :
+    print(u.id, u.name)
 
-myl2 = [1,2,3,4,5]
+code, tetro_pools = get_tetro_list(univs[0].id)
 
-for i in range(len(myl2)):
-    myl2[i] += 3
-
-print(myl2)
+if code == 200:
+    tt : list[TetroPool] = tetro_pools
+    # t 는 DetailedLecture
+    for t in tt:
+        print(t.id, t.name, t.description)
+    
