@@ -42,24 +42,25 @@ cprev= pygame.image.load("clickedPrevIcon.png").convert_alpha()
 evrysav = pygame.image.load("evryLogicon.png").convert_alpha()
 evrycsav = pygame.image.load("clickedEvryLogicon.png").convert_alpha()
 
+#-----------------------------------------------텍스트 입력받는 부분 코드---------------------------------
 # basic font for user typed
 base_font = pygame.font.Font(None, 45)
-#user_text1 : id , user_text2 : pw
+
 user_text = ''
+pwww_text = ''
 
 
 # create rectangle INPUT_RECT
 input_rect = pygame.Rect(410, 260, 140, 50)
+inputpw_rect = pygame.Rect(410, 410, 140, 50)
 color_active = pygame.Color((255,255,255))
 color_passive = pygame.Color((255,255,255))
 color = color_passive
-
 
 active = False
 
 while True:
     for event in pygame.event.get():
-
         # if user types QUIT then the screen will close
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -72,11 +73,10 @@ while True:
                 active = False
 
         if event.type ==pygame.MOUSEBUTTONDOWN:
-            if input_rect.collidepoint(event.pos):
+            if inputpw_rect.collidepoint(event.pos):
                 active = True
             else:
                 active = False
-
 
         if event.type == pygame.KEYDOWN:
             # Check for backspace
@@ -90,6 +90,14 @@ while True:
                 if len(user_text) > 20:
                     user_text= user_text[0:20]
 
+        if event.type ==pygame.KEYDOWN:
+            if event.key ==pygame.K_BACKSPACE :
+                pwww_text = pwww_text[:-1]
+            else:
+                pwww_text += event.unicode
+                if len(pwww_text) >20 :
+                    pwww_text = pwww_text[0:20]
+
 
     # it will set background color of screen
     SURFACE.fill((255, 255, 255))
@@ -102,9 +110,12 @@ while True:
     # draw rectangle and argument passed which should
     # be on screen
     pygame.draw.rect(SURFACE, color, input_rect)
+    pygame.draw.rect(SURFACE, color, inputpw_rect)
     text_surface = base_font.render(user_text, True, (0, 0, 0))
+    text_surface2 = base_font.render(pwww_text,True,(0,0,0))
     # render at position stated in arguments
     SURFACE.blit(text_surface, (input_rect.x + 1, input_rect.y + 1))
+    SURFACE.blit(text_surface2,(inputpw_rect.x+1, inputpw_rect.y+1))
     # set width of textfield so that text cannot get
     # outside of user's text input
     input_rect.w = max(100, text_surface.get_width() + 10)
