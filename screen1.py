@@ -27,7 +27,7 @@ WHITE=(255,255,255)
 
 # 시작 화면 그리기
 def start_screen(x,y):
-    myImg = pygame.image.load('first_bgr.png')
+    myImg = pygame.image.load('ttpang1_bgr.PNG')
     SURFACE.blit(myImg,(x,y))
     #시작 화면 버튼 그리기 (버튼 위치 참고용)
     #pygame.draw.rect(SURFACE,GREEN,(250,480,180,68))
@@ -71,7 +71,6 @@ while not finished :
 
     SURFACE.fill((255,255,255)) #배경색 지정
     start_screen(x,y) #이미지 그리기
-    pygame.display.flip()
     button(250, 480, 180, 68, WHITE, WHITE, strt, cstrt, "continue")
     button(870,480,180,68,WHITE,WHITE,qt,cqt,"quit")
     pygame.display.update()

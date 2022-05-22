@@ -1,6 +1,7 @@
 import pygame, random
 from pygame.locals import *
 
+#랭킹차트
 FONT_SIZE = 60
 
 def name():

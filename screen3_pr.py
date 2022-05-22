@@ -3,7 +3,6 @@ import os
 
 
 # Designing window for registration
-
 def register():
     global register_screen
     register_screen = Toplevel(main_screen)
@@ -38,6 +37,7 @@ def login():
     login_screen = Toplevel(main_screen)
     login_screen.title("Login")
     login_screen.geometry("300x250")
+
     Label(login_screen, text="Please enter details below to login").pack()
     Label(login_screen, text="").pack()
 
@@ -154,7 +154,7 @@ def main_account_screen():
     main_screen = Tk()
     main_screen.geometry("300x250")
     main_screen.title("Account Login")
-    Label(text="Select Your Choice", bg="blue", width="300", height="2", font=("Calibri", 13)).pack()
+    Label(text="에브리타임 로그인 창", bg="white", width="300", height="2", font=("Calibri", 13)).pack()
     Label(text="").pack()
     Button(text="Login", height="2", width="30", command=login).pack()
     Label(text="").pack()

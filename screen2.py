@@ -3,6 +3,7 @@ from random import *
 from pygame.locals import *
 import sys
 
+#모드 선택
 pygame.init()
 #display_width, display_height 고정
 display_width = 1200
@@ -27,7 +28,7 @@ WHITE=(255,255,255)
 
 # 시작 화면 그리기
 def mode_screen(x,y):
-    myImg = pygame.image.load('mode_bgr.png')
+    myImg = pygame.image.load('ttpang3_bgr.PNG')
     SURFACE.blit(myImg,(x,y))
 
 # 버튼
@@ -53,8 +54,6 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
           elif action =="playerMulti":
               playertwogame()
 
-
-
 oneP = pygame.image.load("mode_1icon.png").convert_alpha()
 multiP = pygame.image.load("mode_2Icon.png").convert_alpha()
 clickOne = pygame.image.load("clickedMode_1Icon.png").convert_alpha()
@@ -71,7 +70,6 @@ while not finished :
 
     SURFACE.fill((255,255,255)) #배경색 지정
     mode_screen(x,y) #이미지 그리기
-    pygame.display.flip()
     button(570, 320, 180, 68, WHITE, WHITE, oneP, clickOne , "playerOne")
     button(550,490,180,68,WHITE,WHITE,multiP,clickMulti,"playerMulti")
     pygame.display.update()

@@ -1,7 +1,7 @@
 import pygame
 import sys
 
-
+#닉네임 입력창 구현
 pygame.init()
 clock = pygame.time.Clock()
 display_width = 1200
@@ -13,7 +13,7 @@ SURFACE = pygame.display.set_mode([display_width, display_height])
 pygame.display.set_caption("시간표 테트리스, 시간표팡!")
 
 def mode_screen(x,y):
-    myImg = pygame.image.load('nickname_bgr.png')
+    myImg = pygame.image.load('ttpang4_bgr.PNG')
     SURFACE.blit(myImg,(x,y))
 def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
     mouse = pygame.mouse.get_pos()
@@ -51,15 +51,8 @@ base_font = pygame.font.Font(None, 45)
 user_text = ''
 
 # create rectangle INPUT_RECT
-input_rect = pygame.Rect(563, 310, 140, 50)
-#최대 12글자까지 저장하게끔
-
-# color_active stores color(lightskyblue3) which
-# gets active when input box is clicked by user
+input_rect = pygame.Rect(540, 250, 140, 50)
 color_active = pygame.Color((255,255,255))
-
-# color_passive store color(chartreuse4) which is
-# color of input box.
 color_passive = pygame.Color((255,255,255))
 color = color_passive
 
@@ -97,7 +90,6 @@ while True:
     # it will set background color of screen
     SURFACE.fill((255, 255, 255))
     mode_screen(x,y)
-    pygame.display.flip()
     if active:
         color = color_active
     else:
@@ -112,8 +104,8 @@ while True:
     # set width of textfield so that text cannot get
     # outside of user's text input
     input_rect.w = max(100, text_surface.get_width() + 10)
-    button(220, 480, 180, 60, WHITE, WHITE, rep, crep, "replay")
-    button(900, 480, 180, 60, WHITE, WHITE, qt, cqt, "quit")
-    button(620, 390, 100, 30, WHITE, WHITE, sav, csav,"save")
-    pygame.display.flip()
+    button(260, 500, 150, 50, WHITE, WHITE, rep, crep, "replay")
+    button(900, 500, 180, 60, WHITE, WHITE, qt, cqt, "quit")
+    button(600, 350, 100, 30, WHITE, WHITE, sav, csav,"save")
+    pygame.display.update()
     clock.tick(60)
