@@ -37,7 +37,7 @@ def button(x,y,w,h,ic,ac,strt,cstrt,action = None):
     if on_button :
       if click[0]==1 and action != None:
           if action == "continue" :
-
+            rogin_screen()
           elif action == "quit":
             pygame.quit()
 
@@ -48,7 +48,7 @@ cstrt = pygame.image.load("clickedStartIcon.png").convert_alpha()
 qt = pygame.image.load("quiticon.png").convert_alpha()
 cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 
-def screen1() :
+def main_screen() :
     # event handling logic
     pygame.init()
     finished = False
@@ -69,4 +69,4 @@ def screen1() :
         button(870, 480, 180, 68, WHITE, WHITE, qt, cqt, "quit")
         pygame.display.update()
 
-screen1()
+main_screen()

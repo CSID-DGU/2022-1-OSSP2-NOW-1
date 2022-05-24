@@ -43,7 +43,7 @@ cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 sav = pygame.image.load("saveicon.png").convert_alpha()
 csav = pygame.image.load("clickedSaveIcon.png").convert_alpha()
 
-def screen4() :
+def nick_screen() :
     pygame.init()
     clock = pygame.time.Clock()
     active = False

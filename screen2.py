@@ -49,7 +49,7 @@ clickMulti = pygame.image.load("clickedMode_2Icon.png").convert_alpha()
 prev = pygame.image.load("prevIcon.png").convert_alpha()
 cprev= pygame.image.load("clickedPrevIcon.png").convert_alpha()
 
-def screen2():
+def mode_screen():
     # 모드 선택
     pygame.init()
     # pygame 창이름 설정

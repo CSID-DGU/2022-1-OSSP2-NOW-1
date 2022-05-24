@@ -29,7 +29,8 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
     if on_button :
       if click[0]==1 and action != None:
           if action == "prev" :
-              screen2()
+              #screen3이 1을 다시 import 하면 오류가 발생함, 따라서 뒤로가기 버튼을 빼야할지 고민해야함
+              main_screen()
           elif action =="save":
               saveUser()
 
@@ -48,7 +49,7 @@ color_active = pygame.Color((255,255,255))
 color_passive = pygame.Color((255,255,255))
 color = color_passive
 
-def screen3() :
+def rogin_screen() :
     pygame.init()
     clock = pygame.time.Clock()
     pygame.display.set_caption("시간표 테트리스, 시간표팡!")
@@ -132,4 +133,4 @@ def screen3() :
         button(620, 500, 50, 30, WHITE, WHITE, evrysav, evrycsav, "save")
         pygame.display.update()
 
-screen3()
+#screen3()
