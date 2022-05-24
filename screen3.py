@@ -1,61 +1,67 @@
 import pygame
 import sys
+from screen2 import *
 
-#에브리타임 로그인창
+# 에브리타임 로그인창
 display_width = 1200
 display_height = 650
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
 
-def mode_screen(x,y):
-    myImg = pygame.image.load('ttpang2_bgr.PNG')
-    SURFACE.blit(myImg,(x,y))
 
-def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
+def mode_screen(x, y):
+    myImg = pygame.image.load('ttpang2_bgr.PNG')
+    SURFACE.blit(myImg, (x, y))
+
+
+def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
-    rect = pygame.Rect(x,y,w,h)
+    rect = pygame.Rect(x, y, w, h)
     on_button = rect.collidepoint(mouse)
-    if on_button :
+    if on_button:
         pygame.draw.rect(SURFACE, ac, rect)
-        SURFACE.blit (clickOne,clickOne.get_rect(center = rect.center))
-    else :
-        pygame.draw.rect(SURFACE, ic, (x,y,w,h))
-        SURFACE.blit (oneP,oneP.get_rect(center = rect.center))
+        SURFACE.blit(clickOne, clickOne.get_rect(center=rect.center))
+    else:
+        pygame.draw.rect(SURFACE, ic, (x, y, w, h))
+        SURFACE.blit(oneP, oneP.get_rect(center=rect.center))
 
-#버튼 클릭 수행
-    if on_button :
-      if click[0]==1 and action != None:
-          if action == "prev" :
-              #screen3이 1을 다시 import 하면 오류가 발생함, 따라서 뒤로가기 버튼을 빼야할지 고민해야함
-              main_screen()
-          elif action =="save":
-              saveUser()
+    # 버튼 클릭 수행
+    if on_button:
+        if click[0] == 1 and action != None:
+            if action == "prev":
+                # screen3이 1을 다시 import 하면 오류가 발생함, 따라서 뒤로가기 버튼을 빼야할지 고민해야함
+                main_screen()
+            elif action == "save":
+                # saveUser()
+                nick_screen()
 
-#버튼 이미지 로딩
+
+# 버튼 이미지 로딩
 prev = pygame.image.load("prevIcon.png").convert_alpha()
-cprev= pygame.image.load("clickedPrevIcon.png").convert_alpha()
+cprev = pygame.image.load("clickedPrevIcon.png").convert_alpha()
 evrysav = pygame.image.load("evryLogicon.png").convert_alpha()
 evrycsav = pygame.image.load("clickedEvryLogicon.png").convert_alpha()
 
-#-----------------------------------------------텍스트 입력받는 부분 코드---------------------------------
+# -----------------------------------------------텍스트 입력받는 부분 코드---------------------------------
 
 # create rectangle INPUT_RECT
 input_rect = pygame.Rect(410, 260, 140, 50)
 inputpw_rect = pygame.Rect(410, 410, 140, 50)
-color_active = pygame.Color((255,255,255))
-color_passive = pygame.Color((255,255,255))
+color_active = pygame.Color((255, 255, 255))
+color_passive = pygame.Color((255, 255, 255))
 color = color_passive
 
-def rogin_screen() :
+
+def rogin_screen():
     pygame.init()
     clock = pygame.time.Clock()
     pygame.display.set_caption("시간표 테트리스, 시간표팡!")
     active = False
     input_enter = False
-    WHITE = (255,255,255)
+    WHITE = (255, 255, 255)
     user_text = ''
     pwww_text = ''
     pwww_text2 = ''
@@ -106,7 +112,7 @@ def rogin_screen() :
                         pwww_text2 += "*"
                         if len(pwww_text) > 20:
                             pwww_text = pwww_text[0:20]
-                        if len(pwww_text2) >20 :
+                        if len(pwww_text2) > 20:
                             pwww_text2 = pwww_text2[0:20]
 
         # it will set background color of screen
@@ -133,4 +139,4 @@ def rogin_screen() :
         button(620, 500, 50, 30, WHITE, WHITE, evrysav, evrycsav, "save")
         pygame.display.update()
 
-#screen3()
+# screen3()

@@ -2,6 +2,7 @@ import pygame
 from random import *
 from pygame.locals import *
 import sys
+from screen4 import *
 
 #모드 선택 이미지
 # display_width, display_height 고정
@@ -34,13 +35,15 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
 
 #버튼 클릭 수행
     if on_button :
-      if click[0]==1 and action != None:
-          if action == "playerOne" :
-              playeronegame()
-          elif action =="playerMulti":
-              playertwogame()
-          elif action =="prev":
-               screen3()
+        if click[0] == 1 and action != None:
+            if action == "playerOne":
+                playeronegame()
+            elif action == "playerMulti":
+                playertwogame()
+            elif action == "prev":
+                #뒤로가기 불가능
+                screen3()
+
 
 oneP = pygame.image.load("mode_1icon.png").convert_alpha()
 multiP = pygame.image.load("mode_2Icon.png").convert_alpha()
@@ -72,5 +75,5 @@ def mode_screen():
         button(220, 600, 100, 20, WHITE, WHITE, prev, cprev, "prev")
         pygame.display.update()
 
-screen2()
+#mode_screen()
 
