@@ -49,7 +49,6 @@ base_font = pygame.font.Font(None, 45)
 user_text = ''
 pwww_text = ''
 
-
 # create rectangle INPUT_RECT
 input_rect = pygame.Rect(410, 260, 140, 50)
 inputpw_rect = pygame.Rect(410, 410, 140, 50)
@@ -58,6 +57,7 @@ color_passive = pygame.Color((255,255,255))
 color = color_passive
 
 active = False
+input_enter = False
 
 while True:
     for event in pygame.event.get():
@@ -72,32 +72,34 @@ while True:
             else:
                 active = False
 
-        if event.type ==pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN:
             if inputpw_rect.collidepoint(event.pos):
                 active = True
             else:
                 active = False
+        if input_enter == False :
+            if event.type == pygame.KEYDOWN:
+                # Check for backspace
+                if event.key == pygame.K_BACKSPACE:
+                    # get text input from 0 to -1 i.e. end.
+                    user_text = user_text[:-1]
+                # Unicode standard is used for string
+                # formation
+                elif event.key == pygame.K_RETURN:
+                    input_enter = True
+                else:
+                    user_text += event.unicode
+                    if len(user_text) > 20:
+                        user_text = user_text[0:20]
 
-        if event.type == pygame.KEYDOWN:
-            # Check for backspace
-            if event.key == pygame.K_BACKSPACE:
-                # get text input from 0 to -1 i.e. end.
-                 user_text = user_text[:-1]
-            # Unicode standard is used for string
-            # formation
-            else:
-                user_text += event.unicode
-                if len(user_text) > 20:
-                    user_text= user_text[0:20]
-
-        if event.type ==pygame.KEYDOWN:
-            if event.key ==pygame.K_BACKSPACE :
-                pwww_text = pwww_text[:-1]
-            else:
-                pwww_text += event.unicode
-                if len(pwww_text) >20 :
-                    pwww_text = pwww_text[0:20]
-
+        if input_enter == True:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_BACKSPACE:
+                    pwww_text = pwww_text[:-1]
+                elif event.key != pygame.K_RETURN:
+                    pwww_text += event.unicode
+                    if len(pwww_text) > 20:
+                        pwww_text = pwww_text[0:20]
 
     # it will set background color of screen
     SURFACE.fill((255, 255, 255))
