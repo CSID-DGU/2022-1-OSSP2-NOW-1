@@ -1,6 +1,5 @@
 import pygame
 import sys
-from screen2 import *
 
 #에브리타임 로그인창
 display_width = 1200
@@ -58,6 +57,7 @@ def screen3() :
     WHITE = (255,255,255)
     user_text = ''
     pwww_text = ''
+    pwww_text2 = ''
     # basic font for user typed
     base_font = pygame.font.Font(None, 45)
     while True:
@@ -98,10 +98,15 @@ def screen3() :
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_BACKSPACE:
                         pwww_text = pwww_text[:-1]
+                        pwww_text2 = pwww_text2[:-1]
+
                     elif event.key != pygame.K_RETURN:
                         pwww_text += event.unicode
+                        pwww_text2 += "*"
                         if len(pwww_text) > 20:
                             pwww_text = pwww_text[0:20]
+                        if len(pwww_text2) >20 :
+                            pwww_text2 = pwww_text2[0:20]
 
         # it will set background color of screen
         SURFACE.fill((255, 255, 255))
@@ -116,7 +121,7 @@ def screen3() :
         pygame.draw.rect(SURFACE, color, input_rect)
         pygame.draw.rect(SURFACE, color, inputpw_rect)
         text_surface = base_font.render(user_text, True, (0, 0, 0))
-        text_surface2 = base_font.render(pwww_text, True, (0, 0, 0))
+        text_surface2 = base_font.render(pwww_text2, True, (0, 0, 0))
         # render at position stated in arguments
         SURFACE.blit(text_surface, (input_rect.x + 1, input_rect.y + 1))
         SURFACE.blit(text_surface2, (inputpw_rect.x + 1, inputpw_rect.y + 1))
@@ -127,4 +132,4 @@ def screen3() :
         button(620, 500, 50, 30, WHITE, WHITE, evrysav, evrycsav, "save")
         pygame.display.update()
 
-#screen3()
+screen3()
