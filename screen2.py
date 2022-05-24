@@ -2,9 +2,8 @@ import pygame
 from random import *
 from pygame.locals import *
 import sys
+from screen1 import *
 
-#모드 선택
-pygame.init()
 #display_width, display_height 고정
 display_width = 1200
 display_height = 650
@@ -13,18 +12,6 @@ display_height = 650
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
-
-# 모드 버튼 이미지 확장자명
-#playerOneImg = pygame.image.load("mode_1icon.png")
-#playerMultiImg = pygame.image.load("mode_2icon.png")
-#clickOneImg = pygame.image.load("clickedMode_1Icon.png")
-#clickMultiImg = pygame.image.load("clickedMode_2Icon.png")
-
-#pygame 창이름 설정
-pygame.display.set_caption("시간표 테트리스, 시간표팡!")
-
-#색깔 : 흰색만 사용
-WHITE=(255,255,255)
 
 # 시작 화면 그리기
 def mode_screen(x,y):
@@ -45,7 +32,6 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
         pygame.draw.rect(SURFACE, ic, (x,y,w,h))
         SURFACE.blit (oneP,oneP.get_rect(center = rect.center))
 
-
 #버튼 클릭 수행
     if on_button :
       if click[0]==1 and action != None:
@@ -53,24 +39,39 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
               playeronegame()
           elif action =="playerMulti":
               playertwogame()
+          elif action =="prev":
+               screen1()
 
 oneP = pygame.image.load("mode_1icon.png").convert_alpha()
 multiP = pygame.image.load("mode_2Icon.png").convert_alpha()
 clickOne = pygame.image.load("clickedMode_1Icon.png").convert_alpha()
 clickMulti = pygame.image.load("clickedMode_2Icon.png").convert_alpha()
+prev = pygame.image.load("prevIcon.png").convert_alpha()
+cprev= pygame.image.load("clickedPrevIcon.png").convert_alpha()
 
-#event handling logic
-finished = False
-while not finished :
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            finished = True
-            pygame.quit()
-            quit()
 
-    SURFACE.fill((255,255,255)) #배경색 지정
-    mode_screen(x,y) #이미지 그리기
-    button(570, 320, 180, 68, WHITE, WHITE, oneP, clickOne , "playerOne")
-    button(550,490,180,68,WHITE,WHITE,multiP,clickMulti,"playerMulti")
-    pygame.display.update()
+def screen2():
+    # 모드 선택
+    pygame.init()
+    # pygame 창이름 설정
+    pygame.display.set_caption("시간표 테트리스, 시간표팡!")
+    # 색깔 : 흰색만 사용
+    WHITE = (255, 255, 255)
+    # event handling logic
+    finished = False
+    while not finished:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                finished = True
+                pygame.quit()
+                quit()
+
+        SURFACE.fill((255, 255, 255))  # 배경색 지정
+        mode_screen(x, y)  # 이미지 그리기
+        button(570, 320, 180, 68, WHITE, WHITE, oneP, clickOne, "playerOne")
+        button(550, 490, 180, 68, WHITE, WHITE, multiP, clickMulti, "playerMulti")
+        button(220, 600, 100, 20, WHITE, WHITE, prev, cprev, "prev")
+        pygame.display.update()
+
+screen2()
 
