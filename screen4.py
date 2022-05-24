@@ -49,7 +49,7 @@ def screen4() :
     active = False
     # basic font for user typed
     base_font = pygame.font.Font(None, 45)
-    user_text = ''
+    winner_text = ''
     WHITE = (255, 255, 255)
     pygame.display.set_caption("시간표 테트리스, 시간표팡!")
 
@@ -77,13 +77,13 @@ def screen4() :
                 # Check for backspace
                 if event.key == pygame.K_BACKSPACE:
                     # get text input from 0 to -1 i.e. end.
-                    user_text = user_text[:-1]
+                    winner_text = winner_text[:-1]
                 # Unicode standard is used for string
                 # formation
                 else:
-                    user_text += event.unicode
-                    if len(user_text) > 11:
-                        user_text = user_text[0:11]
+                    winner_text += event.unicode
+                    if len(winner_text) > 11:
+                        winner_text = winner_text[0:11]
 
         # it will set background color of screen
         SURFACE.fill((255, 255, 255))
@@ -96,7 +96,7 @@ def screen4() :
         # draw rectangle and argument passed which should
         # be on screen
         pygame.draw.rect(SURFACE, color, input_rect)
-        text_surface = base_font.render(user_text, True, (0, 0, 0))
+        text_surface = base_font.render(winner_text, True, (0, 0, 0))
         # render at position stated in arguments
         SURFACE.blit(text_surface, (input_rect.x + 1, input_rect.y + 1))
         # set width of textfield so that text cannot get
