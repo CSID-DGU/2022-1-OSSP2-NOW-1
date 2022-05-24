@@ -72,5 +72,5 @@ def screen2():
         button(220, 600, 100, 20, WHITE, WHITE, prev, cprev, "prev")
         pygame.display.update()
 
-screen2()
+#screen2()
 
