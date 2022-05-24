@@ -2,6 +2,8 @@ import pygame
 from random import *
 from pygame.locals import *
 import sys
+from screen3 import *
+
 
 # display_width, display_height 고정
 display_width = 1200
@@ -35,7 +37,7 @@ def button(x,y,w,h,ic,ac,strt,cstrt,action = None):
     if on_button :
       if click[0]==1 and action != None:
           if action == "continue" :
-              game() #다음모드로 넘어가게
+
           elif action == "quit":
             pygame.quit()
 
@@ -45,7 +47,6 @@ strt = pygame.image.load("starticon.png").convert_alpha()
 cstrt = pygame.image.load("clickedStartIcon.png").convert_alpha()
 qt = pygame.image.load("quiticon.png").convert_alpha()
 cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
-
 
 def screen1() :
     # event handling logic
@@ -68,4 +69,4 @@ def screen1() :
         button(870, 480, 180, 68, WHITE, WHITE, qt, cqt, "quit")
         pygame.display.update()
 
-#screen1()
+screen1()
