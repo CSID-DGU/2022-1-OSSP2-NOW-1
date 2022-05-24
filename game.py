@@ -192,9 +192,10 @@ COLORS = ((0, 0, 0), (128, 128, 128) ,(205, 116, 102),(204, 168, 92), (76, 62, 3
 BLOCK = None
 BLOCK_SIZE = 20
 NEXT_BLOCK = None
+cur_lecture = []
 
 
-def main():
+def tetris_game():
     pygame.init()
     pygame.key.set_repeat(120, 120)
     SURFACE = pygame.display.set_mode([600, 800])
@@ -299,12 +300,19 @@ def main():
         # 게임 속도 조절 및 중복 입력 방지
         FPSCLOCK.tick(60)
 
-if __name__ == '__main__':
-    #강의 정보 불러오기
-    cur_lecture, BLOCK_DATA = getloc2()
 
+def tetris():
+    cur_lecture, BLOCK_DATA = getloc2()
+    tetris_game()
+
+if __name__ == '__main__':
+
+    #강의 정보 불러오기
+    #cur_lecture, BLOCK_DATA = getloc2()
+    tetris()
     for i in range(len(cur_lecture)):
         print(cur_lecture[i].name)
         print(cur_lecture[i].professor)
 
-    main()
+
+    #tetris_game()
