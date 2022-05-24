@@ -3,7 +3,6 @@ from random import *
 from pygame.locals import *
 import sys
 
-
 # display_width, display_height 고정
 display_width = 1200
 display_height = 650
@@ -69,4 +68,4 @@ def screen1() :
         button(870, 480, 180, 68, WHITE, WHITE, qt, cqt, "quit")
         pygame.display.update()
 
-screen1()
+#screen1()
