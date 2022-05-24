@@ -49,8 +49,8 @@ def print_square(arr: tuple):
 def idx2loc(row: int, col: int, row_len: int):
     '''
     @desc 2차원 배열 기준 인덱스를 1차원 배열의 인덱스로 변환
-    @input row 1차원 기준 x 좌표
-    @input col 1차원 기준 y 좌표
+    @input row 1차원 기준 y 좌표
+    @input col 1차원 기준 x 좌표
     @input row_len 정사각형의 한변 길이
     @return 1차원 배열 형태에서의 인덱스
     '''
@@ -111,7 +111,7 @@ def c_rotate(arr: tuple):
             dest[idx2loc(j, ri - i, row_len)] = arr[idx2loc(i, j, row_len)]
     return dest
 
-
+'''
 if __name__ == '__main__':
     fig1 = [i for i in range(0, 9)]
     fig2 = [i for i in range(0, 16)]
@@ -132,3 +132,7 @@ if __name__ == '__main__':
     print_square(fig3)
     print_square(fig32)
     # 이론상 모든 정사각형 배열에 대해 사용 가능.
+'''
+
+def rotate_block(fig: list) :
+    return c_rotate(fig)

@@ -1,39 +1,45 @@
-from lecture import *
-from scrap_table_info import *
+from util.scrap_table_info import *
 
-lec_locs = []
+lec_locs : list[list[list[int, float,float]]] = []
 lec_name = []
 lec_professor = []
-lectures = get_user_TT_info("leeminsuok", "052978a")
+id = 0
+password = 0
 
 #전역변수들
 wide = 0 #가로길이
 height = 0 #세로길이
 in_height = 0 #안쪽 세로길이
 interval = 0 #끝시간 - 끝시간
-f_lec = 0 # 앞 수업 길이
-b_lec = 0 # 뒷 수업 길이
 block_a = []
 block_a_size = 0
-lec_time = []
+lec_time : list[int] = []
 B_DATA = []
 BLOCK_DATA = []
 
+def get_interval():
+    lec_locs
+
 #강의 시간표 가져오기
 def get_lectures_info():
-    for lec in lectures:
-        lec_locs.append(lec.return_locs())
-        lec_name.append(lec.return_name())
-        lec_professor.append(lec.return_professor())
 
+    id = input("id 입력 :")
+    password = input("패스워드 입력 :")
+    lectures = get_user_TT_info(id, password)
+    for lec in list(lectures.values())[0]:
+        lec_locs.append(lec.loc)
+        lec_name.append(lec.name)
+        lec_professor.append(lec.professor)
+        
 def make_block_data(i):
     B_DATA = []
     COUNT = 1 + i
     if (len(lec_locs[i]) == 1):
         block_a = []
         block_a_size = int(abs(lec_locs[i][0][1] - lec_locs[i][0][2]) + 0.5)
-        for i in range(0, int(block_a_size * block_a_size)):
-            block_a.append(0)
+       
+        block_a = [0 for _ in range(block_a_size**2)]
+        
         for i in range(0, block_a_size):
             lec_time.append(i * block_a_size)
         for i in range(0, len(lec_time)):

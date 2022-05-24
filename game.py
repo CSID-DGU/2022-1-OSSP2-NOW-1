@@ -3,8 +3,8 @@ from math import sqrt
 from random import randint
 import pygame
 from pygame.locals import QUIT, KEYUP, KEYDOWN, K_LEFT, K_RIGHT, K_DOWN, K_SPACE, K_UP, K_z
-from scrap_table_info import *
 from getloc import *
+from util.getloc2 import getloc2
 
 BLOCK_DATA = (
     (
@@ -106,7 +106,7 @@ class Block:
         self.data = self.type[self.turn]
         self.size = int(sqrt(len(self.data)))
         self.xpos = randint(1, 10 - self.size)
-        self.ypos = 1 - self.size
+        self.ypos = 1 - self.size + 4 #필드에서 벗어나지 않도록 시작 위치를 아래로 내림
         self.fire = count + INTERVAL
 
     def update(self, count):
@@ -134,8 +134,7 @@ class Block:
             xpos = index % self.size
             ypos = index // self.size
             val = self.data[index]
-            if 0 <= ypos + self.ypos < HEIGHT and \
-               0 <= xpos + self.xpos < WIDTH and val != 0:
+            if 0 <= ypos + self.ypos < HEIGHT and 0 <= xpos + self.xpos < WIDTH and val != 0:
                 x_pos = BLOCK_SIZE + (xpos + self.xpos) * BLOCK_SIZE
                 y_pos = BLOCK_SIZE + (ypos + self.ypos) * BLOCK_SIZE
                 pygame.draw.rect(SURFACE, COLORS[val],
@@ -149,7 +148,7 @@ def erase_line():
         if all(FIELD[ypos]):
             erased += 1
             del FIELD[ypos]
-            FIELD.insert(0, [8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8])
+            FIELD.insert(0, [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
         else:
             ypos -= 1
     return erased
@@ -173,29 +172,34 @@ def is_overlapped(xpos, ypos, turn):
     data = BLOCK.type[turn]
     for y_offset in range(BLOCK.size):
         for x_offset in range(BLOCK.size):
-            if 0 <= xpos+x_offset < WIDTH and \
-                0 <= ypos+y_offset < HEIGHT:
-                if data[y_offset*BLOCK.size + x_offset] != 0 and \
-                    FIELD[ypos+y_offset][xpos+x_offset] != 0:
+            if 0 <= xpos+x_offset < WIDTH and 0 <= ypos+y_offset < HEIGHT:
+                if data[y_offset*BLOCK.size + x_offset] != 0 and FIELD[ypos+y_offset][xpos+x_offset] != 0:
                     return True
     return False
 
 # 전역 변수
-pygame.init()
-pygame.key.set_repeat(120, 120)
-SURFACE = pygame.display.set_mode([600, 800])
-FPSCLOCK = pygame.time.Clock()
+
 WIDTH = 12
-HEIGHT = 32 #32가 맞는데 사이즈가 문제라
-INTERVAL = 40
+HEIGHT = 32
+INTERVAL = 80
+SURFACE = pygame.display.set_mode([600, 800])
 FIELD = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
-COLORS = ((0, 0, 0), (255, 165, 0), (0, 0, 255), (0, 255, 255), \
-          (0, 255, 0), (255, 0, 255), (255, 255, 0), (255, 0, 0), (128, 128, 128))
+COLORS = ((0, 0, 0), (128, 128, 128) ,(205, 116, 102),(204, 168, 92), (76, 62, 34),
+        (167, 202, 109), (137, 116, 193), (106, 142, 202), (110, 180, 166), (255, 178, 126),
+        (255, 165, 0), (0, 0, 255), (0, 255, 255), (0, 255, 0), (255, 0, 255),
+        (255, 255, 0),
+        (255, 0, 0))
 BLOCK = None
 BLOCK_SIZE = 20
 NEXT_BLOCK = None
 
+
 def main():
+    pygame.init()
+    pygame.key.set_repeat(120, 120)
+    SURFACE = pygame.display.set_mode([600, 800])
+    FPSCLOCK = pygame.time.Clock()
+    k_font = pygame.font.SysFont('malgungothic', 20)
     """ 메인 루틴 """
     global INTERVAL
     count = 0
@@ -212,10 +216,9 @@ def main():
 
     for ypos in range(HEIGHT):
         for xpos in range(WIDTH):
-            FIELD[ypos][xpos] = 8 if xpos == 0 or \
-                xpos == WIDTH - 1 else 0
+            FIELD[ypos][xpos] = 1 if xpos == 0 or xpos == WIDTH - 1 else 0
     for index in range(WIDTH):
-        FIELD[HEIGHT-1][index] = 8
+        FIELD[HEIGHT-1][index] = 1
 
     while True:
         key = None
@@ -270,25 +273,38 @@ def main():
         for ypos in range(NEXT_BLOCK.size):
             for xpos in range(NEXT_BLOCK.size):
                 val = NEXT_BLOCK.data[xpos + ypos*NEXT_BLOCK.size]
-                pygame.draw.rect(SURFACE, COLORS[val],
-                                 (xpos*BLOCK_SIZE + 460, ypos*BLOCK_SIZE + BLOCK_SIZE*4, BLOCK_SIZE-1, BLOCK_SIZE-1))
+
+                lec_name_str = str(cur_lecture[val - 3].name).zfill(6)
+                lec_name_image = k_font.render(lec_name_str, True, (0, 255, 0))
+
+                lec_professor_str = str(cur_lecture[val - 3].professor).zfill(3)
+                lec_professor_image = k_font.render(lec_professor_str, True, (0, 255, 0))
+
+                SURFACE.blit(lec_name_image, (400, 240))
+                SURFACE.blit(lec_professor_image, (400, 300))
+                pygame.draw.rect(SURFACE, COLORS[val], (xpos*BLOCK_SIZE + 460, ypos*BLOCK_SIZE + BLOCK_SIZE*4, BLOCK_SIZE-1, BLOCK_SIZE-1))
 
         # 점수 나타내기
         score_str = str(score).zfill(6)
-        score_image = smallfont.render(score_str,
-                                       True, (0, 255, 0))
+        score_image = smallfont.render(score_str, True, (0, 255, 0))
         SURFACE.blit(score_image, (500, 30))
+
+        # 과목 정보 나타내기
 
         if game_over:
             SURFACE.blit(message_over, message_rect)
 
         pygame.display.update()
-        FPSCLOCK.tick(15)
+
+        # 게임 속도 조절 및 중복 입력 방지
+        FPSCLOCK.tick(60)
 
 if __name__ == '__main__':
-    #scrap_table_info()
-    #save_table_info()
-    #append_block_data(BLOCK_DATA)
-    #print(BLOCK_DATA)
-    BLOCK_DATA = getloc()
+    #강의 정보 불러오기
+    cur_lecture, BLOCK_DATA = getloc2()
+
+    for i in range(len(cur_lecture)):
+        print(cur_lecture[i].name)
+        print(cur_lecture[i].professor)
+
     main()
