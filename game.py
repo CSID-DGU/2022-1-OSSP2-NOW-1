@@ -4,6 +4,7 @@ from random import randint
 import pygame
 from pygame.locals import QUIT, KEYUP, KEYDOWN, K_LEFT, K_RIGHT, K_DOWN, K_SPACE, K_UP, K_z
 from scrap_table_info import *
+from getloc import *
 
 BLOCK_DATA = (
     (
@@ -100,10 +101,11 @@ class Block:
     """ 블록 객체 """
     def __init__(self, count):
         self.turn = randint(0, 3)
-        self.type = BLOCK_DATA[randint(2, 6)]
+        self.type = BLOCK_DATA[randint(0, len(BLOCK_DATA)-1)]
+        #self.type = BLOCK_DATA[1]
         self.data = self.type[self.turn]
         self.size = int(sqrt(len(self.data)))
-        self.xpos = randint(1, 5 - self.size)
+        self.xpos = randint(1, 10 - self.size)
         self.ypos = 1 - self.size
         self.fire = count + INTERVAL
 
@@ -134,15 +136,15 @@ class Block:
             val = self.data[index]
             if 0 <= ypos + self.ypos < HEIGHT and \
                0 <= xpos + self.xpos < WIDTH and val != 0:
-                x_pos = 25 + (xpos + self.xpos) * 25
-                y_pos = 25 + (ypos + self.ypos) * 25
+                x_pos = BLOCK_SIZE + (xpos + self.xpos) * BLOCK_SIZE
+                y_pos = BLOCK_SIZE + (ypos + self.ypos) * BLOCK_SIZE
                 pygame.draw.rect(SURFACE, COLORS[val],
-                                 (x_pos, y_pos, 24, 24))
+                                 (x_pos, y_pos, BLOCK_SIZE-1, BLOCK_SIZE-1))
 
 def erase_line():
     """ 행이 모두 찬 단을 지운다 """
     erased = 0
-    ypos = HEIGHT - 2
+    ypos = HEIGHT-2
     while ypos >= 0:
         if all(FIELD[ypos]):
             erased += 1
@@ -181,15 +183,16 @@ def is_overlapped(xpos, ypos, turn):
 # 전역 변수
 pygame.init()
 pygame.key.set_repeat(120, 120)
-SURFACE = pygame.display.set_mode([700, 800])
+SURFACE = pygame.display.set_mode([600, 800])
 FPSCLOCK = pygame.time.Clock()
 WIDTH = 12
-HEIGHT = 27 #32가 맞는데 사이즈가 문제라
+HEIGHT = 32 #32가 맞는데 사이즈가 문제라
 INTERVAL = 40
 FIELD = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
 COLORS = ((0, 0, 0), (255, 165, 0), (0, 0, 255), (0, 255, 255), \
           (0, 255, 0), (255, 0, 255), (255, 255, 0), (255, 0, 0), (128, 128, 128))
 BLOCK = None
+BLOCK_SIZE = 20
 NEXT_BLOCK = None
 
 def main():
@@ -260,7 +263,7 @@ def main():
             for xpos in range(WIDTH):
                 val = FIELD[ypos][xpos]
                 pygame.draw.rect(SURFACE, COLORS[val],
-                                 (xpos*25 + 25, ypos*25 + 25, 24, 24))
+                                 (xpos*BLOCK_SIZE + BLOCK_SIZE, ypos*BLOCK_SIZE + BLOCK_SIZE, BLOCK_SIZE-1, BLOCK_SIZE-1))
         BLOCK.draw()
 
         # 다음 블록 그리기
@@ -268,7 +271,7 @@ def main():
             for xpos in range(NEXT_BLOCK.size):
                 val = NEXT_BLOCK.data[xpos + ypos*NEXT_BLOCK.size]
                 pygame.draw.rect(SURFACE, COLORS[val],
-                                 (xpos*25 + 460, ypos*25 + 100, 24, 24))
+                                 (xpos*BLOCK_SIZE + 460, ypos*BLOCK_SIZE + BLOCK_SIZE*4, BLOCK_SIZE-1, BLOCK_SIZE-1))
 
         # 점수 나타내기
         score_str = str(score).zfill(6)
@@ -285,4 +288,7 @@ def main():
 if __name__ == '__main__':
     #scrap_table_info()
     #save_table_info()
+    #append_block_data(BLOCK_DATA)
+    #print(BLOCK_DATA)
+    BLOCK_DATA = getloc()
     main()
