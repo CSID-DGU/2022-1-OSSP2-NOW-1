@@ -2,18 +2,19 @@ import pygame
 from random import *
 from pygame.locals import *
 import sys
-from screen1 import *
+
+#모드 선택 이미지
+# display_width, display_height 고정
+display_width = 1200
+display_height = 650
+
+# 배경 이미지 위치 지정
+x = (display_width * 0.00000000000000002)
+y = (display_height * 0.00000000000000002)
+SURFACE = pygame.display.set_mode([display_width, display_height])
 
 # 시작 화면 그리기
 def mode_screen(x,y):
-    # display_width, display_height 고정
-    display_width = 1200
-    display_height = 650
-
-    # 배경 이미지 위치 지정
-    x = (display_width * 0.00000000000000002)
-    y = (display_height * 0.00000000000000002)
-    SURFACE = pygame.display.set_mode([display_width, display_height])
     myImg = pygame.image.load('ttpang3_bgr.PNG')
     SURFACE.blit(myImg,(x,y))
 
@@ -39,7 +40,7 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
           elif action =="playerMulti":
               playertwogame()
           elif action =="prev":
-               screen1()
+               screen3()
 
 oneP = pygame.image.load("mode_1icon.png").convert_alpha()
 multiP = pygame.image.load("mode_2Icon.png").convert_alpha()
@@ -71,5 +72,5 @@ def screen2():
         button(220, 600, 100, 20, WHITE, WHITE, prev, cprev, "prev")
         pygame.display.update()
 
-#screen2()
+screen2()
 
