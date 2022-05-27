@@ -4,7 +4,6 @@ from pygame.locals import *
 import sys
 from screen3 import *
 
-
 # display_width, display_height 고정
 display_width = 1200
 display_height = 650
@@ -37,7 +36,7 @@ def button(x,y,w,h,ic,ac,strt,cstrt,action = None):
     if on_button :
       if click[0]==1 and action != None:
           if action == "continue" :
-            rogin_screen()
+            rogin_screen() #다음모드로 넘어가게
           elif action == "quit":
             pygame.quit()
 
@@ -48,7 +47,8 @@ cstrt = pygame.image.load("clickedStartIcon.png").convert_alpha()
 qt = pygame.image.load("quiticon.png").convert_alpha()
 cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 
-def main_screen() :
+
+def screen1() :
     # event handling logic
     pygame.init()
     finished = False
@@ -69,4 +69,4 @@ def main_screen() :
         button(870, 480, 180, 68, WHITE, WHITE, qt, cqt, "quit")
         pygame.display.update()
 
-main_screen()
+#screen1()

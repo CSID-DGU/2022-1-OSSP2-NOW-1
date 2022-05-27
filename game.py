@@ -5,6 +5,8 @@ import pygame
 from pygame.locals import QUIT, KEYUP, KEYDOWN, K_LEFT, K_RIGHT, K_DOWN, K_SPACE, K_UP, K_z
 from getloc import *
 from util.getloc2 import getloc2
+from screen1 import *
+from screen3 import *
 
 BLOCK_DATA = (
     (
@@ -187,6 +189,10 @@ FIELD = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
 COLORS = ((0, 0, 0), (128, 128, 128) ,(205, 116, 102),(204, 168, 92), (76, 62, 34),
         (167, 202, 109), (137, 116, 193), (106, 142, 202), (110, 180, 166), (255, 178, 126),
         (255, 165, 0), (0, 0, 255), (0, 255, 255), (0, 255, 0), (255, 0, 255),
+        (167, 202, 109), (137, 116, 193), (106, 142, 202), (110, 180, 166), (255, 178, 126),
+        (255, 165, 0), (0, 0, 255), (0, 255, 255), (0, 255, 0), (255, 0, 255),
+        (167, 202, 109), (137, 116, 193), (106, 142, 202), (110, 180, 166), (255, 178, 126),
+        (255, 165, 0), (0, 0, 255), (0, 255, 255), (0, 255, 0), (255, 0, 255),
         (255, 255, 0),
         (255, 0, 0))
 BLOCK = None
@@ -195,7 +201,7 @@ NEXT_BLOCK = None
 cur_lecture = []
 
 
-def tetris_game():
+def tetris_game(cur_lecture):
     pygame.init()
     pygame.key.set_repeat(120, 120)
     SURFACE = pygame.display.set_mode([600, 800])
@@ -270,27 +276,27 @@ def tetris_game():
                                  (xpos*BLOCK_SIZE + BLOCK_SIZE, ypos*BLOCK_SIZE + BLOCK_SIZE, BLOCK_SIZE-1, BLOCK_SIZE-1))
         BLOCK.draw()
 
+        temp = 0
         # 다음 블록 그리기
         for ypos in range(NEXT_BLOCK.size):
             for xpos in range(NEXT_BLOCK.size):
                 val = NEXT_BLOCK.data[xpos + ypos*NEXT_BLOCK.size]
-
-                lec_name_str = str(cur_lecture[val - 3].name).zfill(6)
-                lec_name_image = k_font.render(lec_name_str, True, (0, 255, 0))
-
-                lec_professor_str = str(cur_lecture[val - 3].professor).zfill(3)
-                lec_professor_image = k_font.render(lec_professor_str, True, (0, 255, 0))
-
-                SURFACE.blit(lec_name_image, (400, 240))
-                SURFACE.blit(lec_professor_image, (400, 300))
+                temp = max(temp, val)
                 pygame.draw.rect(SURFACE, COLORS[val], (xpos*BLOCK_SIZE + 460, ypos*BLOCK_SIZE + BLOCK_SIZE*4, BLOCK_SIZE-1, BLOCK_SIZE-1))
 
         # 점수 나타내기
-        score_str = str(score).zfill(6)
+        score_str = str(temp).zfill(6)
         score_image = smallfont.render(score_str, True, (0, 255, 0))
         SURFACE.blit(score_image, (500, 30))
 
-        # 과목 정보 나타내기
+        lec_name_str = str(cur_lecture[temp - 3].name)
+        lec_name_image = k_font.render(lec_name_str, True, (0, 255, 0))
+
+        lec_professor_str = str(cur_lecture[temp - 3].professor)
+        lec_professor_image = k_font.render(lec_professor_str, True, (0, 255, 0))
+
+        SURFACE.blit(lec_name_image, (375, 240))
+        SURFACE.blit(lec_professor_image, (375, 300))
 
         if game_over:
             SURFACE.blit(message_over, message_rect)
@@ -301,18 +307,9 @@ def tetris_game():
         FPSCLOCK.tick(60)
 
 
-def tetris():
-    cur_lecture, BLOCK_DATA = getloc2()
-    tetris_game()
-
 if __name__ == '__main__':
-
+    #screen1()
     #강의 정보 불러오기
-    #cur_lecture, BLOCK_DATA = getloc2()
-    tetris()
-    for i in range(len(cur_lecture)):
-        print(cur_lecture[i].name)
-        print(cur_lecture[i].professor)
-
-
-    #tetris_game()
+    cur_lecture, _BLOCK_DATA = get_blocks_personal("leeminsuok", "052978a")
+    BLOCK_DATA = _BLOCK_DATA
+    tetris_game(cur_lecture)

@@ -1,6 +1,7 @@
 import pygame
 import sys
 from screen2 import *
+from util.getloc2 import *
 
 # 에브리타임 로그인창
 display_width = 1200
@@ -8,6 +9,8 @@ display_height = 650
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
+user_text = ''
+pwww_text = ''
 
 
 def mode_screen(x, y):
@@ -32,12 +35,9 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
     if on_button:
         if click[0] == 1 and action != None:
             if action == "prev":
-                # screen3이 1을 다시 import 하면 오류가 발생함, 따라서 뒤로가기 버튼을 빼야할지 고민해야함
-                main_screen()
+                print(user_text)
             elif action == "save":
-                # saveUser()
                 nick_screen()
-
 
 # 버튼 이미지 로딩
 prev = pygame.image.load("prevIcon.png").convert_alpha()
@@ -54,6 +54,8 @@ color_active = pygame.Color((255, 255, 255))
 color_passive = pygame.Color((255, 255, 255))
 color = color_passive
 
+def get_user_id():
+    return user_text, pwww_text
 
 def rogin_screen():
     pygame.init()
@@ -62,9 +64,9 @@ def rogin_screen():
     active = False
     input_enter = False
     WHITE = (255, 255, 255)
-    user_text = ''
-    pwww_text = ''
     pwww_text2 = ''
+    global user_text
+    global pwww_text
     # basic font for user typed
     base_font = pygame.font.Font(None, 45)
     while True:
@@ -139,4 +141,4 @@ def rogin_screen():
         button(620, 500, 50, 30, WHITE, WHITE, evrysav, evrycsav, "save")
         pygame.display.update()
 
-# screen3()
+#rogin_screen()
