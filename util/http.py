@@ -66,9 +66,7 @@ def get_scores(id: Union[int,str]):
             us = UserScore(t['name'], t['score'])
             us_list.append(us)
         
-        return (res.status_code, us_list)
-    else:
-        return get_error_message(res.text)
+        return (res.status_code, us_list) # 무조건 배열 반환
 
 '''
 @유저 점수를 받아온다.
@@ -80,10 +78,7 @@ def get_scores(id: Union[int,str]):
 @error 에러 메시지 반환
 '''
 def set_score(id: Union[int,str], name: str, score: int):
-    body : dict = {}
-    body['name'] = name
-    body['score'] = score
-    
+        
     res = req.post(f'{baseUrl}/api/tetro/set-score/{id}', headers=headers_post, json = {
         "name" : name,
         "score" : score

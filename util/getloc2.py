@@ -1,3 +1,4 @@
+from util.http import get_tetro
 from util.lecture import Lecture
 from util.rotate_block import idx2loc, rotate_block, print_square
 from util.scrap_table_info import get_user_TT_info
@@ -10,11 +11,6 @@ def round_05(var: float):
     return int(var + 0.5)
 
 
-def get_lectures_info():
-    id = input("id 입력 :")
-    password = input("패스워드 입력 :")
-    lectures = get_user_TT_info(id, password)
-    return lectures
 
 
 def make_block_data(lectures: list[Lecture]):
@@ -107,8 +103,7 @@ def get_0block(base: int):
     return [0 for _ in range(base**2)]
 
 
-def getloc2():
-    lectures = get_lectures_info()
+def getloc2(lectures:list[Lecture]):
     lec_names = list(lectures.keys())
 
     print("인덱스 선택")
@@ -116,3 +111,25 @@ def getloc2():
 
     cur_lecture = list(lectures[name])
     return cur_lecture, make_block_data(cur_lecture)
+
+def get_lectures_info():
+    id = input("id 입력 :")
+    password = input("패스워드 입력 :")
+    lectures =  get_user_TT_info(id, password)
+    return lectures
+
+
+def get_blocks_personal(id: str, password: str):
+    '''
+    개인모드용
+    '''
+    lectures =  get_user_TT_info(id, password)
+    return getloc2(lectures)
+
+def get_blocks_competition(id: int):
+    '''
+    경쟁모드용
+    '''
+    code, lectures = get_tetro(id)
+    if code == 200:
+        return getloc2(lectures)
