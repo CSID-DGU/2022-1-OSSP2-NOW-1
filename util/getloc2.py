@@ -102,15 +102,8 @@ def get_0block(base: int):
     '''
     return [0 for _ in range(base**2)]
 
-
-def getloc2(lectures:list[Lecture]):
-    lec_names = list(lectures.keys())
-
-    print("인덱스 선택")
-    name = lec_names[0]
-
-    cur_lecture = list(lectures[name])
-    return cur_lecture, make_block_data(cur_lecture)
+def getloc2(lecture:Lecture):
+    return lecture, make_block_data(lecture)
 
 def get_lectures_info():
     id = input("id 입력 :")
@@ -124,7 +117,11 @@ def get_blocks_personal(id: str, password: str):
     개인모드용
     '''
     lectures =  get_user_TT_info(id, password)
-    return getloc2(lectures)
+    lec_names = list(lectures.keys())
+    print("인덱스 선택")
+    name = lec_names[0]
+    cur_lecture = list(lectures[name])
+    return getloc2(cur_lecture)
 
 def get_blocks_competition(id: int):
     '''

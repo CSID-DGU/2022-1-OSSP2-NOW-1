@@ -7,8 +7,7 @@
     <list default="true" id="4153407f-c844-4996-becd-a3763d620f8d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screen1.py" beforeDir="false" afterPath="$PROJECT_DIR$/screen1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screen3.py" beforeDir="false" afterPath="$PROJECT_DIR$/screen3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/getloc2.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/getloc2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,6 +197,18 @@
       <option name="presentableId" value="Default" />
       <updated>1650531020012</updated>
     </task>
+    <task id="LOCAL-00001" summary="정보 갱신 성공">
+      <created>1653630766801</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1653630766801</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="정보 갱신 성공" />
+    <option name="LAST_COMMIT_MESSAGE" value="정보 갱신 성공" />
   </component>
 </project>
