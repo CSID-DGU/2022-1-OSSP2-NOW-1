@@ -102,12 +102,13 @@ BLOCK_DATA = (
 class Block:
     """ 블록 객체 """
     def __init__(self, count):
-        self.turn = randint(0, 3)
+        self.turn = 0 #시간표 모양을 보여주기 위해서 초기 turn 값은 0으로 고정
+        #self.turn = randint(0, 3)
         self.type = BLOCK_DATA[randint(0, len(BLOCK_DATA)-1)]
         #self.type = BLOCK_DATA[1]
         self.data = self.type[self.turn]
         self.size = int(sqrt(len(self.data)))
-        self.xpos = randint(1, 10 - self.size)
+        self.xpos = 1
         self.ypos = 1 - self.size + 4 #필드에서 벗어나지 않도록 시작 위치를 아래로 내림
         self.fire = count + INTERVAL
 
@@ -184,16 +185,14 @@ def is_overlapped(xpos, ypos, turn):
 WIDTH = 12
 HEIGHT = 32
 INTERVAL = 80
-SURFACE = pygame.display.set_mode([600, 800])
 FIELD = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
-COLORS = ((0, 0, 0), (128, 128, 128) ,(205, 116, 102),(204, 168, 92), (76, 62, 34),
-        (167, 202, 109), (137, 116, 193), (106, 142, 202), (110, 180, 166), (255, 178, 126),
+COLORS = ((0, 0, 0), (128, 128, 128), (205, 116, 102),(204, 168, 92), (76, 62, 34),
         (255, 165, 0), (0, 0, 255), (0, 255, 255), (0, 255, 0), (255, 0, 255),
+        (69, 36, 59), (231, 255, 0), (2, 208, 178), (57, 16, 81), (6, 38, 22),
+        (161, 217, 126), (254, 198, 103), (255, 113, 103), (162, 151, 1), (200, 120, 183),
+        (164, 75, 0), (189, 217, 158), (254, 190, 240), (102, 173, 255), (249, 246, 113),
+        (255, 174, 207), (5, 26, 100), (0, 111, 53), (171, 228, 213), (124, 154, 126),
         (167, 202, 109), (137, 116, 193), (106, 142, 202), (110, 180, 166), (255, 178, 126),
-        (255, 165, 0), (0, 0, 255), (0, 255, 255), (0, 255, 0), (255, 0, 255),
-        (167, 202, 109), (137, 116, 193), (106, 142, 202), (110, 180, 166), (255, 178, 126),
-        (255, 165, 0), (0, 0, 255), (0, 255, 255), (0, 255, 0), (255, 0, 255),
-        (255, 255, 0),
         (255, 0, 0))
 BLOCK = None
 BLOCK_SIZE = 20
@@ -202,6 +201,7 @@ cur_lecture = []
 
 
 def tetris_game(cur_lecture):
+    SURFACE = pygame.display.set_mode([600, 800])
     pygame.init()
     pygame.key.set_repeat(120, 120)
     SURFACE = pygame.display.set_mode([600, 800])
@@ -319,8 +319,8 @@ if __name__ == '__main__':
     
     #경쟁모드
     #get_blocks_competition(id) 에서 id에 UI에서 받아온 값을 넣어야함. 1~4임
-    #cur_lecture, _BLOCK_DATA = get_blocks_competition(1)
+    cur_lecture, _BLOCK_DATA = get_blocks_competition(1)
     #print(_BLOCK_DATA)
-    #BLOCK_DATA = _BLOCK_DATA
+    BLOCK_DATA = _BLOCK_DATA
 
-    #tetris_game(cur_lecture)
+    tetris_game(cur_lecture)
