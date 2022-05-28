@@ -5,14 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4153407f-c844-4996-becd-a3763d620f8d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/save_info.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screen1.py" beforeDir="false" afterPath="$PROJECT_DIR$/screen1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screen2.py" beforeDir="false" afterPath="$PROJECT_DIR$/screen2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screen3.py" beforeDir="false" afterPath="$PROJECT_DIR$/screen3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screen4.py" beforeDir="false" afterPath="$PROJECT_DIR$/screen4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/getloc2.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/getloc2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -35,7 +47,7 @@
       <recent name="C:\Users\penpenguin2018\2022-1-OSSP2-NOW-1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.screen2">
+  <component name="RunManager" selected="Python.screen3">
     <configuration name="game" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="2022-1-OSSP2-NOW-1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -185,9 +197,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.screen2" />
-        <item itemvalue="Python.screen4" />
         <item itemvalue="Python.screen3" />
+        <item itemvalue="Python.screen4" />
+        <item itemvalue="Python.screen2" />
         <item itemvalue="Python.screen1" />
         <item itemvalue="Python.scrap_table_info (1)" />
       </list>
@@ -216,12 +228,20 @@
       <option name="project" value="LOCAL" />
       <updated>1653633145304</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="색 추가, 스크린 흐름 변경">
+      <created>1653741215941</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1653741215941</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="정보 갱신 성공" />
     <MESSAGE value="설명 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="설명 추가" />
+    <MESSAGE value="색 추가, 스크린 흐름 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="색 추가, 스크린 흐름 변경" />
   </component>
 </project>

@@ -10,9 +10,6 @@ def round_05(var: float):
     '''
     return int(var + 0.5)
 
-
-
-
 def make_block_data(lectures: list[Lecture]):
     '''
     block data를 만들어서 반환.

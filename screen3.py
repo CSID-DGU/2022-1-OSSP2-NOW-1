@@ -2,6 +2,8 @@ import pygame
 import sys
 from screen2 import *
 from util.getloc2 import *
+from screen2 import *
+from save_info import *
 
 # 에브리타임 로그인창
 display_width = 1200
@@ -12,6 +14,7 @@ SURFACE = pygame.display.set_mode([display_width, display_height])
 user_text = ''
 pwww_text = ''
 
+is_finished = False
 
 def mode_screen(x, y):
     myImg = pygame.image.load('ttpang2_bgr.PNG')
@@ -19,6 +22,7 @@ def mode_screen(x, y):
 
 
 def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
+    global is_finished
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
@@ -37,7 +41,9 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
             if action == "prev":
                 print(user_text)
             elif action == "save":
-                nick_screen()
+                save_id_pw("leeminsuok", "052978a")
+                is_finished = True
+                #pygame.display.quit()
 
 # 버튼 이미지 로딩
 prev = pygame.image.load("prevIcon.png").convert_alpha()
@@ -139,6 +145,10 @@ def rogin_screen():
         input_rect.w = max(100, text_surface.get_width() + 10)
         button(220, 600, 100, 20, WHITE, WHITE, prev, cprev, "prev")
         button(620, 500, 50, 30, WHITE, WHITE, evrysav, evrycsav, "save")
-        pygame.display.update()
+        if is_finished == False:
+            pygame.display.update()
+        elif is_finished == True:
+            pygame.display.quit()
 
-#rogin_screen()
+if __name__ == '__main__':
+    rogin_screen()

@@ -2,7 +2,7 @@ import pygame
 from random import *
 from pygame.locals import *
 import sys
-from screen3 import *
+from screen2 import *
 
 # display_width, display_height 고정
 display_width = 1200
@@ -36,7 +36,7 @@ def button(x,y,w,h,ic,ac,strt,cstrt,action = None):
     if on_button :
       if click[0]==1 and action != None:
           if action == "continue" :
-            rogin_screen() #다음모드로 넘어가게
+            mode_select_screen() #다음모드로 넘어가게
           elif action == "quit":
             pygame.quit()
 
@@ -69,4 +69,6 @@ def screen1() :
         button(870, 480, 180, 68, WHITE, WHITE, qt, cqt, "quit")
         pygame.display.update()
 
-#screen1()
+
+if __name__ == '__main__':
+    screen1()

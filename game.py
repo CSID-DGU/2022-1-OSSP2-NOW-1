@@ -7,7 +7,7 @@ from getloc import *
 from util.getloc2 import getloc2
 from screen1 import *
 from screen3 import *
-
+from save_info import *
 BLOCK_DATA = (
     (
         (0, 0, 1, \
@@ -312,15 +312,15 @@ if __name__ == '__main__':
     #강의 정보 불러오기
 
     #개인모드
-    #cget_block_personal(id, pw) 이 부분에 UI에서 받아온 값을 넣어야함.
-    #cur_lecture, _BLOCK_DATA = get_blocks_personal("leeminsuok", "052978a")
-    #BLOCK_DATA = _BLOCK_DATA
+    #get_block_personal(id, pw) 이 부분에 UI에서 받아온 값을 넣어야함.
+    cur_lecture, _BLOCK_DATA = get_blocks_personal(get_id_pw)
+    BLOCK_DATA = _BLOCK_DATA
 
     
     #경쟁모드
     #get_blocks_competition(id) 에서 id에 UI에서 받아온 값을 넣어야함. 1~4임
-    cur_lecture, _BLOCK_DATA = get_blocks_competition(1)
+    #cur_lecture, _BLOCK_DATA = get_blocks_competition(1)
     #print(_BLOCK_DATA)
-    BLOCK_DATA = _BLOCK_DATA
+    #BLOCK_DATA = _BLOCK_DATA
 
     tetris_game(cur_lecture)

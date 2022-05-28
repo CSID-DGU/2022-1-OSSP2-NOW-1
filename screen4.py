@@ -107,4 +107,6 @@ def nick_screen() :
         button(600, 350, 100, 30, WHITE, WHITE, sav, csav, "save")
         pygame.display.update()
         clock.tick(60)
-#nick_screen()
+
+if __name__ == '__main__':
+    nick_screen()
