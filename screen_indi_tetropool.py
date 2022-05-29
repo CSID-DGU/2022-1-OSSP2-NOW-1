@@ -1,18 +1,16 @@
 import pygame
 import sys
 from util.http import *
-
-#닉네임 입력창 구현
-
+#개인모드 시간표 선택 창
 display_width = 1200
 display_height = 650
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
-univs = get_univs()
+univs =get_univs()
 
 def mode_screen(x,y):
-    myImg = pygame.image.load('screen_seluniv.jpg')
+    myImg = pygame.image.load('indi_tetro_bgr.png')
     SURFACE.blit(myImg,(x,y))
 
 def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
@@ -65,7 +63,7 @@ cuthree = pygame.image.load("clickedUniv_three.PNG").convert_alpha()
 ufour = pygame.image.load("univ_four.PNG").convert_alpha()
 cufour = pygame.image.load("clickedUniv_four.PNG").convert_alpha()
 
-def univ_screen() :
+def indi_tetropool_screen() :
     pygame.init()
     clock = pygame.time.Clock()
     active = False
@@ -77,6 +75,7 @@ def univ_screen() :
     pygame.display.set_caption("시간표 테트리스, 시간표팡!")
 
     # create rectangle INPUT_RECT
+    input_rect = pygame.Rect(540, 250, 140, 50)
     color_active = pygame.Color((255, 255, 255))
     color_passive = pygame.Color((255, 255, 255))
     color = color_passive
@@ -97,7 +96,21 @@ def univ_screen() :
         # it will set background color of screen
         SURFACE.fill((255, 255, 255))
         mode_screen(x, y)
+        if active:
+            color = color_active
+        else:
+            color = color_passive
 
+        # draw rectangle and argument passed which should
+        # be on screen
+        pygame.draw.rect(SURFACE, color, input_rect)
+        text_surface = base_font.render(winner_text, True, (0, 0, 0))
+        # render at position stated in arguments
+        SURFACE.blit(text_surface, (input_rect.x + 1, input_rect.y + 1))
+        # set width of textfield so that text cannot get
+        # outside of user's text input
+
+        input_rect.w = max(100, text_surface.get_width() + 10)
         button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, "one_univ")
         button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, "two_univ")
         button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, "three_univ")
@@ -113,4 +126,4 @@ def univ_screen() :
         clock.tick(60)
 
 if __name__ == '__main__':
-    univ_screen()
+    indi_tetropool_screen()
