@@ -1,5 +1,6 @@
 import pygame
 import sys
+from game import *
 from util.http import *
 from util.getloc2 import *
 #개인모드 시간표 선택 창
@@ -13,7 +14,7 @@ def mode_screen(x,y):
     myImg = pygame.image.load('indi_tetro_bgr.png')
     SURFACE.blit(myImg,(x,y))
 
-def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
+def button(x,y,w,h,ic,ac,oneP,clickOne,user_text, pwww_text,action = None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
@@ -30,12 +31,14 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
     if on_button :
         if click[0]==1 and action != None:
             if action == "one_tetro" :
-
+                game_personal(user_text, pwww_text, 0)
             elif action =="two_tetro":
-
+                game_personal(user_text, pwww_text, 1)
             elif action == "three_tetro":
-
+                game_personal(user_text, pwww_text, 2)
             elif action =="four_tetro":
+                game_personal(user_text, pwww_text, 3)
+
 
 
 #버튼 이미지 로딩
@@ -48,7 +51,7 @@ cuthree = pygame.image.load("clickedUniv_three.PNG").convert_alpha()
 ufour = pygame.image.load("univ_four.PNG").convert_alpha()
 cufour = pygame.image.load("clickedUniv_four.PNG").convert_alpha()
 
-def indi_tetropool_screen() :
+def indi_tetropool_screen(user_text, pwww_text) :
     pygame.init()
     clock = pygame.time.Clock()
     active = False
@@ -88,10 +91,10 @@ def indi_tetropool_screen() :
 
         # draw rectangle and argument passed which should
         # be on screen
-        button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, "one_tetro")
-        button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, "two_tetro")
-        button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, "three_tetro")
-        button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour,"four_tetro")
+        button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, user_text, pwww_text, "one_tetro",)
+        button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, user_text, pwww_text, "two_tetro")
+        button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, user_text, pwww_text, "three_tetro")
+        button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour, user_text, pwww_text, "four_tetro")
 
         # 시간표 테트로미노 select 나타내기
         table_str1 = str("1번 시간표")
@@ -116,4 +119,4 @@ def indi_tetropool_screen() :
         clock.tick(60)
 
 if __name__ == '__main__':
-    indi_tetropool_screen()
+    indi_tetropool_screen("leeminsuok", "052978a")

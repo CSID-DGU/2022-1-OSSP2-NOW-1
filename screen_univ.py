@@ -1,6 +1,7 @@
 import pygame
 import sys
 from util.http import *
+from screen_univ_tetro import *
 
 #닉네임 입력창 구현
 
@@ -35,23 +36,23 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
             no_univ_image = pygame.font.SysFont('malgungothic', 28).render(no_univ, True, (0, 0, 0))
             if action == "one_univ" :
                 print(univs[0].id)
-                screen_univ_tetro(univs[0].id)
+                univ_tetropool_screen(univs[0].id)
             elif action =="two_univ":
                 if (len(univs) > 1):
                     print(univs[1].id)
-                    screen_univ_tetro(univs[1].id)
+                    univ_tetropool_screen(univs[1].id)
                 else:
                     SURFACE.blit(no_univ_image, (520, y-9))
             elif action == "three_univ":
                 if (len(univs) > 2) :
                     print(univs[2].id)
-                    screen_univ_tetro(univs[2].id)
+                    univ_tetropool_screen(univs[2].id)
                 else:
                     SURFACE.blit(no_univ_image, (520, y-9))
             elif action =="four_univ":
                 if (len(univs) > 3) :
                     print(univs[3].id)
-                    screen_univ_tetro(univs[3].id)
+                    univ_tetropool_screen(univs[3].id)
                 else:
                     SURFACE.blit(no_univ_image, (520, y-9))
 
@@ -77,6 +78,7 @@ def univ_screen() :
     pygame.display.set_caption("시간표 테트리스, 시간표팡!")
 
     # create rectangle INPUT_RECT
+    input_rect = pygame.Rect(540, 250, 140, 50)
     color_active = pygame.Color((255, 255, 255))
     color_passive = pygame.Color((255, 255, 255))
     color = color_passive

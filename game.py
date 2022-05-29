@@ -8,6 +8,7 @@ from util.getloc2 import getloc2
 from screen1 import *
 from screen3 import *
 from playerOne_over import *
+from screen4 import *
 
 BLOCK_DATA = (
     (
@@ -315,7 +316,8 @@ def tetris_game(cur_lecture, porc:int):
                     gameOver_screen(score)
                 # 경쟁 모드 일 때만 랭킹창으로 가자
                 if (porc == 1):
-                    screen_ranking(score)
+                    nick_screen(score)
+                    #screen_ranking(score)
 
         pygame.display.update()
 

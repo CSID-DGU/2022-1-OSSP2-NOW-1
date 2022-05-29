@@ -1,7 +1,9 @@
 import pygame
 import sys
 from util.http import *
+from game import *
 from util.getloc2 import *
+
 #개인모드 시간표 선택 창
 display_width = 1200
 display_height = 650
@@ -14,7 +16,7 @@ def mode_screen(x,y):
     myImg = pygame.image.load('indi_tetro_bgr.png')
     SURFACE.blit(myImg,(x,y))
 
-def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
+def button(x,y,w,h,ic,ac,oneP,clickOne, id, action = None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
@@ -30,15 +32,14 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
 #버튼 클릭 수행
     if on_button :
         if click[0]==1 and action != None:
-
             if action == "one_tetro" :
-
+                game_competition(id)
             elif action =="two_tetro":
-
+                game_competition(id)
             elif action == "three_tetro":
-
+                game_competition(id)
             elif action =="four_tetro":
-
+                game_competition(id)
 
 #버튼 이미지 로딩
 uone = pygame.image.load("univ_one.PNG").convert_alpha()
@@ -50,7 +51,7 @@ cuthree = pygame.image.load("clickedUniv_three.PNG").convert_alpha()
 ufour = pygame.image.load("univ_four.PNG").convert_alpha()
 cufour = pygame.image.load("clickedUniv_four.PNG").convert_alpha()
 
-def univ_tetropool_screen() :
+def univ_tetropool_screen(id) :
     pygame.init()
     clock = pygame.time.Clock()
     active = False
@@ -90,10 +91,10 @@ def univ_tetropool_screen() :
 
         # draw rectangle and argument passed which should
         # be on screen
-        button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, "one_tetro")
-        button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, "two_tetro")
-        button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, "three_tetro")
-        button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour,"four_tetro")
+        button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, id, "one_tetro")
+        button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, id, "two_tetro")
+        button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, id, "three_tetro")
+        button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour, id, "four_tetro")
 
         # 시간표 테트로미노 select 나타내기
         code, tetro_pools = get_tetro_list(univs[0].id)
@@ -111,4 +112,4 @@ def univ_tetropool_screen() :
         clock.tick(60)
 
 if __name__ == '__main__':
-    univ_tetropool_screen()
+    univ_tetropool_screen(1)

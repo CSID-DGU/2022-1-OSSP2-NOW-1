@@ -29,11 +29,9 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
 #버튼 클릭 수행
     if on_button :
         if click[0]==1 and action != None:
-            no_univ = str("학교를 추가해 주세요")
-            no_univ_image = pygame.font.SysFont('malgungothic', 28).render(no_univ, True, (0, 0, 0))
-            if action == "one_univ" :
-                print(univs[0].id)
-                screen_univ_tetro(univs[0].id)
+            if action == "quit" :
+                pygame.init()
+                pygame.quit()
 
 #버튼 이미지 로딩
 qt = pygame.image.load("quiticon.png").convert_alpha()
@@ -51,6 +49,7 @@ def univ_screen() :
     pygame.display.set_caption("시간표 테트리스, 시간표팡!")
 
     # create rectangle INPUT_RECT
+    input_rect = pygame.Rect(540, 250, 140, 50)
     color_active = pygame.Color((255, 255, 255))
     color_passive = pygame.Color((255, 255, 255))
     color = color_passive

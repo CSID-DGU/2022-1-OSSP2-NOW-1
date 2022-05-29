@@ -12,7 +12,7 @@ SURFACE = pygame.display.set_mode([display_width, display_height])
 def mode_screen(x,y):
     myImg = pygame.image.load('ttpang4_bgr.PNG')
     SURFACE.blit(myImg,(x,y))
-def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
+def button(x,y,w,h,ic,ac,oneP,clickOne,action = None, score = None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
@@ -33,7 +33,8 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
           elif action =="quit":
               pygame.quit()
           elif action == "save":
-              saveUser()
+              sendnick(nick)
+              saveUser(score)
 
 #버튼 이미지 로딩
 rep = pygame.image.load("replayicon.png").convert_alpha()
@@ -43,7 +44,7 @@ cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 sav = pygame.image.load("saveicon.png").convert_alpha()
 csav = pygame.image.load("clickedSaveIcon.png").convert_alpha()
 
-def nick_screen() :
+def nick_screen(score) :
     pygame.init()
     clock = pygame.time.Clock()
     active = False
@@ -104,9 +105,9 @@ def nick_screen() :
         input_rect.w = max(100, text_surface.get_width() + 10)
         button(260, 500, 150, 50, WHITE, WHITE, rep, crep, "replay")
         button(900, 500, 180, 60, WHITE, WHITE, qt, cqt, "quit")
-        button(600, 350, 100, 30, WHITE, WHITE, sav, csav, "save")
+        button(600, 350, 100, 30, WHITE, WHITE, sav, csav, "save", score)
         pygame.display.update()
         clock.tick(60)
 
 if __name__ == '__main__':
-    nick_screen()
+    nick_screen(0)
