@@ -1,6 +1,7 @@
 import pygame
 import sys
-from util.http import *
+import pygame
+import sys
 
 #닉네임 입력창 구현
 
@@ -9,11 +10,11 @@ display_height = 650
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
-univs =get_univs()
 
 def mode_screen(x,y):
-    myImg = pygame.image.load('screen_seluniv.jpg')
+    myImg = pygame.image.load('gameover_screen.png')
     SURFACE.blit(myImg,(x,y))
+
 def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
@@ -39,24 +40,12 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
           elif action =="four_univ":
               fourUniv()
 
-#버튼 이미지 로딩
-uone = pygame.image.load("univ_one.PNG").convert_alpha()
-cuone = pygame.image.load("clickedUniv_one.PNG").convert_alpha()
-utwo = pygame.image.load("univ_two.PNG").convert_alpha()
-cutwo = pygame.image.load("clickedUniv_two.PNG").convert_alpha()
-uthree = pygame.image.load("univ_three.PNG").convert_alpha()
-cuthree = pygame.image.load("clickedUniv_three.PNG").convert_alpha()
-ufour = pygame.image.load("univ_four.PNG").convert_alpha()
-cufour = pygame.image.load("clickedUniv_four.PNG").convert_alpha()
-
-def nick_screen() :
+def gameOver_screen(indi_score=0000) :
     pygame.init()
     clock = pygame.time.Clock()
     active = False
     # basic font for user typed
-    base_font = pygame.font.SysFont('malgungothic', 45)
-    univ_font = pygame.font.SysFont('malgungothic', 28)
-    winner_text = ''
+    base_font = pygame.font.SysFont('malgungothic', 120)
     WHITE = (255, 255, 255)
     pygame.display.set_caption("시간표 테트리스, 시간표팡!")
 
@@ -99,28 +88,12 @@ def nick_screen() :
             color = color_active
         else:
             color = color_passive
-
-        # draw rectangle and argument passed which should
-        # be on screen
-        pygame.draw.rect(SURFACE, color, input_rect)
-        text_surface = base_font.render(winner_text, True, (0, 0, 0))
-        # render at position stated in arguments
-        SURFACE.blit(text_surface, (input_rect.x + 1, input_rect.y + 1))
-        # set width of textfield so that text cannot get
-        # outside of user's text input
-
-        input_rect.w = max(100, text_surface.get_width() + 10)
-        button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, "one")
-        button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, "two")
-        button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, "three")
-        button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour,"four")
-
-        # 대학교 나타내기
-        univ_str = str(univs[0].name)
-        univ_image = univ_font.render(univ_str, True, (0, 0, 0))
-        SURFACE.blit(univ_image, (530, 220))
+        # 사용자 점수 나타내기
+        indi_score_str = str(indi_score).zfill(6)
+        indiScore_img = base_font.render(indi_score_str, True, (0,0, 0))
+        SURFACE.blit(indiScore_img, (465, 360))
         pygame.display.update()
         clock.tick(60)
 
 if __name__ == '__main__':
-    nick_screen()
+    gameOver_screen()
