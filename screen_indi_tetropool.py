@@ -1,13 +1,13 @@
 import pygame
 import sys
 from util.http import *
+from util.getloc2 import *
 #개인모드 시간표 선택 창
 display_width = 1200
 display_height = 650
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
-univs =get_univs()
 
 def mode_screen(x,y):
     myImg = pygame.image.load('indi_tetro_bgr.png')
@@ -29,24 +29,24 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
 #버튼 클릭 수행
     if on_button :
         if click[0]==1 and action != None:
-            no_univ = str("학교를 추가해 주세요")
+            no_univ = str("시간표를 추가해 주세요")
             no_univ_image = pygame.font.SysFont('malgungothic', 28).render(no_univ, True, (0, 0, 0))
-            if action == "one_univ" :
+            if action == "one_tetro" :
                 print(univs[0].id)
                 screen_univ_tetro(univs[0].id)
-            elif action =="two_univ":
+            elif action =="two_tetro":
                 if (len(univs) > 1):
                     print(univs[1].id)
                     screen_univ_tetro(univs[1].id)
                 else:
                     SURFACE.blit(no_univ_image, (520, y-9))
-            elif action == "three_univ":
+            elif action == "three_tetro":
                 if (len(univs) > 2) :
                     print(univs[2].id)
                     screen_univ_tetro(univs[2].id)
                 else:
                     SURFACE.blit(no_univ_image, (520, y-9))
-            elif action =="four_univ":
+            elif action =="four_tetro":
                 if (len(univs) > 3) :
                     print(univs[3].id)
                     screen_univ_tetro(univs[3].id)
@@ -103,20 +103,12 @@ def indi_tetropool_screen() :
 
         # draw rectangle and argument passed which should
         # be on screen
-        pygame.draw.rect(SURFACE, color, input_rect)
-        text_surface = base_font.render(winner_text, True, (0, 0, 0))
-        # render at position stated in arguments
-        SURFACE.blit(text_surface, (input_rect.x + 1, input_rect.y + 1))
-        # set width of textfield so that text cannot get
-        # outside of user's text input
+        button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, "one_tetro")
+        button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, "two_tetro")
+        button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, "three_tetro")
+        button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour,"four_tetro")
 
-        input_rect.w = max(100, text_surface.get_width() + 10)
-        button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, "one_univ")
-        button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, "two_univ")
-        button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, "three_univ")
-        button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour,"four_univ")
-
-        # 대학교 나타내기
+        # 시간표 테트로미노 select 나타내기
         univ_str = str(univs[0].name)
         univ_image = univ_font.render(univ_str, True, (0, 0, 0))
         SURFACE.blit(univ_image, (530, 220))
