@@ -310,6 +310,8 @@ def tetris_game(cur_lecture, porc:int):
                 # 개인 모드 일 때는 점수만 보여주자
                 if (porc == 0):
                     #playerOne_over에서 가져오기
+                    pygame.display.set_mode([1200, 650])
+                    pygame.init()
                     gameOver_screen(score)
                 # 경쟁 모드 일 때만 랭킹창으로 가자
                 if (porc == 1):
