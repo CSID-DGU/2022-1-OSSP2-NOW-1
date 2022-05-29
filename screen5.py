@@ -1,69 +1,91 @@
-import pygame, random
-from pygame.locals import *
+import pygame
+import sys
+from util.http import *
 
-#랭킹차트
-FONT_SIZE = 60
+#랭킹 창 구현
 
-def name():
-    display_width = 1200
-    display_height = 650
-    WHITE = (255, 255, 255)
-    x = (display_width * 0.00000000000000002)
-    y = (display_height * 0.00000000000000002)
-    SURFACE = pygame.display.set_mode([display_width, display_height])
-    pygame.display.set_caption("시간표 테트리스, 시간표팡!")
-    name = ""
-    lol = random.randint(0, 100)
-    font = pygame.font.SysFont(None, FONT_SIZE)
+display_width = 1200
+display_height = 650
+x = (display_width * 0.00000000000000002)
+y = (display_height * 0.00000000000000002)
+SURFACE = pygame.display.set_mode([display_width, display_height])
 
-    while True:
-        #  readlines returns a list; having this in
-        #  loop allows pygame to draw recently added
-        #  string; no need to close and open a window
-        namefile = open('test.txt', 'r')
-        names = namefile.readlines()
+def mode_screen(x,y):
+    myImg = pygame.image.load('ranking_screen.png')
+    SURFACE.blit(myImg,(x,y))
+def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
 
-        for event in pygame.event.get():
-            if event.type == KEYDOWN:
-                if event.unicode.isalpha():
-                    if event.unicode == 3:
-                        name += 0
-                    else:
-                        name += event.unicode
-                elif event.key == K_BACKSPACE:
-                    name = name[:-1]
-                elif event.key == K_RETURN:
-                    f = open("test.txt", "a")
-                    f.write(str(name) + " " + str(lol) + "\n")
-                    f.close()
-                    name = ""
-            elif event.type == QUIT:
-                return
+    rect = pygame.Rect(x,y,w,h)
+    on_button = rect.collidepoint(mouse)
+    if on_button :
+        pygame.draw.rect(SURFACE, ac, rect)
+        SURFACE.blit (clickOne,clickOne.get_rect(center = rect.center))
+    else :
+        pygame.draw.rect(SURFACE, ic, (x,y,w,h))
+        SURFACE.blit (oneP,oneP.get_rect(center = rect.center))
 
-        #  create a Rectangle container, where yours
-        #  text variable will be drawn
-        #  Rect(left, top, width, height)
-        textrect = Rect(0, 0, 100, FONT_SIZE)
-        SURFACE.fill((0, 0, 0))
-        for i in names:
-            #  iterate through lines from text file (it is stored
-            #  in names variable and it is a list)
+#버튼 클릭 수행
+    if on_button :
+        if click[0]==1 and action != None:
+            no_univ = str("학교를 추가해 주세요")
+            no_univ_image = pygame.font.SysFont('malgungothic', 28).render(no_univ, True, (0, 0, 0))
+            if action == "one_univ" :
+                print(univs[0].id)
+                screen_univ_tetro(univs[0].id)
 
-            #  create text variable and draw it to textrect
-            text = font.render(i[:-1], True, (255,0,0), (0,0,0))
-            SURFACE.blit(text, textrect)
-            #  change y coordinate of textrect; in next iteration
-            #  next line will appear below the previous line
-            textrect.centery += FONT_SIZE
+#버튼 이미지 로딩
+qt = pygame.image.load("quiticon.png").convert_alpha()
+cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 
-        block = font.render(name, True, (255, 255, 255))
-        rect = block.get_rect()
-        rect.center = SURFACE.get_rect().center
-        SURFACE.blit(block, rect)
-        pygame.display.update()
-        pygame.display.flip()
 
-if __name__ == "__main__":
+def univ_screen() :
     pygame.init()
-    name()
-    pygame.quit()
+    clock = pygame.time.Clock()
+    active = False
+    # basic font for user typed
+    base_font = pygame.font.SysFont('malgungothic', 40)
+    WHITE = (255, 255, 255)
+    code, val = get_scores(1)
+    pygame.display.set_caption("시간표 테트리스, 시간표팡!")
+
+    # create rectangle INPUT_RECT
+    color_active = pygame.Color((255, 255, 255))
+    color_passive = pygame.Color((255, 255, 255))
+    color = color_passive
+    while True:
+        for event in pygame.event.get():
+
+            # if user types QUIT then the screen will close
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if input_rect.collidepoint(event.pos):
+                    active = True
+                else:
+                    active = False
+
+        # it will set background color of screen
+        SURFACE.fill((255, 255, 255))
+        mode_screen(x, y)
+        button(180, 600, 100, 20, WHITE, WHITE, qt, cqt, "quit")
+        # 사용자 이름, 점수 출력하기
+        if code == 200:
+            val: list[UserScore]
+            interval = 0
+            for score in val:
+                print(score.name, score.score)
+                print(sep='\n')
+                user_str = str(score.name)+' ' + str(score.score)
+                user_image = base_font.render(user_str, True, (0, 0, 0))
+                SURFACE.blit(user_image, (480, 100+interval))
+                interval += 75
+
+        pygame.display.update()
+        clock.tick(60)
+
+if __name__ == '__main__':
+    univ_screen()
