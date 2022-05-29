@@ -9,7 +9,7 @@ display_height = 650
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
-univs =get_univs()
+univs = get_univs()
 
 def mode_screen(x,y):
     myImg = pygame.image.load('ttpang4_bgr.PNG')
@@ -29,13 +29,13 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
 
 #버튼 클릭 수행
     if on_button :
-      if click[0]==1 and action != None:
-          if action == "replay" :
-             py()
-          elif action =="quit":
-              pygame.quit()
-          elif action == "save":
-              saveUser()
+        if click[0]==1 and action != None:
+            if action == "replay":
+                screen_tetro(univs[0].id) # id = 1, screen_tetro 에서 id를 인자로 받아줘야함
+            elif action =="quit":
+                screen_tetro(univs[1].id) # id = 2,
+            elif action == "save":
+                screen_tetro(univs[2].id) # id = 3,
 
 #버튼 이미지 로딩
 rep = pygame.image.load("replayicon.png").convert_alpha()
@@ -107,6 +107,7 @@ def nick_screen() :
         univ_str = str(univs[0].name)
         univ_image = base_font.render(univ_str, True, (0, 255, 0))
         SURFACE.blit(univ_image, (600, 150))
+
         input_rect.w = max(100, text_surface.get_width() + 10)
         button(260, 500, 150, 50, WHITE, WHITE, rep, crep, "replay")
         button(900, 500, 180, 60, WHITE, WHITE, qt, cqt, "quit")

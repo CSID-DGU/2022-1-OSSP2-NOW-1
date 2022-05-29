@@ -206,7 +206,7 @@ def get_user_TT_info(id: str, password: str) -> dict[str, list[Lecture]]:
 
     for t in tables:
         t.click()  # 시간표 클릭
-        sleep(1)
+        sleep(0.5)
         table_name = t.get_attribute('innerText')
         browser.implicitly_wait(1)  # 정보를 가져오기 위한 대기 시간
         ##################################################################

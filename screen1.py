@@ -34,11 +34,11 @@ def button(x,y,w,h,ic,ac,strt,cstrt,action = None):
 
 #버튼 클릭 수행
     if on_button :
-      if click[0]==1 and action != None:
-          if action == "continue" :
-            mode_select_screen() #다음모드로 넘어가게
-          elif action == "quit":
-            pygame.quit()
+        if click[0]==1 and action != None:
+            if action == "continue" :
+              mode_select_screen() #다음모드로 넘어가게
+            elif action == "quit":
+              pygame.quit()
 
 
 # 버튼이미지로딩
@@ -68,7 +68,6 @@ def screen1() :
         button(250, 480, 180, 68, WHITE, WHITE, strt, cstrt, "continue")
         button(870, 480, 180, 68, WHITE, WHITE, qt, cqt, "quit")
         pygame.display.update()
-
 
 if __name__ == '__main__':
     screen1()
