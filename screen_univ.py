@@ -14,6 +14,7 @@ univs =get_univs()
 def mode_screen(x,y):
     myImg = pygame.image.load('screen_seluniv.jpg')
     SURFACE.blit(myImg,(x,y))
+
 def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
@@ -29,15 +30,30 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
 
 #버튼 클릭 수행
     if on_button :
-      if click[0]==1 and action != None:
-          if action == "one_univ" :
-             py()
-          elif action =="two_univ":
-              pygame.quit()
-          elif action == "three_univ":
-              saveUser()
-          elif action =="four_univ":
-              fourUniv()
+        if click[0]==1 and action != None:
+            no_univ = str("학교를 추가해 주세요")
+            no_univ_image = pygame.font.SysFont('malgungothic', 28).render(no_univ, True, (0, 0, 0))
+            if action == "one_univ" :
+                print(univs[0].id)
+                screen_univ_tetro(univs[0].id)
+            elif action =="two_univ":
+                if (len(univs) > 1):
+                    print(univs[1].id)
+                    screen_univ_tetro(univs[1].id)
+                else:
+                    SURFACE.blit(no_univ_image, (520, y-9))
+            elif action == "three_univ":
+                if (len(univs) > 2) :
+                    print(univs[2].id)
+                    screen_univ_tetro(univs[2].id)
+                else:
+                    SURFACE.blit(no_univ_image, (520, y-9))
+            elif action =="four_univ":
+                if (len(univs) > 3) :
+                    print(univs[3].id)
+                    screen_univ_tetro(univs[3].id)
+                else:
+                    SURFACE.blit(no_univ_image, (520, y-9))
 
 #버튼 이미지 로딩
 uone = pygame.image.load("univ_one.PNG").convert_alpha()
@@ -49,7 +65,7 @@ cuthree = pygame.image.load("clickedUniv_three.PNG").convert_alpha()
 ufour = pygame.image.load("univ_four.PNG").convert_alpha()
 cufour = pygame.image.load("clickedUniv_four.PNG").convert_alpha()
 
-def nick_screen() :
+def univ_screen() :
     pygame.init()
     clock = pygame.time.Clock()
     active = False
@@ -79,19 +95,6 @@ def nick_screen() :
                 else:
                     active = False
 
-            if event.type == pygame.KEYDOWN:
-
-                # Check for backspace
-                if event.key == pygame.K_BACKSPACE:
-                    # get text input from 0 to -1 i.e. end.
-                    winner_text = winner_text[:-1]
-                # Unicode standard is used for string
-                # formation
-                else:
-                    winner_text += event.unicode
-                    if len(winner_text) > 11:
-                        winner_text = winner_text[0:11]
-
         # it will set background color of screen
         SURFACE.fill((255, 255, 255))
         mode_screen(x, y)
@@ -110,17 +113,19 @@ def nick_screen() :
         # outside of user's text input
 
         input_rect.w = max(100, text_surface.get_width() + 10)
-        button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, "one")
-        button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, "two")
-        button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, "three")
-        button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour,"four")
+        button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, "one_univ")
+        button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, "two_univ")
+        button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, "three_univ")
+        button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour,"four_univ")
 
         # 대학교 나타내기
         univ_str = str(univs[0].name)
         univ_image = univ_font.render(univ_str, True, (0, 0, 0))
         SURFACE.blit(univ_image, (530, 220))
+
+
         pygame.display.update()
         clock.tick(60)
 
 if __name__ == '__main__':
-    nick_screen()
+    univ_screen()

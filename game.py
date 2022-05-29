@@ -7,34 +7,33 @@ from getloc import *
 from util.getloc2 import getloc2
 from screen1 import *
 from screen3 import *
-from save_info import *
 BLOCK_DATA = (
     (
-        (0, 0, 1, \
-         1, 1, 1, \
+        (0, 0, 8, \
+         8, 8, 8, \
          0, 0, 0),
-        (0, 1, 0, \
-         0, 1, 0, \
-         0, 1, 1),
+        (0, 8, 0, \
+         0, 8, 0, \
+         0, 8, 8),
         (0, 0, 0, \
-         1, 1, 1, \
-         1, 0, 0),
-        (1, 1, 0, \
-         0, 1, 0, \
-         0, 1, 0),
+         8, 8, 8, \
+         8, 0, 0),
+        (8, 8, 0, \
+         0, 8, 0, \
+         0, 8, 0),
     ), (
-        (2, 0, 0, \
-         2, 2, 2, \
+        (9, 0, 0, \
+         9, 9, 9, \
          0, 0, 0),
-        (0, 2, 2, \
-         0, 2, 0, \
-         0, 2, 0),
+        (0, 9, 9, \
+         0, 9, 0, \
+         0, 9, 0),
         (0, 0, 0, \
-         2, 2, 2, \
-         0, 0, 2),
-        (0, 2, 0, \
-         0, 2, 0, \
-         2, 2, 0)
+         9, 9, 9, \
+         0, 0, 9),
+        (0, 9, 0, \
+         0, 9, 0, \
+         9, 9, 0)
     ), (
         (0, 3, 0, \
          3, 3, 3, \
@@ -109,7 +108,7 @@ class Block:
         self.data = self.type[self.turn]
         self.size = int(sqrt(len(self.data)))
         self.xpos = 1
-        self.ypos = 1 - self.size + 4 #필드에서 벗어나지 않도록 시작 위치를 아래로 내림
+        self.ypos = 1 - self.size + 2 #필드에서 벗어나지 않도록 시작 위치를 아래로 내림
         self.fire = count + INTERVAL
 
     def update(self, count):
@@ -198,9 +197,11 @@ BLOCK = None
 BLOCK_SIZE = 20
 NEXT_BLOCK = None
 cur_lecture = []
+game_over_count = 0
 
 
-def tetris_game(cur_lecture):
+def tetris_game(cur_lecture, porc:int):
+    #porc = 개인인지 경쟁인디 모드 알려주는 변수
     SURFACE = pygame.display.set_mode([600, 800])
     pygame.init()
     pygame.key.set_repeat(120, 120)
@@ -285,21 +286,31 @@ def tetris_game(cur_lecture):
                 pygame.draw.rect(SURFACE, COLORS[val], (xpos*BLOCK_SIZE + 460, ypos*BLOCK_SIZE + BLOCK_SIZE*4, BLOCK_SIZE-1, BLOCK_SIZE-1))
 
         # 점수 나타내기
-        score_str = str(temp).zfill(6)
+        score_str = str(score).zfill(6)
         score_image = smallfont.render(score_str, True, (0, 255, 0))
         SURFACE.blit(score_image, (500, 30))
 
-        lec_name_str = str(cur_lecture[temp - 3].name)
+        lec_name_str = str("강의명 : " + cur_lecture[temp - 3].name)
         lec_name_image = k_font.render(lec_name_str, True, (0, 255, 0))
 
-        lec_professor_str = str(cur_lecture[temp - 3].professor)
+        lec_professor_str = str("교수명 : " + cur_lecture[temp - 3].professor + " 교수님")
         lec_professor_image = k_font.render(lec_professor_str, True, (0, 255, 0))
 
-        SURFACE.blit(lec_name_image, (375, 240))
-        SURFACE.blit(lec_professor_image, (375, 300))
+        SURFACE.blit(lec_name_image, (325, 240))
+        SURFACE.blit(lec_professor_image, (325, 300))
 
         if game_over:
+            global game_over_count
+            game_over_count += 1
             SURFACE.blit(message_over, message_rect)
+            if game_over_count == 2:
+                sleep(5)
+                # 개인 모드 일 때는 점수만 보여주자
+                if (porc == 0):
+                    screen_result(score)
+                # 경쟁 모드 일 때만 랭킹창으로 가자
+                if (porc == 1):
+                    screen_ranking(score)
 
         pygame.display.update()
 
@@ -313,7 +324,7 @@ def game_personal(id, pw):
     #get_block_personal(id, pw) 이 부분에 UI에서 받아온 값을 넣어야함.
     cur_lecture, _BLOCK_DATA = get_blocks_personal(id, pw)
     BLOCK_DATA = _BLOCK_DATA
-    tetris_game(cur_lecture)
+    tetris_game(cur_lecture, 0)
 
 def game_competition(info = 1):
     #경쟁모드
@@ -322,7 +333,7 @@ def game_competition(info = 1):
     cur_lecture, _BLOCK_DATA = get_blocks_competition(info)
     print(_BLOCK_DATA)
     BLOCK_DATA = _BLOCK_DATA
-    tetris_game(cur_lecture)
+    tetris_game(cur_lecture, 1)
 
 if __name__ == '__main__':
     #강의 정보 불러오기
