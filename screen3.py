@@ -38,7 +38,7 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
     if on_button:
         if click[0] == 1 and action != None:
             if action == "prev":
-                print(user_text)
+                pygame.display.quit()
             elif action == "save":
                 game_personal(user_text, pwww_text)
                 #pygame.display.quit()

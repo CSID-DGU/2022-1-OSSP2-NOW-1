@@ -7,7 +7,6 @@ from getloc import *
 from util.getloc2 import getloc2
 from screen1 import *
 from screen3 import *
-from save_info import *
 BLOCK_DATA = (
     (
         (0, 0, 1, \
