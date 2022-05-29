@@ -109,14 +109,14 @@ def get_lectures_info():
     return lectures
 
 
-def get_blocks_personal(id: str, password: str):
+def get_blocks_personal(id: str, password: str, lec_id: int):
     '''
     개인모드용
     '''
     lectures =  get_user_TT_info(id, password)
     lec_names = list(lectures.keys())
     print("인덱스 선택")
-    name = lec_names[0]
+    name = lec_names[lec_id]
     cur_lecture = list(lectures[name])
     return getloc2(cur_lecture)
 

@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f6d86ee8-c402-4fd0-b141-862580a552fd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screen2.py" beforeDir="false" afterPath="$PROJECT_DIR$/screen2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerOne_over.py" beforeDir="false" afterPath="$PROJECT_DIR$/playerOne_over.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screen_univ.py" beforeDir="false" afterPath="$PROJECT_DIR$/screen_univ.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/getloc2.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/getloc2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +45,7 @@
       <recent name="C:\Users\penpenguin2018\2022-1-OSSP2-NOW-1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.screen_univ">
+  <component name="RunManager" selected="Python.game">
     <configuration name="game" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="2022-1-OSSP2-NOW-1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -78,6 +80,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/getloc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="playerOne_over" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="2022-1-OSSP2-NOW-1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/playerOne_over.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -149,27 +172,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="screen4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="2022-1-OSSP2-NOW-1" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/screen4.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="screen_univ" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="2022-1-OSSP2-NOW-1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -193,18 +195,18 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.screen_univ" />
         <item itemvalue="Python.screen1" />
-        <item itemvalue="Python.screen2" />
         <item itemvalue="Python.screen3" />
-        <item itemvalue="Python.screen4" />
+        <item itemvalue="Python.playerOne_over" />
+        <item itemvalue="Python.screen_univ" />
+        <item itemvalue="Python.screen2" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4153407f-c844-4996-becd-a3763d620f8d" name="Changes" comment="" />
+      <changelist id="f6d86ee8-c402-4fd0-b141-862580a552fd" name="Changes" comment="" />
       <created>1650531020012</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -245,7 +247,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653794486176</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="빈칸 이벤트 추가함">
+      <created>1653796883415</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1653796883415</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -254,6 +263,7 @@
     <MESSAGE value="색 추가, 스크린 흐름 변경" />
     <MESSAGE value="스크린 흐름 변경, 로그인 정보 담을 파일 하나 더 만들었음" />
     <MESSAGE value="점수 전달 가능하게 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="점수 전달 가능하게 수정" />
+    <MESSAGE value="빈칸 이벤트 추가함" />
+    <option name="LAST_COMMIT_MESSAGE" value="빈칸 이벤트 추가함" />
   </component>
 </project>

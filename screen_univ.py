@@ -9,7 +9,7 @@ display_height = 650
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
-univs =get_univs()
+univs = get_univs()
 
 def mode_screen(x,y):
     myImg = pygame.image.load('screen_seluniv.jpg')

@@ -7,6 +7,8 @@ from getloc import *
 from util.getloc2 import getloc2
 from screen1 import *
 from screen3 import *
+from playerOne_over import *
+
 BLOCK_DATA = (
     (
         (0, 0, 8, \
@@ -304,10 +306,11 @@ def tetris_game(cur_lecture, porc:int):
             game_over_count += 1
             SURFACE.blit(message_over, message_rect)
             if game_over_count == 2:
-                sleep(5)
+                sleep(2)
                 # 개인 모드 일 때는 점수만 보여주자
                 if (porc == 0):
-                    screen_result(score)
+                    #playerOne_over에서 가져오기
+                    gameOver_screen(score)
                 # 경쟁 모드 일 때만 랭킹창으로 가자
                 if (porc == 1):
                     screen_ranking(score)
@@ -318,12 +321,27 @@ def tetris_game(cur_lecture, porc:int):
         FPSCLOCK.tick(60)
 
 
-def game_personal(id, pw):
+def game_personal(id, pw, lec_id):
     #개인모드
     global BLOCK_DATA
     #get_block_personal(id, pw) 이 부분에 UI에서 받아온 값을 넣어야함.
-    cur_lecture, _BLOCK_DATA = get_blocks_personal(id, pw)
+    cur_lecture, _BLOCK_DATA = get_blocks_personal(id, pw, lec_id)
     BLOCK_DATA = _BLOCK_DATA
+    BLOCK_DATA.append((
+        (0, 0, 0, \
+         2, 2, 0, \
+         0, 0, 0),
+        (0, 2, 0, \
+         0, 2, 0, \
+         0, 0, 0),
+        (0, 0, 0, \
+         0, 2, 2, \
+         0, 0, 0),
+        (0, 0, 0, \
+         0, 2, 0, \
+         0, 2, 0),
+    ))
+    cur_lecture.append()
     tetris_game(cur_lecture, 0)
 
 def game_competition(info = 1):
@@ -337,4 +355,6 @@ def game_competition(info = 1):
 
 if __name__ == '__main__':
     #강의 정보 불러오기
-    tetris_game(get_blocks_competition(1)[0])
+    #tetris_game(get_blocks_competition(1)[0], 1)
+
+    game_personal("leeminsuok", "052978a", 0)

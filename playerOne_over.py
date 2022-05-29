@@ -40,7 +40,7 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
           elif action =="four_univ":
               fourUniv()
 
-def gameOver_screen(indi_score=0000) :
+def gameOver_screen(indi_score=0):
     pygame.init()
     clock = pygame.time.Clock()
     active = False
@@ -68,18 +68,6 @@ def gameOver_screen(indi_score=0000) :
                 else:
                     active = False
 
-            if event.type == pygame.KEYDOWN:
-
-                # Check for backspace
-                if event.key == pygame.K_BACKSPACE:
-                    # get text input from 0 to -1 i.e. end.
-                    winner_text = winner_text[:-1]
-                # Unicode standard is used for string
-                # formation
-                else:
-                    winner_text += event.unicode
-                    if len(winner_text) > 11:
-                        winner_text = winner_text[0:11]
 
         # it will set background color of screen
         SURFACE.fill((255, 255, 255))
