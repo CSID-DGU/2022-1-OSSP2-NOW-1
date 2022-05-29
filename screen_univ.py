@@ -9,10 +9,10 @@ display_height = 650
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
-univs = get_univs()
+univs =get_univs()
 
 def mode_screen(x,y):
-    myImg = pygame.image.load('ttpang4_bgr.PNG')
+    myImg = pygame.image.load('screen_seluniv.jpg')
     SURFACE.blit(myImg,(x,y))
 def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
     mouse = pygame.mouse.get_pos()
@@ -29,21 +29,25 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
 
 #버튼 클릭 수행
     if on_button :
-        if click[0]==1 and action != None:
-            if action == "replay":
-                screen_tetro(univs[0].id) # id = 1, screen_tetro 에서 id를 인자로 받아줘야함
-            elif action =="quit":
-                screen_tetro(univs[1].id) # id = 2,
-            elif action == "save":
-                screen_tetro(univs[2].id) # id = 3,
+      if click[0]==1 and action != None:
+          if action == "one_univ" :
+             py()one
+          elif action =="two_univ":
+              pygame.quit()
+          elif action == "three_univ":
+              saveUser()
+          elif action =="four_univ":
+              fourUniv()
 
 #버튼 이미지 로딩
-rep = pygame.image.load("replayicon.png").convert_alpha()
-crep = pygame.image.load("clickedReplayIcon.png").convert_alpha()
-qt = pygame.image.load("quiticon.png").convert_alpha()
-cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
-sav = pygame.image.load("saveicon.png").convert_alpha()
-csav = pygame.image.load("clickedSaveIcon.png").convert_alpha()
+uone = pygame.image.load("univ_one.PNG").convert_alpha()
+cuone = pygame.image.load("clickedUniv_one.PNG").convert_alpha()
+utwo = pygame.image.load("univ_two.PNG").convert_alpha()
+cutwo = pygame.image.load("clickedUniv_two.PNG").convert_alpha()
+uthree = pygame.image.load("univ_three.PNG").convert_alpha()
+cuthree = pygame.image.load("clickedUniv_three.PNG").convert_alpha()
+ufour = pygame.image.load("univ_four.PNG").convert_alpha()
+cufour = pygame.image.load("clickedUniv_four.PNG").convert_alpha()
 
 def nick_screen() :
     pygame.init()
@@ -51,6 +55,7 @@ def nick_screen() :
     active = False
     # basic font for user typed
     base_font = pygame.font.SysFont('malgungothic', 45)
+    univ_font = pygame.font.SysFont('malgungothic', 28)
     winner_text = ''
     WHITE = (255, 255, 255)
     pygame.display.set_caption("시간표 테트리스, 시간표팡!")
@@ -103,15 +108,17 @@ def nick_screen() :
         SURFACE.blit(text_surface, (input_rect.x + 1, input_rect.y + 1))
         # set width of textfield so that text cannot get
         # outside of user's text input
-        # 대학교 나타내기
-        univ_str = str(univs[0].name)
-        univ_image = base_font.render(univ_str, True, (0, 255, 0))
-        SURFACE.blit(univ_image, (600, 150))
 
         input_rect.w = max(100, text_surface.get_width() + 10)
-        button(260, 500, 150, 50, WHITE, WHITE, rep, crep, "replay")
-        button(900, 500, 180, 60, WHITE, WHITE, qt, cqt, "quit")
-        button(600, 350, 100, 30, WHITE, WHITE, sav, csav, "save")
+        button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, "one")
+        button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, "two")
+        button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, "three")
+        button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour,"four")
+
+        # 대학교 나타내기
+        univ_str = str(univs[0].name)
+        univ_image = univ_font.render(univ_str, True, (0, 0, 0))
+        SURFACE.blit(univ_image, (530, 220))
         pygame.display.update()
         clock.tick(60)
 
