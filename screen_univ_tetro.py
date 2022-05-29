@@ -8,6 +8,7 @@ display_height = 650
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
+univs = get_univs()
 
 def mode_screen(x,y):
     myImg = pygame.image.load('indi_tetro_bgr.png')
@@ -29,29 +30,15 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
 #버튼 클릭 수행
     if on_button :
         if click[0]==1 and action != None:
-            no_univ = str("시간표를 추가해 주세요")
-            no_univ_image = pygame.font.SysFont('malgungothic', 28).render(no_univ, True, (0, 0, 0))
+
             if action == "one_tetro" :
-                print(univs[0].id)
-                screen_univ_tetro(univs[0].id)
+
             elif action =="two_tetro":
-                if (len(univs) > 1):
-                    print(univs[1].id)
-                    screen_univ_tetro(univs[1].id)
-                else:
-                    SURFACE.blit(no_univ_image, (520, y-9))
+
             elif action == "three_tetro":
-                if (len(univs) > 2) :
-                    print(univs[2].id)
-                    screen_univ_tetro(univs[2].id)
-                else:
-                    SURFACE.blit(no_univ_image, (520, y-9))
+
             elif action =="four_tetro":
-                if (len(univs) > 3) :
-                    print(univs[3].id)
-                    screen_univ_tetro(univs[3].id)
-                else:
-                    SURFACE.blit(no_univ_image, (520, y-9))
+
 
 #버튼 이미지 로딩
 uone = pygame.image.load("univ_one.PNG").convert_alpha()
@@ -69,7 +56,7 @@ def univ_tetropool_screen() :
     active = False
     # basic font for user typed
     base_font = pygame.font.SysFont('malgungothic', 45)
-    univ_font = pygame.font.SysFont('malgungothic', 28)
+    univ_font = pygame.font.SysFont('malgungothic', 15)
     winner_text = ''
     WHITE = (255, 255, 255)
     pygame.display.set_caption("시간표 테트리스, 시간표팡!")
@@ -109,10 +96,16 @@ def univ_tetropool_screen() :
         button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour,"four_tetro")
 
         # 시간표 테트로미노 select 나타내기
-        univ_str = str(univs[0].name)
-        univ_image = univ_font.render(univ_str, True, (0, 0, 0))
-        SURFACE.blit(univ_image, (530, 220))
-
+        code, tetro_pools = get_tetro_list(univs[0].id)
+        if code == 200:
+            tt: list[TetroPool] = tetro_pools
+            # t 는 DetailedLecture
+            interval = 0
+            for t in tt:
+                tt_str = str(t.id) + ' ' + str(t.name) + ' ' + str(t.description)
+                tt_image = univ_font.render(tt_str,True,(0,0,0))
+                SURFACE.blit(tt_image,(520, 220+interval))
+                interval +=100
 
         pygame.display.update()
         clock.tick(60)
