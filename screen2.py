@@ -3,6 +3,7 @@ from random import *
 from pygame.locals import *
 import sys
 from screen3 import *
+from screen_univ import *
 
 #모드 선택 이미지
 # display_width, display_height 고정
@@ -40,7 +41,7 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
                 rogin_screen()
             elif action == "playerMulti":
                 #닉네임 만들기 전에, 학교 입력 받고, 강의풀 선택하는 창이 먼저 필요함.
-                nick_screen()
+                univ_screen()
             elif action == "prev":
                 #뒤로가기 불가능
                 screen3()
