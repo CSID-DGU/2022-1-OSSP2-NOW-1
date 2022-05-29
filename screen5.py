@@ -77,8 +77,6 @@ def univ_screen() :
             val: list[UserScore]
             interval = 0
             for score in val:
-                print(score.name, score.score)
-                print(sep='\n')
                 user_str = str(score.name)+' ' + str(score.score)
                 user_image = base_font.render(user_str, True, (0, 0, 0))
                 SURFACE.blit(user_image, (480, 100+interval))
