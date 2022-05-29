@@ -2,8 +2,7 @@ import pygame
 import sys
 from screen2 import *
 from util.getloc2 import *
-from screen2 import *
-from save_info import *
+from game import *
 
 # 에브리타임 로그인창
 display_width = 1200
@@ -41,8 +40,7 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
             if action == "prev":
                 print(user_text)
             elif action == "save":
-                save_id_pw("leeminsuok", "052978a")
-                is_finished = True
+                game_personal(user_text, pwww_text)
                 #pygame.display.quit()
 
 # 버튼 이미지 로딩
@@ -59,9 +57,6 @@ inputpw_rect = pygame.Rect(410, 410, 140, 50)
 color_active = pygame.Color((255, 255, 255))
 color_passive = pygame.Color((255, 255, 255))
 color = color_passive
-
-def get_user_id():
-    return user_text, pwww_text
 
 def rogin_screen():
     pygame.init()

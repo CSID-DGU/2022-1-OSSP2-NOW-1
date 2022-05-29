@@ -3,7 +3,6 @@ from random import *
 from pygame.locals import *
 import sys
 from screen3 import *
-from screen4 import *
 
 #모드 선택 이미지
 # display_width, display_height 고정
