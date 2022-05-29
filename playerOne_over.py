@@ -31,14 +31,13 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
 #버튼 클릭 수행
     if on_button :
       if click[0]==1 and action != None:
-          if action == "one_univ" :
-             py()
-          elif action =="two_univ":
-              pygame.quit()
-          elif action == "three_univ":
-              saveUser()
-          elif action =="four_univ":
-              fourUniv()
+          if action == "quit" :
+             pygame.quit()
+
+
+#버튼 이미지 로딩
+qt = pygame.image.load('quiticon.png').convert_alpha()
+cqt = pygame.image.load('clickedQuitIcon.png').convert_alpha()
 
 def gameOver_screen(indi_score=0000) :
     pygame.init()
@@ -62,32 +61,10 @@ def gameOver_screen(indi_score=0000) :
                 pygame.quit()
                 sys.exit()
 
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if input_rect.collidepoint(event.pos):
-                    active = True
-                else:
-                    active = False
-
-            if event.type == pygame.KEYDOWN:
-
-                # Check for backspace
-                if event.key == pygame.K_BACKSPACE:
-                    # get text input from 0 to -1 i.e. end.
-                    winner_text = winner_text[:-1]
-                # Unicode standard is used for string
-                # formation
-                else:
-                    winner_text += event.unicode
-                    if len(winner_text) > 11:
-                        winner_text = winner_text[0:11]
-
         # it will set background color of screen
         SURFACE.fill((255, 255, 255))
         mode_screen(x, y)
-        if active:
-            color = color_active
-        else:
-            color = color_passive
+        button(200, 600, 100, 20, WHITE, WHITE, qt, cqt, "quit")
         # 사용자 점수 나타내기
         indi_score_str = str(indi_score).zfill(6)
         indiScore_img = base_font.render(indi_score_str, True, (0,0, 0))
