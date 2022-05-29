@@ -321,12 +321,13 @@ def tetris_game(cur_lecture, porc:int):
         FPSCLOCK.tick(60)
 
 
-def game_personal(id, pw, lec_id):
+def game_personal(id, pw):
     #개인모드
     global BLOCK_DATA
     #get_block_personal(id, pw) 이 부분에 UI에서 받아온 값을 넣어야함.
-    cur_lecture, _BLOCK_DATA = get_blocks_personal(id, pw, lec_id)
+    cur_lecture, _BLOCK_DATA = get_blocks_personal(id, pw, 0)
     BLOCK_DATA = _BLOCK_DATA
+    """
     BLOCK_DATA.append((
         (0, 0, 0, \
          2, 2, 0, \
@@ -341,7 +342,7 @@ def game_personal(id, pw, lec_id):
          0, 2, 0, \
          0, 2, 0),
     ))
-    cur_lecture.append()
+    """ #보너스 조각 넣는건 cur_lecture 때문에 어려움
     tetris_game(cur_lecture, 0)
 
 def game_competition(info = 1):
@@ -356,5 +357,4 @@ def game_competition(info = 1):
 if __name__ == '__main__':
     #강의 정보 불러오기
     #tetris_game(get_blocks_competition(1)[0], 1)
-
-    game_personal("leeminsuok", "052978a", 0)
+    game_personal("leeminsuok", "052978a")

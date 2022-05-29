@@ -108,7 +108,6 @@ def get_lectures_info():
     lectures =  get_user_TT_info(id, password)
     return lectures
 
-
 def get_blocks_personal(id: str, password: str, lec_id: int):
     '''
     개인모드용
