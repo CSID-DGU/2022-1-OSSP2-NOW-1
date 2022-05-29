@@ -3,6 +3,7 @@ import sys
 from screen2 import *
 from util.getloc2 import *
 from game import *
+from screen_indi_tetropool import *
 
 # 에브리타임 로그인창
 display_width = 1200
@@ -40,7 +41,7 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
             if action == "prev":
                 pygame.display.quit()
             elif action == "save":
-                game_personal(user_text, pwww_text)
+                indi_tetropool_screen()
                 #pygame.display.quit()
 
 # 버튼 이미지 로딩

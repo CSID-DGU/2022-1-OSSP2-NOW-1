@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6d86ee8-c402-4fd0-b141-862580a552fd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/2022-1-OSSP2-NOW-1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/2022-1-OSSP2-NOW-1.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screen3.py" beforeDir="false" afterPath="$PROJECT_DIR$/screen3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screen_indi_tetropool.py" beforeDir="false" afterPath="$PROJECT_DIR$/screen_indi_tetropool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/getloc2.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/getloc2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +46,7 @@
       <recent name="C:\Users\penpenguin2018\2022-1-OSSP2-NOW-1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.screen_indi_tetropool (1)">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="2022-1-OSSP2-NOW-1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -274,9 +278,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.screen_indi_tetropool (1)" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.screen1" />
-        <item itemvalue="Python.screen_indi_tetropool (1)" />
         <item itemvalue="Python.screen_univ" />
         <item itemvalue="Python.screen_indi_tetropool" />
       </list>
@@ -285,7 +289,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4153407f-c844-4996-becd-a3763d620f8d" name="Changes" comment="" />
+      <changelist id="f6d86ee8-c402-4fd0-b141-862580a552fd" name="Changes" comment="" />
       <created>1650531020012</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

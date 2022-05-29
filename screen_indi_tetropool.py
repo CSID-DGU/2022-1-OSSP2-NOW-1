@@ -8,7 +8,6 @@ display_height = 650
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
-univs = get_univs()
 
 def mode_screen(x,y):
     myImg = pygame.image.load('indi_tetro_bgr.png')
@@ -30,29 +29,14 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
 #버튼 클릭 수행
     if on_button :
         if click[0]==1 and action != None:
-            no_univ = str("시간표를 추가해 주세요")
-            no_univ_image = pygame.font.SysFont('malgungothic', 28).render(no_univ, True, (0, 0, 0))
             if action == "one_tetro" :
-                print(univs[0].id)
-                screen_univ_tetro(univs[0].id)
+
             elif action =="two_tetro":
-                if (len(univs) > 1):
-                    print(univs[1].id)
-                    screen_univ_tetro(univs[1].id)
-                else:
-                    SURFACE.blit(no_univ_image, (520, y-9))
+
             elif action == "three_tetro":
-                if (len(univs) > 2) :
-                    print(univs[2].id)
-                    screen_univ_tetro(univs[2].id)
-                else:
-                    SURFACE.blit(no_univ_image, (520, y-9))
+
             elif action =="four_tetro":
-                if (len(univs) > 3) :
-                    print(univs[3].id)
-                    screen_univ_tetro(univs[3].id)
-                else:
-                    SURFACE.blit(no_univ_image, (520, y-9))
+
 
 #버튼 이미지 로딩
 uone = pygame.image.load("univ_one.PNG").convert_alpha()
@@ -110,9 +94,22 @@ def indi_tetropool_screen() :
         button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour,"four_tetro")
 
         # 시간표 테트로미노 select 나타내기
-        univ_str = str(univs[0].name)
-        univ_image = univ_font.render(univ_str, True, (0, 0, 0))
-        SURFACE.blit(univ_image, (530, 220))
+        table_str1 = str("1번 시간표")
+        table_image1 = univ_font.render(table_str1, True, (0, 0, 0))
+        SURFACE.blit(table_image1, (530, 220))
+
+        table_str2 = str("2번 시간표")
+        table_image2 = univ_font.render(table_str2, True, (0, 0, 0))
+        SURFACE.blit(table_image2, (530, 320))
+
+        table_str3 = str("3번 시간표")
+        table_image3 = univ_font.render(table_str3, True, (0, 0, 0))
+        SURFACE.blit(table_image3, (530, 420))
+
+        table_str4 = str("4번 시간표")
+        table_image4 = univ_font.render(table_str4, True, (0, 0, 0))
+        SURFACE.blit(table_image4, (530, 520))
+
 
 
         pygame.display.update()
