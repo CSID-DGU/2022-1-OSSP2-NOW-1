@@ -29,6 +29,7 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None, score = None):
     if on_button :
       if click[0]==1 and action != None:
           if action == "replay" :
+              #리플레이 불가능
               game()
           elif action =="quit":
               pygame.quit()

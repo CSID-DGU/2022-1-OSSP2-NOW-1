@@ -316,6 +316,8 @@ def tetris_game(cur_lecture, porc:int):
                     gameOver_screen(score)
                 # 경쟁 모드 일 때만 랭킹창으로 가자
                 if (porc == 1):
+                    pygame.display.set_mode([1200, 650])
+                    pygame.init()
                     nick_screen(score)
                     #screen_ranking(score)
 
