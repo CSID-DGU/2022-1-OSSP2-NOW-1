@@ -121,6 +121,3 @@ def indi_tetropool_screen(lectures) :
 
         pygame.display.update()
         clock.tick(60)
-
-if __name__ == '__main__':
-    indi_tetropool_screen("leeminsuok", "052978a")

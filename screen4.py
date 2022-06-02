@@ -1,6 +1,8 @@
 import pygame
 import sys
 from screen5 import *
+from util.http import *
+
 #닉네임 입력창 구현
 
 display_width = 1200
