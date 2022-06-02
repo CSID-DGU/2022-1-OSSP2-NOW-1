@@ -309,9 +309,9 @@ def get_lectures_from_semester(browser: WebDriver, path: list[str]):
                     break  # 그만
             # 실제 강의 리스트들 가져오기
             detailed_lectures_raw: list[WebElement] = lec_list.find_element(By.TAG_NAME, 'tbody')\
-                                                            .find_elements(By.TAG_NAME, 'tr')
-            
-            detailed_lectures : list[DetailedLecture] = []
+                .find_elements(By.TAG_NAME, 'tr')
+
+            detailed_lectures: list[DetailedLecture] = []
 
             for lec in detailed_lectures_raw:
                 dl = get_lecture_from_tr(lec)  # detailed lecture 반환
@@ -376,7 +376,8 @@ def get_lectures_info(id: str, password: str, target: list[str], path: list[str]
     browser.implicitly_wait(3)  # 3초 대기
 
     select, semesters = get_semesters(browser, target)
-    lectures_all_semesters: dict[str, list[DetailedLecture]] = {} # 모든 학기의 모든 강좌 리스트.
+    # 모든 학기의 모든 강좌 리스트.
+    lectures_all_semesters: dict[str, list[DetailedLecture]] = {}
     # 가져온 학기 목록 출력
     for semester in semesters:
         print(semester[0])
@@ -389,10 +390,10 @@ def get_lectures_info(id: str, password: str, target: list[str], path: list[str]
         browser.implicitly_wait(1)
         # 해당 학기 클릭
 
-        dls = get_lectures_from_semester(browser, path) # 상세강좌정보들
+        dls = get_lectures_from_semester(browser, path)  # 상세강좌정보들
         if dls != None:
-            lectures_all_semesters[semester[0]] = dls # 학기를 키로 써서 상세강좌정보 삽입
-    
+            lectures_all_semesters[semester[0]] = dls  # 학기를 키로 써서 상세강좌정보 삽입
+
     return lectures_all_semesters
 
 
@@ -413,7 +414,7 @@ if __name__ == "__main__":
 
     for semester in all_lectures:
         print(f"학기: {semester}\n")
-        for lec in all_lectures[semester]: # 각 강좌 정보 출력
+        for lec in all_lectures[semester]:  # 각 강좌 정보 출력
             print(lec)
 # except Exception as e:
     # print(e)

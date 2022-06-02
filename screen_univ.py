@@ -105,7 +105,7 @@ def univ_screen():
         SURFACE.fill((255, 255, 255))
         mode_screen(x, y)
 
-        button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, "one_univ")
+        button(575, 220, 100, 30, WHITE, WHITE, uone, cuone, "one_univ")
         button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, "two_univ")
         button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, "three_univ")
         button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour, "four_univ")

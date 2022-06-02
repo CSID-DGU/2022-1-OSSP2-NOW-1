@@ -16,6 +16,7 @@ pwww_text = ''
 
 is_finished = False
 
+
 def mode_screen(x, y):
     myImg = pygame.image.load('ttpang2_bgr.PNG')
     SURFACE.blit(myImg, (x, y))
@@ -41,8 +42,13 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
             if action == "quit":
                 pygame.display.quit()
             elif action == "save":
-                indi_tetropool_screen(get_lectures_info(user_text, pwww_text))
-                #pygame.display.quit()
+                try:
+                    indi_tetropool_screen(
+                        get_lectures_info(user_text, pwww_text))
+                except Exception as e:
+                    print(e)
+                # pygame.display.quit()
+
 
 # 버튼 이미지 로딩
 quit = pygame.image.load("quitIcon.png").convert_alpha()
@@ -58,6 +64,7 @@ inputpw_rect = pygame.Rect(410, 410, 140, 50)
 color_active = pygame.Color((255, 255, 255))
 color_passive = pygame.Color((255, 255, 255))
 color = color_passive
+
 
 def login_screen():
     pygame.init()
@@ -141,24 +148,12 @@ def login_screen():
         input_rect.w = max(100, text_surface.get_width() + 10)
         button(190, 540, 100, 20, WHITE, WHITE, quit, cquit, "quit")
         button(620, 500, 50, 30, WHITE, WHITE, evrysav, evrycsav, "save")
-    
+
         if is_finished == False:
             pygame.display.update()
         elif is_finished == True:
-            pygame.display.quit() 
+            pygame.display.quit()
+
 
 if __name__ == '__main__':
-    try :
-        #경고창 있는지 확인
-        WebDriverWait(brower,3).until(EC.alert_is_present())
-        alert = brower.switch_to.alert
-        #취소하기
-        alert.dismiss()
-        #확인하기
-        alert.accept()
-    except :
-        login_screen()
-
-
-
-    
+    login_screen()
