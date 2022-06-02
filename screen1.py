@@ -14,31 +14,35 @@ y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
 
 # 시작 화면 그리기
-def start_screen(x,y):
+
+
+def start_screen(x, y):
     myImg = pygame.image.load('ttpang1_bgr.PNG')
-    SURFACE.blit(myImg,(x,y))
+    SURFACE.blit(myImg, (x, y))
 
 # 버튼
-def button(x,y,w,h,ic,ac,strt,cstrt,action = None):
+
+
+def button(x, y, w, h, ic, ac, strt, cstrt, action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
-    rect = pygame.Rect(x,y,w,h)
+    rect = pygame.Rect(x, y, w, h)
     on_button = rect.collidepoint(mouse)
-    if on_button :
+    if on_button:
         pygame.draw.rect(SURFACE, ac, rect)
-        SURFACE.blit (cstrt,cstrt.get_rect(center = rect.center))
-    else :
-        pygame.draw.rect(SURFACE, ic, (x,y,w,h))
-        SURFACE.blit (strt,strt.get_rect(center = rect.center))
+        SURFACE.blit(cstrt, cstrt.get_rect(center=rect.center))
+    else:
+        pygame.draw.rect(SURFACE, ic, (x, y, w, h))
+        SURFACE.blit(strt, strt.get_rect(center=rect.center))
 
-#버튼 클릭 수행
-    if on_button :
-        if click[0]==1 and action != None:
-            if action == "continue" :
-              mode_select_screen() #다음모드로 넘어가게
+# 버튼 클릭 수행
+    if on_button:
+        if click[0] == 1 and action != None:
+            if action == "continue":
+                mode_select_screen()  # 다음모드로 넘어가게
             elif action == "quit":
-              pygame.quit()
+                pygame.quit()
 
 
 # 버튼이미지로딩
@@ -48,7 +52,7 @@ qt = pygame.image.load("quiticon.png").convert_alpha()
 cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 
 
-def screen1() :
+def screen1():
     # event handling logic
     pygame.init()
     finished = False
@@ -68,6 +72,7 @@ def screen1() :
         button(250, 480, 180, 68, WHITE, WHITE, strt, cstrt, "continue")
         button(870, 480, 180, 68, WHITE, WHITE, qt, cqt, "quit")
         pygame.display.update()
+
 
 if __name__ == '__main__':
     screen1()

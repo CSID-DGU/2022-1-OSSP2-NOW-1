@@ -16,6 +16,7 @@ pwww_text = ''
 
 is_finished = False
 
+
 def mode_screen(x, y):
     myImg = pygame.image.load('ttpang2_bgr.PNG')
     SURFACE.blit(myImg, (x, y))
@@ -42,7 +43,8 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
                 pygame.display.quit()
             elif action == "save":
                 indi_tetropool_screen(get_lectures_info(user_text, pwww_text))
-                #pygame.display.quit()
+                # pygame.display.quit()
+
 
 # 버튼 이미지 로딩
 prev = pygame.image.load("prevIcon.png").convert_alpha()
@@ -58,6 +60,7 @@ inputpw_rect = pygame.Rect(410, 410, 140, 50)
 color_active = pygame.Color((255, 255, 255))
 color_passive = pygame.Color((255, 255, 255))
 color = color_passive
+
 
 def rogin_screen():
     pygame.init()
@@ -145,6 +148,7 @@ def rogin_screen():
             pygame.display.update()
         elif is_finished == True:
             pygame.display.quit()
+
 
 if __name__ == '__main__':
     rogin_screen()

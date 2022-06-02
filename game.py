@@ -203,7 +203,7 @@ cur_lecture = []
 game_over_count = 0
 
 
-def tetris_game(cur_lecture, porc:int):
+def tetris_game(cur_lecture, porc:int, info = None):
     #porc = 개인인지 경쟁인디 모드 알려주는 변수
     SURFACE = pygame.display.set_mode([600, 800])
     pygame.init()
@@ -319,7 +319,7 @@ def tetris_game(cur_lecture, porc:int):
                 if (porc == 1):
                     pygame.display.set_mode([1200, 650])
                     pygame.init()
-                    nick_screen(score)
+                    nick_screen(scor, info)
                     #screen_ranking(score)
 
         pygame.display.update()
@@ -359,7 +359,7 @@ def game_competition(info = 1):
     cur_lecture, _BLOCK_DATA = get_blocks_competition(info)
     print(_BLOCK_DATA)
     BLOCK_DATA = _BLOCK_DATA
-    tetris_game(cur_lecture, 1)
+    tetris_game(cur_lecture, 1, info)
 
 if __name__ == '__main__':
     #강의 정보 불러오기

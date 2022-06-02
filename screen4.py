@@ -3,7 +3,7 @@ import sys
 from screen5 import *
 from util.http import *
 
-#닉네임 입력창 구현
+# 닉네임 입력창 구현
 
 display_width = 1200
 display_height = 650
@@ -11,36 +11,39 @@ x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
 
-def mode_screen(x,y):
+
+def mode_screen(x, y):
     myImg = pygame.image.load('ttpang4_bgr.PNG')
-    SURFACE.blit(myImg,(x,y))
-def button(x,y,w,h,ic,ac,oneP,clickOne,action = None, score = None):
+    SURFACE.blit(myImg, (x, y))
+
+
+def button(x, y, w, h, ic, ac, oneP, clickOne, action=None, score=None, pool_info=None, nick=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
-    rect = pygame.Rect(x,y,w,h)
+    rect = pygame.Rect(x, y, w, h)
     on_button = rect.collidepoint(mouse)
-    if on_button :
+    if on_button:
         pygame.draw.rect(SURFACE, ac, rect)
-        SURFACE.blit (clickOne,clickOne.get_rect(center = rect.center))
-    else :
-        pygame.draw.rect(SURFACE, ic, (x,y,w,h))
-        SURFACE.blit (oneP,oneP.get_rect(center = rect.center))
+        SURFACE.blit(clickOne, clickOne.get_rect(center=rect.center))
+    else:
+        pygame.draw.rect(SURFACE, ic, (x, y, w, h))
+        SURFACE.blit(oneP, oneP.get_rect(center=rect.center))
 
-#버튼 클릭 수행
-    if on_button :
-      if click[0]==1 and action != None:
-          if action == "replay" :
-              #리플레이 불가능
-              game()
-          elif action =="quit":
-              pygame.quit()
-          elif action == "save":
-              sendnick(nick)
-              saveUser(score)
-              univ_screen()
+# 버튼 클릭 수행
+    if on_button:
+        if click[0] == 1 and action != None:
+            if action == "replay":
+                # 리플레이 불가능
+                game()
+            elif action == "quit":
+                pygame.quit()
+            elif action == "save":
+                set_score(pool_info, nick, score)
+                univ_screen()
 
-#버튼 이미지 로딩
+
+# 버튼 이미지 로딩
 rep = pygame.image.load("replayicon.png").convert_alpha()
 crep = pygame.image.load("clickedReplayIcon.png").convert_alpha()
 qt = pygame.image.load("quiticon.png").convert_alpha()
@@ -48,7 +51,8 @@ cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 sav = pygame.image.load("saveicon.png").convert_alpha()
 csav = pygame.image.load("clickedSaveIcon.png").convert_alpha()
 
-def nick_screen(score) :
+
+def nick_screen(score, pool_info):
     pygame.init()
     clock = pygame.time.Clock()
     active = False
@@ -109,9 +113,11 @@ def nick_screen(score) :
         input_rect.w = max(100, text_surface.get_width() + 10)
         button(260, 500, 150, 50, WHITE, WHITE, rep, crep, "replay")
         button(900, 500, 180, 60, WHITE, WHITE, qt, cqt, "quit")
-        button(600, 350, 100, 30, WHITE, WHITE, sav, csav, "save", score)
+        button(600, 350, 100, 30, WHITE, WHITE,
+               sav, csav, "save", score, pool_info, winner_text)
         pygame.display.update()
         clock.tick(60)
 
+
 if __name__ == '__main__':
-    nick_screen(0)
+    nick_screen(0, 0)
