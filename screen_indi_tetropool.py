@@ -14,7 +14,8 @@ def mode_screen(x,y):
     myImg = pygame.image.load('indi_tetro_bgr.png')
     SURFACE.blit(myImg,(x,y))
 
-def button(x,y,w,h,ic,ac,oneP,clickOne,user_text, pwww_text,action = None):
+def button(x,y,w,h,ic,ac,oneP,clickOne, lectures, action = None):
+    lec_names = list(lectures.keys())
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
@@ -31,15 +32,17 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,user_text, pwww_text,action = None):
     if on_button :
         if click[0]==1 and action != None:
             if action == "one_tetro" :
-                game_personal(user_text, pwww_text, 0)
+                name = lec_names[0]
+                game_personal(list(lectures[name]))
             elif action =="two_tetro":
-                game_personal(user_text, pwww_text, 1)
+                name = lec_names[1]
+                game_personal(list(lectures[name]))
             elif action == "three_tetro":
-                game_personal(user_text, pwww_text, 2)
+                name = lec_names[2]
+                game_personal(list(lectures[name]))
             elif action =="four_tetro":
-                game_personal(user_text, pwww_text, 3)
-
-
+                name = lec_names[3]
+                game_personal(list(lectures[name]))
 
 #버튼 이미지 로딩
 uone = pygame.image.load("univ_one.PNG").convert_alpha()
@@ -51,7 +54,9 @@ cuthree = pygame.image.load("clickedUniv_three.PNG").convert_alpha()
 ufour = pygame.image.load("univ_four.PNG").convert_alpha()
 cufour = pygame.image.load("clickedUniv_four.PNG").convert_alpha()
 
-def indi_tetropool_screen(user_text, pwww_text) :
+def indi_tetropool_screen(lectures) :
+    lec_names = list(lectures.keys())
+
     pygame.init()
     clock = pygame.time.Clock()
     active = False
@@ -91,29 +96,28 @@ def indi_tetropool_screen(user_text, pwww_text) :
 
         # draw rectangle and argument passed which should
         # be on screen
-        button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, user_text, pwww_text, "one_tetro",)
-        button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, user_text, pwww_text, "two_tetro")
-        button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, user_text, pwww_text, "three_tetro")
-        button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour, user_text, pwww_text, "four_tetro")
+        button(580, 220, 100, 30, WHITE, WHITE, uone, cuone, lectures, "one_tetro",)
+        button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, lectures, "two_tetro")
+        button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, lectures, "three_tetro")
+        button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour, lectures, "four_tetro")
 
         # 시간표 테트로미노 select 나타내기
-        table_str1 = str("1번 시간표")
-        table_image1 = univ_font.render(table_str1, True, (0, 0, 0))
-        SURFACE.blit(table_image1, (530, 220))
-
-        table_str2 = str("2번 시간표")
-        table_image2 = univ_font.render(table_str2, True, (0, 0, 0))
-        SURFACE.blit(table_image2, (530, 320))
-
-        table_str3 = str("3번 시간표")
-        table_image3 = univ_font.render(table_str3, True, (0, 0, 0))
-        SURFACE.blit(table_image3, (530, 420))
-
-        table_str4 = str("4번 시간표")
-        table_image4 = univ_font.render(table_str4, True, (0, 0, 0))
-        SURFACE.blit(table_image4, (530, 520))
-
-
+        if len(lec_names) >= 1:
+            table_str1 = str(lec_names[0])
+            table_image1 = univ_font.render(table_str1, True, (0, 0, 0))
+            SURFACE.blit(table_image1, (530, 220))
+            if len(lec_names) >= 2:
+                table_str2 = str(lec_names[1])
+                table_image2 = univ_font.render(table_str2, True, (0, 0, 0))
+                SURFACE.blit(table_image2, (530, 320))
+                if len(lec_names) >= 3:
+                    table_str3 = str(lec_names[2])
+                    table_image3 = univ_font.render(table_str3, True, (0, 0, 0))
+                    SURFACE.blit(table_image3, (530, 420))
+                    if len(lec_names) >= 4:
+                        table_str4 = str(lec_names[3])
+                        table_image4 = univ_font.render(table_str4, True, (0, 0, 0))
+                        SURFACE.blit(table_image4, (530, 520))
 
         pygame.display.update()
         clock.tick(60)

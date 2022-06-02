@@ -290,6 +290,7 @@ def tetris_game(cur_lecture, porc:int):
 
         # 점수 나타내기
         score_str = str(score).zfill(6)
+
         score_image = smallfont.render(score_str, True, (0, 255, 0))
         SURFACE.blit(score_image, (500, 30))
 
@@ -327,11 +328,11 @@ def tetris_game(cur_lecture, porc:int):
         FPSCLOCK.tick(60)
 
 
-def game_personal(id, pw, table_id):
+def game_personal(cur_lecture):
     #개인모드
     global BLOCK_DATA
     #get_block_personal(id, pw, table_id) 이 부분에 UI에서 받아온 값을 넣어야함. table_id = 0~3
-    cur_lecture, _BLOCK_DATA = get_blocks_personal(id, pw, table_id)
+    cur_lecture, _BLOCK_DATA = get_blocks_personal(cur_lecture)
     BLOCK_DATA = _BLOCK_DATA
     """
     BLOCK_DATA.append((

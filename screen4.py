@@ -1,6 +1,6 @@
 import pygame
 import sys
-
+from screen5 import *
 #닉네임 입력창 구현
 
 display_width = 1200
@@ -36,6 +36,7 @@ def button(x,y,w,h,ic,ac,oneP,clickOne,action = None, score = None):
           elif action == "save":
               sendnick(nick)
               saveUser(score)
+              univ_screen()
 
 #버튼 이미지 로딩
 rep = pygame.image.load("replayicon.png").convert_alpha()

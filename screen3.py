@@ -41,7 +41,7 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
             if action == "prev":
                 pygame.display.quit()
             elif action == "save":
-                indi_tetropool_screen(user_text, pwww_text)
+                indi_tetropool_screen(get_lectures_info(user_text, pwww_text))
                 #pygame.display.quit()
 
 # 버튼 이미지 로딩
