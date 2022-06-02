@@ -117,6 +117,10 @@ def login_screen():
                     if event.key == pygame.K_BACKSPACE:
                         pwww_text = pwww_text[:-1]
                         pwww_text2 = pwww_text2[:-1]
+                        if len(pwww_text)==0:
+                            input_enter ==False
+                            if event.key ==pygame.K_BACKSPACE:
+                                user_text = user_text[:-1]
 
                     elif event.key != pygame.K_RETURN:
                         pwww_text += event.unicode
@@ -125,7 +129,8 @@ def login_screen():
                             pwww_text = pwww_text[0:20]
                         if len(pwww_text2) > 20:
                             pwww_text2 = pwww_text2[0:20]
-
+                        
+                       
         # it will set background color of screen
         SURFACE.fill((255, 255, 255))
         mode_screen(x, y)
