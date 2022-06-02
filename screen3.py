@@ -78,6 +78,7 @@ def login_screen():
     global pwww_text
     # basic font for user typed
     base_font = pygame.font.Font(None, 45)
+    temp = ''
     while True:
         for event in pygame.event.get():
             # if user types QUIT then the screen will close
@@ -119,9 +120,13 @@ def login_screen():
                         pwww_text2 = pwww_text2[:-1]
                         if len(pwww_text)==0:
                             input_enter ==False
-                            if event.key ==pygame.K_BACKSPACE:
-                                user_text = user_text[:-1]
-
+                            temp = user_text
+                            temp = temp+'a'
+                        if event.key ==pygame.K_BACKSPACE:
+                                temp = temp[:-1]
+                                if len(temp)==len(user_text):
+                                    user_text = user_text[:-1]
+                            
                     elif event.key != pygame.K_RETURN:
                         pwww_text += event.unicode
                         pwww_text2 += "*"
