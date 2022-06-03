@@ -40,7 +40,7 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None, score=None, pool_inf
                 pygame.quit()
             elif action == "save":
                 set_score(pool_info, nick, score)
-                univ_screen()
+                rank_screen()
 
 
 # 버튼 이미지 로딩

@@ -42,7 +42,7 @@ qt = pygame.image.load("quiticon.png").convert_alpha()
 cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 
 
-def univ_screen():
+def rank_screen():
     pygame.init()
     clock = pygame.time.Clock()
     active = False
@@ -90,4 +90,4 @@ def univ_screen():
 
 
 if __name__ == '__main__':
-    univ_screen()
+    rank_screen()

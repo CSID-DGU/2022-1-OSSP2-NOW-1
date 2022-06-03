@@ -332,7 +332,7 @@ def tetris_game(cur_lecture, porc: int, info=None):
                 if (porc == 1):
                     pygame.display.set_mode([1200, 650])
                     pygame.init()
-                    nick_screen(scor, info)
+                    nick_screen(score, info)
                     # screen_ranking(score)
 
         pygame.display.update()

@@ -35,7 +35,7 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, id, action=None):
         if click[0] == 1 and action != None:
             if action == "one_tetro":
                 print("눌림")
-                # game_competition(id)
+                game_competition(id)
             elif action == "two_tetro":
                 print()
                 # game_competition(id)
