@@ -30,7 +30,7 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, id, action=None):
         pygame.draw.rect(SURFACE, ic, (x, y, w, h))
         SURFACE.blit(oneP, oneP.get_rect(center=rect.center))
 
-# 버튼 클릭 수행
+    # 버튼 클릭 수행
     if on_button:
         if click[0] == 1 and action != None:
             if action == "one_tetro":
@@ -60,6 +60,7 @@ cufour = pygame.image.load("clickedUniv_four.PNG").convert_alpha()
 
 def univ_tetropool_screen(id):
     pygame.init()
+    sleep(0.1)
     clock = pygame.time.Clock()
     active = False
     # basic font for user typed
