@@ -2,7 +2,6 @@ import pygame
 import sys
 from util.http import *
 from game import *
-from util.getloc2 import *
 
 # 개인모드 시간표 선택 창
 display_width = 1200
@@ -35,13 +34,17 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, id, action=None):
     if on_button:
         if click[0] == 1 and action != None:
             if action == "one_tetro":
-                game_competition(id)
+                print("눌림")
+                # game_competition(id)
             elif action == "two_tetro":
-                game_competition(id)
+                print()
+                # game_competition(id)
             elif action == "three_tetro":
-                game_competition(id)
+                print()
+                # game_competition(id)
             elif action == "four_tetro":
-                game_competition(id)
+                print()
+                # game_competition(id)
 
 
 # 버튼 이미지 로딩
@@ -116,7 +119,7 @@ def univ_tetropool_screen(id):
                 interval += 100
 
         pygame.display.update()
-        clock.tick(60)
+        # clock.tick(60)
 
 
 if __name__ == '__main__':

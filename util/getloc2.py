@@ -103,8 +103,8 @@ def get_0block(base: int):
     return [0 for _ in range(base**2)]
 
 
-def getloc2(lecture: Lecture):
-    return lecture, make_block_data(lecture)
+def getloc2(lectures: list[Lecture]):
+    return lectures, make_block_data(lectures)
 
 # game에 lectures, id랑 pw받아오기
 

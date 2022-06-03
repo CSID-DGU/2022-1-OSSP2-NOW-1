@@ -38,7 +38,7 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
             no_univ_image = pygame.font.SysFont(
                 'malgungothic', 28).render(no_univ, True, (0, 0, 0))
             if action == "one_univ":
-                # print(univs[0].id)
+                print(univs[0].id)
                 univ_tetropool_screen(univs[0].id)
             elif action == "two_univ":
                 if (len(univs) > 1):
@@ -116,7 +116,7 @@ def univ_screen():
         SURFACE.blit(univ_image, (530, 220))
 
         pygame.display.update()
-        clock.tick(60)
+        # clock.tick(60)
 
 
 if __name__ == '__main__':

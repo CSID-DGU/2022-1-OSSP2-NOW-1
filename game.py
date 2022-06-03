@@ -12,69 +12,69 @@ from screen4 import *
 
 BLOCK_DATA = (
     (
-        (0, 0, 8, \
-         8, 8, 8, \
+        (0, 0, 8,
+         8, 8, 8,
          0, 0, 0),
-        (0, 8, 0, \
-         0, 8, 0, \
+        (0, 8, 0,
+         0, 8, 0,
          0, 8, 8),
-        (0, 0, 0, \
-         8, 8, 8, \
+        (0, 0, 0,
+         8, 8, 8,
          8, 0, 0),
-        (8, 8, 0, \
-         0, 8, 0, \
+        (8, 8, 0,
+         0, 8, 0,
          0, 8, 0),
     ), (
-        (9, 0, 0, \
-         9, 9, 9, \
+        (9, 0, 0,
+         9, 9, 9,
          0, 0, 0),
-        (0, 9, 9, \
-         0, 9, 0, \
+        (0, 9, 9,
+         0, 9, 0,
          0, 9, 0),
-        (0, 0, 0, \
-         9, 9, 9, \
+        (0, 0, 0,
+         9, 9, 9,
          0, 0, 9),
-        (0, 9, 0, \
-         0, 9, 0, \
+        (0, 9, 0,
+         0, 9, 0,
          9, 9, 0)
     ), (
-        (0, 3, 0, \
-         3, 3, 3, \
+        (0, 3, 0,
+         3, 3, 3,
          0, 0, 0),
-        (0, 3, 0, \
-         0, 3, 3, \
+        (0, 3, 0,
+         0, 3, 3,
          0, 3, 0),
-        (0, 0, 0, \
-         3, 3, 3, \
+        (0, 0, 0,
+         3, 3, 3,
          0, 3, 0),
-        (0, 3, 0, \
-         3, 3, 0, \
+        (0, 3, 0,
+         3, 3, 0,
          0, 3, 0)
     ), (
-        (4, 4, 0, \
-         0, 4, 4, \
+        (4, 4, 0,
+         0, 4, 4,
          0, 0, 0),
-        (0, 0, 4, \
-         0, 4, 4, \
+        (0, 0, 4,
+         0, 4, 4,
          0, 4, 0),
-        (0, 0, 0, \
-         4, 4, 0, \
+        (0, 0, 0,
+         4, 4, 0,
          0, 4, 4),
-        (0, 4, 0, \
-         4, 4, 0, \
+        (0, 4, 0,
+         4, 4, 0,
          4, 0, 0)
     ), (
-        (0, 5, 5, \
-         5, 5, 0, \
+        (0, 5, 5,
+         5, 5, 0,
          0, 0, 0),
-        (0, 5, 0, \
-         0, 5, 5, \
+        (0, 5, 0,
+         0, 5, 5,
          0, 0, 5),
-        (0, 0, 0, \
-         0, 5, 5, \
+        (0, 0, 0,
+         0, 5, 5,
          5, 5, 0),
-        (5, 0, 0, \
-         5, 5, 0, \
+        (5, 0, 0,
+         5, 5, 0,
          0, 5, 0)
     ), (
         (6, 6, 6, 6),
@@ -82,36 +82,38 @@ BLOCK_DATA = (
         (6, 6, 6, 6),
         (6, 6, 6, 6)
     ), (
-        (0, 7, 0, 0, \
-         0, 7, 0, 0, \
-         0, 7, 0, 0, \
+        (0, 7, 0, 0,
+         0, 7, 0, 0,
+         0, 7, 0, 0,
          0, 7, 0, 0),
-        (0, 0, 0, 0, \
-         7, 7, 7, 7, \
-         0, 0, 0, 0, \
+        (0, 0, 0, 0,
+         7, 7, 7, 7,
+         0, 0, 0, 0,
          0, 0, 0, 0),
-        (0, 0, 7, 0, \
-         0, 0, 7, 0, \
-         0, 0, 7, 0, \
+        (0, 0, 7, 0,
+         0, 0, 7, 0,
+         0, 0, 7, 0,
          0, 0, 7, 0),
-        (0, 0, 0, 0, \
-         0, 0, 0, 0, \
-         7, 7, 7, 7, \
+        (0, 0, 0, 0,
+         0, 0, 0, 0,
+         7, 7, 7, 7,
          0, 0, 0, 0)
     )
 )
 
+
 class Block:
     """ 블록 객체 """
+
     def __init__(self, count):
-        self.turn = 0 #시간표 모양을 보여주기 위해서 초기 turn 값은 0으로 고정
+        self.turn = 0  # 시간표 모양을 보여주기 위해서 초기 turn 값은 0으로 고정
         #self.turn = randint(0, 3)
         self.type = BLOCK_DATA[randint(0, len(BLOCK_DATA)-1)]
         #self.type = BLOCK_DATA[1]
         self.data = self.type[self.turn]
         self.size = int(sqrt(len(self.data)))
         self.xpos = 1
-        self.ypos = 1 - self.size + 2 #필드에서 벗어나지 않도록 시작 위치를 아래로 내림
+        self.ypos = 1 - self.size + 2  # 필드에서 벗어나지 않도록 시작 위치를 아래로 내림
         self.fire = count + INTERVAL
 
     def update(self, count):
@@ -145,6 +147,7 @@ class Block:
                 pygame.draw.rect(SURFACE, COLORS[val],
                                  (x_pos, y_pos, BLOCK_SIZE-1, BLOCK_SIZE-1))
 
+
 def erase_line():
     """ 행이 모두 찬 단을 지운다 """
     erased = 0
@@ -158,6 +161,7 @@ def erase_line():
             ypos -= 1
     return erased
 
+
 def is_game_over():
     """ 게임 오버인지 아닌지 """
     filled = 0
@@ -166,11 +170,13 @@ def is_game_over():
             filled += 1
     return filled > 2   # 2 = 좌우의 벽
 
+
 def go_next_block(count):
     """ 다음 블록으로 전환한다 """
     global BLOCK, NEXT_BLOCK
     BLOCK = NEXT_BLOCK if NEXT_BLOCK != None else Block(count)
     NEXT_BLOCK = Block(count)
+
 
 def is_overlapped(xpos, ypos, turn):
     """ 블록이 벽이나 땅의 블록과 충돌하는지 아닌지 """
@@ -184,18 +190,23 @@ def is_overlapped(xpos, ypos, turn):
 
 # 전역 변수
 
+
 WIDTH = 12
 HEIGHT = 32
 INTERVAL = 80
 FIELD = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
-COLORS = ((0, 0, 0), (128, 128, 128), (205, 116, 102),(204, 168, 92), (76, 62, 34),
-        (255, 165, 0), (0, 0, 255), (0, 255, 255), (0, 255, 0), (255, 0, 255),
-        (69, 36, 59), (231, 255, 0), (2, 208, 178), (57, 16, 81), (6, 38, 22),
-        (161, 217, 126), (254, 198, 103), (255, 113, 103), (162, 151, 1), (200, 120, 183),
-        (164, 75, 0), (189, 217, 158), (254, 190, 240), (102, 173, 255), (249, 246, 113),
-        (255, 174, 207), (5, 26, 100), (0, 111, 53), (171, 228, 213), (124, 154, 126),
-        (167, 202, 109), (137, 116, 193), (106, 142, 202), (110, 180, 166), (255, 178, 126),
-        (255, 0, 0))
+COLORS = ((0, 0, 0), (128, 128, 128), (205, 116, 102), (204, 168, 92), (76, 62, 34),
+          (255, 165, 0), (0, 0, 255), (0, 255, 255), (0, 255, 0), (255, 0, 255),
+          (69, 36, 59), (231, 255, 0), (2, 208, 178), (57, 16, 81), (6, 38, 22),
+          (161, 217, 126), (254, 198, 103), (255,
+                                             113, 103), (162, 151, 1), (200, 120, 183),
+          (164, 75, 0), (189, 217, 158), (254, 190,
+                                          240), (102, 173, 255), (249, 246, 113),
+          (255, 174, 207), (5, 26, 100), (0, 111,
+                                          53), (171, 228, 213), (124, 154, 126),
+          (167, 202, 109), (137, 116, 193), (106, 142,
+                                             202), (110, 180, 166), (255, 178, 126),
+          (255, 0, 0))
 BLOCK = None
 BLOCK_SIZE = 20
 NEXT_BLOCK = None
@@ -203,8 +214,8 @@ cur_lecture = []
 game_over_count = 0
 
 
-def tetris_game(cur_lecture, porc:int, info = None):
-    #porc = 개인인지 경쟁인디 모드 알려주는 변수
+def tetris_game(cur_lecture, porc: int, info=None):
+    # porc = 개인인지 경쟁인디 모드 알려주는 변수
     SURFACE = pygame.display.set_mode([600, 800])
     pygame.init()
     pygame.key.set_repeat(120, 120)
@@ -264,7 +275,6 @@ def tetris_game(cur_lecture, porc:int, info = None):
             elif key == K_DOWN:
                 next_y += 1
 
-
             if not is_overlapped(next_x, next_y, next_t):
                 BLOCK.xpos = next_x
                 BLOCK.ypos = next_y
@@ -286,7 +296,8 @@ def tetris_game(cur_lecture, porc:int, info = None):
             for xpos in range(NEXT_BLOCK.size):
                 val = NEXT_BLOCK.data[xpos + ypos*NEXT_BLOCK.size]
                 temp = max(temp, val)
-                pygame.draw.rect(SURFACE, COLORS[val], (xpos*BLOCK_SIZE + 460, ypos*BLOCK_SIZE + BLOCK_SIZE*4, BLOCK_SIZE-1, BLOCK_SIZE-1))
+                pygame.draw.rect(SURFACE, COLORS[val], (
+                    xpos*BLOCK_SIZE + 460, ypos*BLOCK_SIZE + BLOCK_SIZE*4, BLOCK_SIZE-1, BLOCK_SIZE-1))
 
         # 점수 나타내기
         score_str = str(score).zfill(6)
@@ -297,8 +308,10 @@ def tetris_game(cur_lecture, porc:int, info = None):
         lec_name_str = str("강의명 : " + cur_lecture[temp - 3].name)
         lec_name_image = k_font.render(lec_name_str, True, (0, 255, 0))
 
-        lec_professor_str = str("교수명 : " + cur_lecture[temp - 3].professor + " 교수님")
-        lec_professor_image = k_font.render(lec_professor_str, True, (0, 255, 0))
+        lec_professor_str = str(
+            "교수명 : " + cur_lecture[temp - 3].professor + " 교수님")
+        lec_professor_image = k_font.render(
+            lec_professor_str, True, (0, 255, 0))
 
         SURFACE.blit(lec_name_image, (325, 240))
         SURFACE.blit(lec_professor_image, (325, 300))
@@ -311,7 +324,7 @@ def tetris_game(cur_lecture, porc:int, info = None):
                 sleep(2)
                 # 개인 모드 일 때는 점수만 보여주자
                 if (porc == 0):
-                    #playerOne_over에서 가져오기
+                    # playerOne_over에서 가져오기
                     pygame.display.set_mode([1200, 650])
                     pygame.init()
                     gameOver_screen(score)
@@ -320,7 +333,7 @@ def tetris_game(cur_lecture, porc:int, info = None):
                     pygame.display.set_mode([1200, 650])
                     pygame.init()
                     nick_screen(scor, info)
-                    #screen_ranking(score)
+                    # screen_ranking(score)
 
         pygame.display.update()
 
@@ -329,39 +342,62 @@ def tetris_game(cur_lecture, porc:int, info = None):
 
 
 def game_personal(cur_lecture):
-    #개인모드
+    # 개인모드
     global BLOCK_DATA
-    #get_block_personal(id, pw, table_id) 이 부분에 UI에서 받아온 값을 넣어야함. table_id = 0~3
+    # get_block_personal(id, pw, table_id) 이 부분에 UI에서 받아온 값을 넣어야함. table_id = 0~3
     cur_lecture, _BLOCK_DATA = get_blocks_personal(cur_lecture)
     BLOCK_DATA = _BLOCK_DATA
-    """
+
     BLOCK_DATA.append((
-        (0, 0, 0, \
-         2, 2, 0, \
+        (0, 0, 0,
+         2, 2, 0,
          0, 0, 0),
-        (0, 2, 0, \
-         0, 2, 0, \
+        (0, 2, 0,
+         0, 2, 0,
          0, 0, 0),
-        (0, 0, 0, \
-         0, 2, 2, \
+        (0, 0, 0,
+         0, 2, 2,
          0, 0, 0),
-        (0, 0, 0, \
-         0, 2, 0, \
+        (0, 0, 0,
+         0, 2, 0,
          0, 2, 0),
     ))
-    """ #보너스 조각 넣는건 cur_lecture 때문에 어려움
+    bonus = Lecture("BONUS", "BONUS")
+    cur_lecture.append(bonus)
+
+    # 보너스 조각 넣는건 cur_lecture 때문에 어려움
     tetris_game(cur_lecture, 0)
 
-def game_competition(info = 1):
-    #경쟁모드
-    #get_blocks_competition(id) 에서 id에 UI에서 받아온 값을 넣어야함. 1~4임
+
+def game_competition(info=1):
+    # 경쟁모드
+    # get_blocks_competition(id) 에서 id에 UI에서 받아온 값을 넣어야함. 1~4임
     global BLOCK_DATA
     cur_lecture, _BLOCK_DATA = get_blocks_competition(info)
     print(_BLOCK_DATA)
     BLOCK_DATA = _BLOCK_DATA
+    for i in range(0, 5):
+        BLOCK_DATA.append((
+            (0, 0, 0,
+             2, 2, 0,
+             0, 0, 0),
+            (0, 2, 0,
+             0, 2, 0,
+             0, 0, 0),
+            (0, 0, 0,
+             0, 2, 2,
+             0, 0, 0),
+            (0, 0, 0,
+             0, 2, 0,
+             0, 2, 0),
+        ))
+        bonus = Lecture("BONUS", "BONUS")
+        cur_lecture.append(bonus)
+
     tetris_game(cur_lecture, 1, info)
 
+
 if __name__ == '__main__':
-    #강의 정보 불러오기
+    # 강의 정보 불러오기
     #tetris_game(get_blocks_competition(1)[0], 1)
     print()
