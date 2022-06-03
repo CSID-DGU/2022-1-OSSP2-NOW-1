@@ -113,7 +113,7 @@ class Block:
         self.data = self.type[self.turn]
         self.size = int(sqrt(len(self.data)))
         self.xpos = 1
-        self.ypos = 1 - self.size + 2  # 필드에서 벗어나지 않도록 시작 위치를 아래로 내림
+        self.ypos = 1 - self.size + 4  # 필드에서 벗어나지 않도록 시작 위치를 아래로 내림
         self.fire = count + INTERVAL
 
     def update(self, count):
@@ -193,7 +193,7 @@ def is_overlapped(xpos, ypos, turn):
 
 WIDTH = 12
 HEIGHT = 32
-INTERVAL = 80
+INTERVAL = 160
 FIELD = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
 COLORS = ((0, 0, 0), (128, 128, 128), (205, 116, 102), (204, 168, 92), (76, 62, 34),
           (255, 165, 0), (0, 0, 255), (0, 255, 255), (0, 255, 0), (255, 0, 255),
@@ -313,27 +313,28 @@ def tetris_game(cur_lecture, porc: int, info=None):
         lec_professor_image = k_font.render(
             lec_professor_str, True, (0, 255, 0))
 
-        SURFACE.blit(lec_name_image, (325, 240))
-        SURFACE.blit(lec_professor_image, (325, 300))
+        SURFACE.blit(lec_name_image, (325, 300))
+        SURFACE.blit(lec_professor_image, (325, 360))
 
         if game_over:
             global game_over_count
             game_over_count += 1
             SURFACE.blit(message_over, message_rect)
             if game_over_count == 2:
-                sleep(2)
-                # 개인 모드 일 때는 점수만 보여주자
-                if (porc == 0):
-                    # playerOne_over에서 가져오기
-                    pygame.display.set_mode([1200, 650])
-                    pygame.init()
-                    gameOver_screen(score)
+                if key == K_RETURN:
+                    # 개인 모드 일 때는 점수만 보여주자
+                    if (porc == 0):
+                        # playerOne_over에서 가져오기
+                        pygame.display.set_mode([1200, 650])
+                        pygame.init()
+                        gameOver_screen(score)
+
                 # 경쟁 모드 일 때만 랭킹창으로 가자
-                if (porc == 1):
-                    pygame.display.set_mode([1200, 650])
-                    pygame.init()
-                    nick_screen(score, info)
-                    # screen_ranking(score)
+                if key == K_RETURN:
+                    if (porc == 1):
+                        pygame.display.set_mode([1200, 650])
+                        pygame.init()
+                        nick_screen(score, info)
 
         pygame.display.update()
 
@@ -399,5 +400,5 @@ def game_competition(info=1):
 
 if __name__ == '__main__':
     # 강의 정보 불러오기
-    #tetris_game(get_blocks_competition(1)[0], 1)
+    tetris_game(get_blocks_competition(1)[0], 1)
     print()
