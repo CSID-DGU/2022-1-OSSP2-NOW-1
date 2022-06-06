@@ -213,7 +213,6 @@ NEXT_BLOCK = None
 cur_lecture = []
 game_over_count = 0
 
-
 def tetris_game(cur_lecture, porc: int, info=None):
     # porc = 개인인지 경쟁인디 모드 알려주는 변수
     SURFACE = pygame.display.set_mode([600, 800])
@@ -233,6 +232,10 @@ def tetris_game(cur_lecture, porc: int, info=None):
                                     True, (0, 255, 225))
     message_rect = message_over.get_rect()
     message_rect.center = (300, 300)
+    
+    bgm = pygame.mixer.Sound("배경음악.wav")
+    #effect_sount = pygame.mixer.Sound("효과음.wav")
+
 
     go_next_block(INTERVAL)
 
@@ -242,7 +245,8 @@ def tetris_game(cur_lecture, porc: int, info=None):
     for index in range(WIDTH):
         FIELD[HEIGHT-1][index] = 1
 
-    while True:
+    while True:    
+        #bgm.play(-1) #배경음악
         key = None
         for event in pygame.event.get():
             if event.type == QUIT:

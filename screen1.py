@@ -21,8 +21,6 @@ def start_screen(x, y):
     SURFACE.blit(myImg, (x, y))
 
 # 버튼
-
-
 def button(x, y, w, h, ic, ac, strt, cstrt, action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
