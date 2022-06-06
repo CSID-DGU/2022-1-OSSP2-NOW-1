@@ -4,8 +4,8 @@ from util.http import *
 
 # 랭킹 창 구현
 
-display_width = 1200
-display_height = 650
+display_width = 1200 #1250
+display_height = 650 #700
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
@@ -79,11 +79,14 @@ def rank_screen():
         if code == 200:
             val: list[UserScore]
             interval = 0
+            count = 0
             for score in val:
-                user_str = str(score.name)+' ' + str(score.score)
-                user_image = base_font.render(user_str, True, (0, 0, 0))
-                SURFACE.blit(user_image, (480, 100+interval))
-                interval += 75
+                if count < 7: #7등 까지만 보여주기
+                    user_str = str(score.name)+' ' + str(score.score)
+                    user_image = base_font.render(user_str, True, (0, 0, 0))
+                    SURFACE.blit(user_image, (480, 100+interval))
+                    interval += 75
+                    count += 1
 
         pygame.display.update()
         clock.tick(60)
