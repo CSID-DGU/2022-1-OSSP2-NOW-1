@@ -2,7 +2,7 @@ import sys
 from math import sqrt
 from random import randint
 import pygame
-from pygame.locals import QUIT, KEYUP, KEYDOWN, K_LEFT, K_RIGHT, K_DOWN, K_SPACE, K_UP, K_z
+from pygame.locals import QUIT, KEYUP, KEYDOWN, K_LEFT, K_RIGHT, K_DOWN, K_SPACE, K_UP, K_z, K_RETURN
 from getloc import *
 from util.getloc2 import getloc2
 from screen1 import *
@@ -262,8 +262,7 @@ def tetris_game(cur_lecture, porc: int, info=None):
                 score += (2 ** erased) * 100
 
             # 키 이벤트 처리
-            next_x, next_y, next_t = \
-                BLOCK.xpos, BLOCK.ypos, BLOCK.turn
+            next_x, next_y, next_t = BLOCK.xpos, BLOCK.ypos, BLOCK.turn
             if key == K_UP:
                 next_t = (next_t + 1) % 4
             elif key == K_z:
@@ -318,7 +317,8 @@ def tetris_game(cur_lecture, porc: int, info=None):
 
         if game_over:
             global game_over_count
-            game_over_count += 1
+            if game_over_count < 2:
+                game_over_count += 1
             SURFACE.blit(message_over, message_rect)
             if game_over_count == 2:
                 # 개인 모드 일 때는 점수만 보여주기
