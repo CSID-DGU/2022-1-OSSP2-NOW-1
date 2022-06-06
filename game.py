@@ -321,17 +321,18 @@ def tetris_game(cur_lecture, porc: int, info=None):
             game_over_count += 1
             SURFACE.blit(message_over, message_rect)
             if game_over_count == 2:
-                if key == K_RETURN:
-                    # 개인 모드 일 때는 점수만 보여주자
-                    if (porc == 0):
+                # 개인 모드 일 때는 점수만 보여주기
+                if (porc == 0):
+                    if key == K_RETURN:
                         # playerOne_over에서 가져오기
                         pygame.display.set_mode([1200, 650])
                         pygame.init()
                         gameOver_screen(score)
 
-                # 경쟁 모드 일 때만 랭킹창으로 가자
-                if key == K_RETURN:
-                    if (porc == 1):
+            if game_over_count == 2:
+                # 경쟁 모드 일 때는 랭킹창
+                if (porc == 1):
+                    if key == K_RETURN:
                         pygame.display.set_mode([1200, 650])
                         pygame.init()
                         nick_screen(score, info)

@@ -12,10 +12,10 @@ if __name__ == '__main__':
     target = ['2022년 1학기', '2021년 2학기']
     path = ["전공", "공과대학", "컴퓨터공학전공"]
     all_lectures = get_lectures_info(id, password, target, path)
-    
+
     for semester in all_lectures:
         print(f"학기: {semester}\n")
-        for lec in all_lectures[semester]: # 각 강좌 정보 출력
+        for lec in all_lectures[semester]:  # 각 강좌 정보 출력
             print(lec)
 
     for semester in all_lectures:
@@ -24,8 +24,5 @@ if __name__ == '__main__':
             print(all_lectures[semester][i])
             # json 파싱하기 위해 클래스를 딕셔너리 형태로 변환
 
-
-    with open('lectures.txt', 'w+', encoding='utf8') as f :
-        json.dump(all_lectures,f, ensure_ascii=False)
-
-    
+    with open('lectures.txt', 'w+', encoding='utf8') as f:
+        json.dump(all_lectures, f, ensure_ascii=False)
