@@ -324,6 +324,7 @@ def tetris_game(cur_lecture, porc: int, info=None):
             if game_over_count < 2:
                 game_over_count += 1
             SURFACE.blit(message_over, message_rect)
+            bgm.stop()
             if game_over_count == 2:
                 # 개인 모드 일 때는 점수만 보여주기
                 if (porc == 0):
@@ -369,6 +370,21 @@ def game_personal(cur_lecture):
          0, 2, 0),
     ))
     bonus = Lecture("BONUS", "BONUS")
+    BLOCK_DATA.append((
+        (0, 0, 0,
+         0, 2, 0,
+         0, 0, 0),
+        (0, 0, 0,
+         0, 2, 0,
+         0, 0, 0),
+        (0, 0, 0,
+         0, 2, 0,
+         0, 0, 0),
+        (0, 0, 0,
+         0, 2, 0,
+         0, 0, 0),
+    ))
+    bonus = Lecture("BONUS", "BONUS")
     cur_lecture.append(bonus)
 
     # 보너스 조각 넣는건 cur_lecture 때문에 어려움
@@ -382,7 +398,7 @@ def game_competition(info=1):
     cur_lecture, _BLOCK_DATA = get_blocks_competition(info)
     print(_BLOCK_DATA)
     BLOCK_DATA = _BLOCK_DATA
-    for i in range(0, 5):
+    for i in range(0, 3):
         BLOCK_DATA.append((
             (0, 0, 0,
              2, 2, 0,
@@ -399,6 +415,24 @@ def game_competition(info=1):
         ))
         bonus = Lecture("BONUS", "BONUS")
         cur_lecture.append(bonus)
+
+    for i in range(0, 3):
+        BLOCK_DATA.append((
+            (0, 0, 0,
+             0, 2, 0,
+             0, 0, 0),
+            (0, 0, 0,
+             0, 2, 0,
+             0, 0, 0),
+            (0, 0, 0,
+             0, 2, 0,
+             0, 0, 0),
+            (0, 0, 0,
+             0, 2, 0,
+             0, 0, 0),
+        ))
+        bonus = Lecture("BONUS", "BONUS")
+    cur_lecture.append(bonus)
 
     tetris_game(cur_lecture, 1, info)
 
