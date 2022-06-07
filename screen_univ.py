@@ -3,10 +3,10 @@ import sys
 from util.http import *
 from screen_univ_tetro import *
 
-# 닉네임 입력창 구현
+# 대학교 선택
 
-display_width = 1200
-display_height = 650
+display_width = 1250
+display_height = 700
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
@@ -58,9 +58,10 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
                     univ_tetropool_screen(univs[3].id)
                 else:
                     SURFACE.blit(no_univ_image, (520, y-9))
+            elif action == "quit":
+                pygame.display.quit()
 
-
-# 버튼 이미지 로딩
+                # 버튼 이미지 로딩
 uone = pygame.image.load("univ_one.PNG").convert_alpha()
 cuone = pygame.image.load("clickedUniv_one.PNG").convert_alpha()
 utwo = pygame.image.load("univ_two.PNG").convert_alpha()
@@ -69,6 +70,8 @@ uthree = pygame.image.load("univ_three.PNG").convert_alpha()
 cuthree = pygame.image.load("clickedUniv_three.PNG").convert_alpha()
 ufour = pygame.image.load("univ_four.PNG").convert_alpha()
 cufour = pygame.image.load("clickedUniv_four.PNG").convert_alpha()
+quit = pygame.image.load("quitIcon.png").convert_alpha()
+cquit = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 
 
 def univ_screen():
@@ -109,6 +112,8 @@ def univ_screen():
         button(575, 320, 100, 30, WHITE, WHITE, utwo, cutwo, "two_univ")
         button(575, 420, 100, 30, WHITE, WHITE, uthree, cuthree, "three_univ")
         button(575, 520, 100, 30, WHITE, WHITE, ufour, cufour, "four_univ")
+
+        button(190, 540, 100, 20, WHITE, WHITE, quit, cquit, "quit")
 
         # 대학교 나타내기
         univ_str = str(univs[0].name)

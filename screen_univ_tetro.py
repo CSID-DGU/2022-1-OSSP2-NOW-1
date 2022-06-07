@@ -1,3 +1,4 @@
+import idna
 import pygame
 import sys
 from util.http import *
@@ -41,6 +42,8 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, id, action=None):
                 game_competition(id)
             elif action == "four_tetro":
                 game_competition(id)
+            elif action == "quit":
+                pygame.display.quit()
 
 
 # 버튼 이미지 로딩
@@ -52,6 +55,9 @@ uthree = pygame.image.load("univ_three.PNG").convert_alpha()
 cuthree = pygame.image.load("clickedUniv_three.PNG").convert_alpha()
 ufour = pygame.image.load("univ_four.PNG").convert_alpha()
 cufour = pygame.image.load("clickedUniv_four.PNG").convert_alpha()
+
+quit = pygame.image.load("quitIcon.png").convert_alpha()
+cquit = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 
 
 def univ_tetropool_screen(id):
@@ -101,6 +107,8 @@ def univ_tetropool_screen(id):
                uthree, cuthree, id, "three_tetro")
         button(575, 520, 100, 30, WHITE, WHITE,
                ufour, cufour, id, "four_tetro")
+
+        button(190, 540, 100, 20, WHITE, WHITE, quit, cquit, id, "quit")
 
         # 시간표 테트로미노 select 나타내기
         code, tetro_pools = get_tetro_list(univs[0].id)

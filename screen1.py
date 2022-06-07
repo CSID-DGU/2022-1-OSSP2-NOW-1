@@ -5,8 +5,8 @@ import sys
 from screen2 import *
 
 # display_width, display_height 고정
-display_width = 1200
-display_height = 650
+display_width = 1250
+display_height = 700
 
 # 배경 이미지 위치 지정
 x = (display_width * 0.00000000000000002)
@@ -21,6 +21,8 @@ def start_screen(x, y):
     SURFACE.blit(myImg, (x, y))
 
 # 버튼
+
+
 def button(x, y, w, h, ic, ac, strt, cstrt, action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()

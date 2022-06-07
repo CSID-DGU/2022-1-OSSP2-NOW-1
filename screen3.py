@@ -6,8 +6,8 @@ from game import *
 from screen_indi_tetropool import *
 
 # 에브리타임 로그인창
-display_width = 1200
-display_height = 650
+display_width = 1250
+display_height = 700
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])

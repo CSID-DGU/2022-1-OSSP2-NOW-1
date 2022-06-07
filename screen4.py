@@ -5,8 +5,8 @@ from util.http import *
 
 # 닉네임 입력창 구현
 
-display_width = 1200
-display_height = 650
+display_width = 1250
+display_height = 700
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
@@ -44,8 +44,6 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None, score=None, pool_inf
 
 
 # 버튼 이미지 로딩
-rep = pygame.image.load("replayicon.png").convert_alpha()
-crep = pygame.image.load("clickedReplayIcon.png").convert_alpha()
 qt = pygame.image.load("quiticon.png").convert_alpha()
 cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 sav = pygame.image.load("saveicon.png").convert_alpha()
@@ -111,7 +109,6 @@ def nick_screen(score, pool_info):
         # set width of textfield so that text cannot get
         # outside of user's text input
         input_rect.w = max(100, text_surface.get_width() + 10)
-        button(260, 500, 150, 50, WHITE, WHITE, rep, crep, "replay")
         button(900, 500, 180, 60, WHITE, WHITE, qt, cqt, "quit")
         button(600, 350, 100, 30, WHITE, WHITE,
                sav, csav, "save", score, pool_info, winner_text)

@@ -3,43 +3,46 @@ import sys
 import pygame
 import sys
 
-#닉네임 입력창 구현
+# 점수 창
 
-display_width = 1200
-display_height = 650
+display_width = 1250
+display_height = 700
 x = (display_width * 0.00000000000000002)
 y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
 
-def mode_screen(x,y):
-    myImg = pygame.image.load('gameover_screen.png')
-    SURFACE.blit(myImg,(x,y))
 
-def button(x,y,w,h,ic,ac,oneP,clickOne,action = None):
+def mode_screen(x, y):
+    myImg = pygame.image.load('gameover_screen.png')
+    SURFACE.blit(myImg, (x, y))
+
+
+def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
-    rect = pygame.Rect(x,y,w,h)
+    rect = pygame.Rect(x, y, w, h)
     on_button = rect.collidepoint(mouse)
-    if on_button :
+    if on_button:
         pygame.draw.rect(SURFACE, ac, rect)
-        SURFACE.blit (clickOne,clickOne.get_rect(center = rect.center))
-    else :
-        pygame.draw.rect(SURFACE, ic, (x,y,w,h))
-        SURFACE.blit (oneP,oneP.get_rect(center = rect.center))
+        SURFACE.blit(clickOne, clickOne.get_rect(center=rect.center))
+    else:
+        pygame.draw.rect(SURFACE, ic, (x, y, w, h))
+        SURFACE.blit(oneP, oneP.get_rect(center=rect.center))
 
-#버튼 클릭 수행
-    if on_button :
-      if click[0]==1 and action != None:
-          if action == "quit" :
-             pygame.quit()
+# 버튼 클릭 수행
+    if on_button:
+        if click[0] == 1 and action != None:
+            if action == "quit":
+                pygame.quit()
 
 
-#버튼 이미지 로딩
+# 버튼 이미지 로딩
 qt = pygame.image.load('quiticon.png').convert_alpha()
 cqt = pygame.image.load('clickedQuitIcon.png').convert_alpha()
 
-def gameOver_screen(indi_score=0000) :
+
+def gameOver_screen(indi_score=0000):
     pygame.init()
     clock = pygame.time.Clock()
     active = False
@@ -67,10 +70,11 @@ def gameOver_screen(indi_score=0000) :
         button(200, 600, 100, 20, WHITE, WHITE, qt, cqt, "quit")
         # 사용자 점수 나타내기
         indi_score_str = str(indi_score).zfill(6)
-        indiScore_img = base_font.render(indi_score_str, True, (0,0, 0))
+        indiScore_img = base_font.render(indi_score_str, True, (0, 0, 0))
         SURFACE.blit(indiScore_img, (465, 360))
         pygame.display.update()
         clock.tick(60)
+
 
 if __name__ == '__main__':
     gameOver_screen()

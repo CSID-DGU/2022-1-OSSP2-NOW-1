@@ -7,8 +7,8 @@ from screen_univ import *
 
 # 모드 선택 이미지
 # display_width, display_height 고정
-display_width = 1200
-display_height = 650
+display_width = 1250
+display_height = 700
 
 # 배경 이미지 위치 지정
 x = (display_width * 0.00000000000000002)
@@ -46,17 +46,14 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
             elif action == "playerMulti":
                 # 닉네임 만들기 전에, 학교 입력 받고, 강의풀 선택하는 창이 먼저 필요함.
                 univ_screen()
-            elif action == "prev":
-                # 뒤로가기 불가능
-                screen3()
 
 
 oneP = pygame.image.load("mode_1icon.png").convert_alpha()
 multiP = pygame.image.load("mode_2Icon.png").convert_alpha()
 clickOne = pygame.image.load("clickedMode_1Icon.png").convert_alpha()
 clickMulti = pygame.image.load("clickedMode_2Icon.png").convert_alpha()
-prev = pygame.image.load("prevIcon.png").convert_alpha()
-cprev = pygame.image.load("clickedPrevIcon.png").convert_alpha()
+prev = pygame.image.load("quitIcon.png").convert_alpha()
+cprev = pygame.image.load("clickedQuitIcon.png").convert_alpha()
 
 
 def mode_select_screen():
