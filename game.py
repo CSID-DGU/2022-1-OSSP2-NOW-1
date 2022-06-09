@@ -330,7 +330,7 @@ def tetris_game(cur_lecture, porc: int, info=None):
                 if (porc == 0):
                     if key == K_RETURN:
                         # playerOne_over에서 가져오기
-                        pygame.display.set_mode([1200, 650])
+                        pygame.display.set_mode([1250, 700])
                         pygame.init()
                         gameOver_screen(score)
 
@@ -338,7 +338,7 @@ def tetris_game(cur_lecture, porc: int, info=None):
                 # 경쟁 모드 일 때는 랭킹창
                 if (porc == 1):
                     if key == K_RETURN:
-                        pygame.display.set_mode([1200, 650])
+                        pygame.display.set_mode([1250, 700])
                         pygame.init()
                         nick_screen(score, info)
 
