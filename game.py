@@ -113,7 +113,7 @@ class Block:
         self.data = self.type[self.turn]
         self.size = int(sqrt(len(self.data)))
         self.xpos = 2
-        self.ypos = 1 - self.size + 4 # 필드에서 벗어나지 않도록 시작 위치를 아래로 내림
+        self.ypos = 1 - self.size + 4  # 필드에서 벗어나지 않도록 시작 위치를 아래로 내림
         self.fire = count + INTERVAL
 
     def update(self, count):
@@ -165,16 +165,16 @@ def erase_line():
 def is_game_over():
     """ 게임 오버인지 아닌지 """
     game_over = False
-    for i in range (0, 2):
+    for i in range(0, 2):
         filled = 0
         for cell in FIELD[i]:
             if cell != 0:
                 filled += 1
         if filled > 2:  # 2 = 좌우의 벽
             game_over = True
-            
 
     return game_over
+
 
 def go_next_block(count):
     """ 다음 블록으로 전환한다 """
