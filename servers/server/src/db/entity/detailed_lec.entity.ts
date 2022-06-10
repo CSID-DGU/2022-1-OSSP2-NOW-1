@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, Relation } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, Relation } from 'typeorm';
 import { IsString, IsInt } from 'class-validator';
 import { TetroPool } from './tetro_pool.entity.js';
 import { LecTime } from './lec_time.entity.js';
