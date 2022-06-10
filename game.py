@@ -375,6 +375,8 @@ def game_personal(cur_lecture):
          0, 2, 0),
     ))
     bonus = Lecture("BONUS", "BONUS")
+    cur_lecture.append(bonus)
+
     BLOCK_DATA.append((
         (0, 0, 0,
          0, 2, 0,
