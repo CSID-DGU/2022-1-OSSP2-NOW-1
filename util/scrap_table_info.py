@@ -355,6 +355,7 @@ def get_semesters(browser: WebDriver, target: list[str]):
     # 검색 안되는 학기가 있다면 삭제한다.
     for v in target_semesters:
         if v[1] == None:  # Element 값
+            print("get_semesters")
             target_semesters.remove(v)
 
     # 결과 반환

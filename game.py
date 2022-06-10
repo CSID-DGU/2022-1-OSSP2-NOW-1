@@ -432,7 +432,7 @@ def game_competition(info=1):
              0, 0, 0),
         ))
         bonus = Lecture("BONUS", "BONUS")
-    cur_lecture.append(bonus)
+        cur_lecture.append(bonus)
 
     tetris_game(cur_lecture, 1, info)
 
