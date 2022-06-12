@@ -1,6 +1,3 @@
 # 2022-1-OSSP2-NOW-1
 
-```
-docker compose -f docker-compose.dev.yml up --build # 개발 환경에서 컴파일
-docker compose up --build # 제품 환경에서 컴파일
-```
+시간표 테트리스 서버와 관련된 코드입니다. 자세한 사항은 [servers 폴더의 내용](https://github.com/CSID-DGU/2022-1-OSSP2-NOW-1/tree/server/servers) 을 참고하세요.
