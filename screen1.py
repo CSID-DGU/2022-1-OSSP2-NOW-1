@@ -3,21 +3,15 @@ from random import *
 from pygame.locals import *
 import sys
 from screen2 import *
+from util.screen_key import *
 
-# display_width, display_height 고정
-display_width = 1250
-display_height = 700
-
-# 배경 이미지 위치 지정
-x = (display_width * 0.00000000000000002)
-y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
-
+pygame.init()
 # 시작 화면 그리기
 
 
 def start_screen(x, y):
-    myImg = pygame.image.load('ttpang1_bgr.PNG')
+    myImg = pygame.image.load(adress + 'ttpang1_bgr.PNG')
     SURFACE.blit(myImg, (x, y))
 
 # 버튼
@@ -46,10 +40,10 @@ def button(x, y, w, h, ic, ac, strt, cstrt, action=None):
 
 
 # 버튼이미지로딩
-strt = pygame.image.load("starticon.png").convert_alpha()
-cstrt = pygame.image.load("clickedStartIcon.png").convert_alpha()
-qt = pygame.image.load("quiticon.png").convert_alpha()
-cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
+strt = pygame.image.load(adress + "starticon.png").convert_alpha()
+cstrt = pygame.image.load(adress + "clickedStartIcon.png").convert_alpha()
+qt = pygame.image.load(adress + "quiticon.png").convert_alpha()
+cqt = pygame.image.load(adress + "clickedQuitIcon.png").convert_alpha()
 
 
 def screen1():

@@ -9,6 +9,9 @@ from screen1 import *
 from screen3 import *
 from playerOne_over import *
 from screen4 import *
+from util.screen_key import *
+
+pygame.init()
 
 BLOCK_DATA = (
     (

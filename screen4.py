@@ -2,18 +2,16 @@ import pygame
 import sys
 from screen5 import *
 from util.http import *
+from util.screen_key import *
+pygame.init()
 
 # 닉네임 입력창 구현
 
-display_width = 1250
-display_height = 700
-x = (display_width * 0.00000000000000002)
-y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
 
 
 def mode_screen(x, y):
-    myImg = pygame.image.load('ttpang4_bgr.PNG')
+    myImg = pygame.image.load(adress + 'ttpang4_bgr.PNG')
     SURFACE.blit(myImg, (x, y))
 
 
@@ -44,10 +42,10 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None, score=None, pool_inf
 
 
 # 버튼 이미지 로딩
-qt = pygame.image.load("quiticon.png").convert_alpha()
-cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
-sav = pygame.image.load("saveicon.png").convert_alpha()
-csav = pygame.image.load("clickedSaveIcon.png").convert_alpha()
+qt = pygame.image.load(adress + "quiticon.png").convert_alpha()
+cqt = pygame.image.load(adress + "clickedQuitIcon.png").convert_alpha()
+sav = pygame.image.load(adress + "saveicon.png").convert_alpha()
+csav = pygame.image.load(adress + "clickedSaveIcon.png").convert_alpha()
 
 
 def nick_screen(score, pool_info):

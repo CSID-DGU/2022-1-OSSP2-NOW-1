@@ -1,18 +1,15 @@
 import pygame
 import sys
 from util.http import *
+from util.screen_key import *
 
 # 랭킹 창 구현
 
-display_width = 1250  # 1250
-display_height = 700  # 700
-x = (display_width * 0.00000000000000002)
-y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
 
 
 def mode_screen(x, y):
-    myImg = pygame.image.load('ranking_screen.png')
+    myImg = pygame.image.load(adress + 'ranking_screen.png')
     SURFACE.blit(myImg, (x, y))
 
 
@@ -38,8 +35,8 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
 
 
 # 버튼 이미지 로딩
-qt = pygame.image.load("quiticon.png").convert_alpha()
-cqt = pygame.image.load("clickedQuitIcon.png").convert_alpha()
+qt = pygame.image.load(adress + "quiticon.png").convert_alpha()
+cqt = pygame.image.load(adress + "clickedQuitIcon.png").convert_alpha()
 
 
 def rank_screen():

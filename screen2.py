@@ -4,22 +4,16 @@ from pygame.locals import *
 import sys
 from screen3 import *
 from screen_univ import *
+from util.screen_key import *
 
 # 모드 선택 이미지
-# display_width, display_height 고정
-display_width = 1250
-display_height = 700
-
-# 배경 이미지 위치 지정
-x = (display_width * 0.00000000000000002)
-y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
 
 # 시작 화면 그리기
 
 
 def mode_screen(x, y):
-    myImg = pygame.image.load('ttpang3_bgr.PNG')
+    myImg = pygame.image.load(adress + 'ttpang3_bgr.PNG')
     SURFACE.blit(myImg, (x, y))
 
 # 버튼
@@ -48,12 +42,13 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
                 univ_screen()
 
 
-oneP = pygame.image.load("mode_1icon.png").convert_alpha()
-multiP = pygame.image.load("mode_2Icon.png").convert_alpha()
-clickOne = pygame.image.load("clickedMode_1Icon.png").convert_alpha()
-clickMulti = pygame.image.load("clickedMode_2Icon.png").convert_alpha()
-prev = pygame.image.load("quitIcon.png").convert_alpha()
-cprev = pygame.image.load("clickedQuitIcon.png").convert_alpha()
+oneP = pygame.image.load(adress + "mode_1icon.png").convert_alpha()
+multiP = pygame.image.load(adress + "mode_2Icon.png").convert_alpha()
+clickOne = pygame.image.load(adress + "clickedMode_1Icon.png").convert_alpha()
+clickMulti = pygame.image.load(
+    adress + "clickedMode_2Icon.png").convert_alpha()
+prev = pygame.image.load(adress + "quitIcon.png").convert_alpha()
+cprev = pygame.image.load(adress + "clickedQuitIcon.png").convert_alpha()
 
 
 def mode_select_screen():
