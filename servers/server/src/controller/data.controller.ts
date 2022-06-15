@@ -58,7 +58,7 @@ export const getSpecificTetroPool: RequestHandler = async (req, res, next) => {
                 return res.status(200).json(lec_list);
             }
             else {
-                return res.status(404).json({ message: '존재하지 않는 대학.' });
+                return res.status(404).json({ message: '존재하지 않는 테트로미노 풀' });
             }
 
         }

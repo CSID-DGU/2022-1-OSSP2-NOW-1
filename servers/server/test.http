@@ -2,7 +2,7 @@
 @baseUrl = http://ttpang.site/
 
 ### 특정 테트로미노 풀 요구
-GET {{baseUrl}}/api/tetro/get-tetro/1 HTTP/1.1
+GET {{baseUrl}}/api/tetro/get-tetro/ HTTP/1.1
 Accept: application/json
 
 ### 존재하지 않는 테트로미노 풀 요구
@@ -15,7 +15,7 @@ Accept: application/json
 
 
 ### 특정 점수를 삽입
-POST {{baseUrl}}/api/tetro/set-score/2 HTTP/1.1
+POST {{baseUrl}}/api/tetro/set-score/11 HTTP/1.1
 Content-Type: : application/json
 
 {
@@ -30,5 +30,5 @@ Accept: application/json
 
 
 ### 사용가능한 테트로미노 풀 목록
-GET {{baseUrl}}/api/info/1/tetro-pools HTTP/1.1
+GET {{baseUrl}}/api/info/6/tetro-pools HTTP/1.1
 Accept: application/json
