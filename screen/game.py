@@ -1,15 +1,17 @@
 import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from math import sqrt
 from random import randint
 import pygame
 from pygame.locals import QUIT, KEYUP, KEYDOWN, K_LEFT, K_RIGHT, K_DOWN, K_SPACE, K_UP, K_z, K_RETURN
 from util.getloc import *
 from util.getloc2 import getloc2
-from screen1 import *
-from screen3 import *
-from playerOne_over import *
-from screen4 import *
-from util.screen_key import *
+from Pang import *
+from screen.screen3 import *
+from screen.playerOne_over import *
+from screen.screen4 import *
+from screen.screen_key import *
 
 pygame.init()
 
@@ -168,7 +170,7 @@ def erase_line():
 def is_game_over():
     """ 게임 오버인지 아닌지 """
     game_over = False
-    for i in range(0, 2):
+    for i in range(0, 3):
         filled = 0
         for cell in FIELD[i]:
             if cell != 0:

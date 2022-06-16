@@ -1,8 +1,8 @@
 import pygame
 import sys
-from screen5 import *
+from screen.screen5 import *
 from util.http import *
-from util.screen_key import *
+from screen.screen_key import *
 pygame.init()
 
 # 닉네임 입력창 구현

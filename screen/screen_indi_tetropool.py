@@ -1,9 +1,9 @@
 import pygame
 import sys
-from game import *
+from screen.game import *
 from util.http import *
 from util.getloc2 import *
-from util.screen_key import *
+from screen.screen_key import *
 
 #개인모드 시간표 선택 창
 SURFACE = pygame.display.set_mode([display_width, display_height])

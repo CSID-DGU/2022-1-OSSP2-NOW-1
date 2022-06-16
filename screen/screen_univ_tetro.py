@@ -2,8 +2,8 @@ import idna
 import pygame
 import sys
 from util.http import *
-from game import *
-from util.screen_key import *
+from screen.game import *
+from screen.screen_key import *
 
 # 개인모드 시간표 선택 창
 

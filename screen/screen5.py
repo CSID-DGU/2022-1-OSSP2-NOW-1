@@ -1,7 +1,7 @@
 import pygame
 import sys
 from util.http import *
-from util.screen_key import *
+from screen.screen_key import *
 
 # 랭킹 창 구현
 

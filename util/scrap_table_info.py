@@ -178,7 +178,7 @@ def get_all_tables(browser: WebDriver) -> list[WebElement]:
     """
     유저가 생성해 둔 모든 테이블 반환
     """
-    # Select comboBox = new Select(driver.fineElement(By.id("comboBox")))
+    # 다른 학기 시간표로 이동하기
     select = Select(browser.find_element(By.ID, 'semesters'))
     select.select_by_index(3)
     sleep(0.5)

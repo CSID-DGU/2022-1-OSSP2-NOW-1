@@ -2,8 +2,8 @@ import pygame
 from random import *
 from pygame.locals import *
 import sys
-from screen2 import *
-from util.screen_key import *
+from screen.screen2 import *
+from screen.screen_key import *
 
 SURFACE = pygame.display.set_mode([display_width, display_height])
 pygame.init()

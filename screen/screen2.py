@@ -2,9 +2,9 @@ import pygame
 from random import *
 from pygame.locals import *
 import sys
-from screen3 import *
-from screen_univ import *
-from util.screen_key import *
+from screen.screen3 import *
+from screen.screen_univ import *
+from screen.screen_key import *
 
 # 모드 선택 이미지
 SURFACE = pygame.display.set_mode([display_width, display_height])

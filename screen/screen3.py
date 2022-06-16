@@ -1,10 +1,10 @@
 import pygame
 import sys
-from screen2 import *
+from screen.screen2 import *
 from util.getloc2 import *
-from game import *
-from screen_indi_tetropool import *
-from util.screen_key import *
+from screen.game import *
+from screen.screen_indi_tetropool import *
+from screen.screen_key import *
 
 # 에브리타임 로그인창
 

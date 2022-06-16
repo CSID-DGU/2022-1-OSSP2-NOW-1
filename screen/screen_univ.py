@@ -1,8 +1,8 @@
 import pygame
 import sys
 from util.http import *
-from screen_univ_tetro import *
-from util.screen_key import *
+from screen.screen_univ_tetro import *
+from screen.screen_key import *
 
 # 대학교 선택
 

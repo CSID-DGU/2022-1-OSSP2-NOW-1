@@ -1,8 +1,6 @@
 import pygame
 import sys
-import pygame
-import sys
-from util.screen_key import *
+from screen.screen_key import *
 
 
 # 점수 창
@@ -32,6 +30,7 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
     if on_button:
         if click[0] == 1 and action != None:
             if action == "quit":
+                pygame.init()
                 pygame.quit()
 
 
