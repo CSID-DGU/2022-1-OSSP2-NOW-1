@@ -3,7 +3,7 @@ from math import sqrt
 from random import randint
 import pygame
 from pygame.locals import QUIT, KEYUP, KEYDOWN, K_LEFT, K_RIGHT, K_DOWN, K_SPACE, K_UP, K_z, K_RETURN
-from getloc import *
+from util.getloc import *
 from util.getloc2 import getloc2
 from screen1 import *
 from screen3 import *
@@ -242,7 +242,7 @@ def tetris_game(cur_lecture, porc: int, info=None):
     message_rect = message_over.get_rect()
     message_rect.center = (300, 300)
 
-    bgm = pygame.mixer.Sound("배경음악.wav")
+    bgm = pygame.mixer.Sound(adress + "배경음악.wav")
     #effect_sount = pygame.mixer.Sound("효과음.wav")
 
     go_next_block(INTERVAL)

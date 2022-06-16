@@ -8,7 +8,7 @@ from util.screen_key import *
 
 # 모드 선택 이미지
 SURFACE = pygame.display.set_mode([display_width, display_height])
-
+pygame.init()
 # 시작 화면 그리기
 
 

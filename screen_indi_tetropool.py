@@ -3,15 +3,14 @@ import sys
 from game import *
 from util.http import *
 from util.getloc2 import *
+from util.screen_key import *
+
 #개인모드 시간표 선택 창
-display_width = 1200
-display_height = 650
-x = (display_width * 0.00000000000000002)
-y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
+pygame.init()
 
 def mode_screen(x,y):
-    myImg = pygame.image.load('indi_tetro_bgr.png')
+    myImg = pygame.image.load(adress + 'indi_tetro_bgr.png')
     SURFACE.blit(myImg,(x,y))
 
 def button(x,y,w,h,ic,ac,oneP,clickOne, lectures, action = None):
@@ -45,14 +44,14 @@ def button(x,y,w,h,ic,ac,oneP,clickOne, lectures, action = None):
                 game_personal(list(lectures[name]))
 
 #버튼 이미지 로딩
-uone = pygame.image.load("univ_one.PNG").convert_alpha()
-cuone = pygame.image.load("clickedUniv_one.PNG").convert_alpha()
-utwo = pygame.image.load("univ_two.PNG").convert_alpha()
-cutwo = pygame.image.load("clickedUniv_two.PNG").convert_alpha()
-uthree = pygame.image.load("univ_three.PNG").convert_alpha()
-cuthree = pygame.image.load("clickedUniv_three.PNG").convert_alpha()
-ufour = pygame.image.load("univ_four.PNG").convert_alpha()
-cufour = pygame.image.load("clickedUniv_four.PNG").convert_alpha()
+uone = pygame.image.load(adress + "univ_one.PNG").convert_alpha()
+cuone = pygame.image.load(adress + "clickedUniv_one.PNG").convert_alpha()
+utwo = pygame.image.load(adress + "univ_two.PNG").convert_alpha()
+cutwo = pygame.image.load(adress + "clickedUniv_two.PNG").convert_alpha()
+uthree = pygame.image.load(adress + "univ_three.PNG").convert_alpha()
+cuthree = pygame.image.load(adress + "clickedUniv_three.PNG").convert_alpha()
+ufour = pygame.image.load(adress + "univ_four.PNG").convert_alpha()
+cufour = pygame.image.load(adress + "clickedUniv_four.PNG").convert_alpha()
 
 def indi_tetropool_screen(lectures) :
     lec_names = list(lectures.keys())

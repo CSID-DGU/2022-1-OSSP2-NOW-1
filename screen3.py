@@ -9,6 +9,8 @@ from util.screen_key import *
 # 에브리타임 로그인창
 
 SURFACE = pygame.display.set_mode([display_width, display_height])
+pygame.init()
+
 user_text = ''
 pwww_text = ''
 
@@ -16,7 +18,7 @@ is_finished = False
 
 
 def mode_screen(x, y):
-    myImg = pygame.image.load('ttpang2_bgr.PNG')
+    myImg = pygame.image.load(adress + 'ttpang2_bgr.PNG')
     SURFACE.blit(myImg, (x, y))
 
 
@@ -49,10 +51,10 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
 
 
 # 버튼 이미지 로딩
-quit = pygame.image.load("quitIcon.png").convert_alpha()
-cquit = pygame.image.load("clickedQuitIcon.png").convert_alpha()
-evrysav = pygame.image.load("evryLogicon.png").convert_alpha()
-evrycsav = pygame.image.load("clickedEvryLogicon.png").convert_alpha()
+quit = pygame.image.load(adress + "quitIcon.png").convert_alpha()
+cquit = pygame.image.load(adress + "clickedQuitIcon.png").convert_alpha()
+evrysav = pygame.image.load(adress + "evryLogicon.png").convert_alpha()
+evrycsav = pygame.image.load(adress + "clickedEvryLogicon.png").convert_alpha()
 
 # -----------------------------------------------텍스트 입력받는 부분 코드---------------------------------
 

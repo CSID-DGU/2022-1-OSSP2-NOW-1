@@ -6,7 +6,7 @@ from util.screen_key import *
 # 랭킹 창 구현
 
 SURFACE = pygame.display.set_mode([display_width, display_height])
-
+pygame.init()
 
 def mode_screen(x, y):
     myImg = pygame.image.load(adress + 'ranking_screen.png')

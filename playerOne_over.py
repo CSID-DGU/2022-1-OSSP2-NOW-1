@@ -2,18 +2,16 @@ import pygame
 import sys
 import pygame
 import sys
+from util.screen_key import *
+
 
 # 점수 창
 
-display_width = 1250
-display_height = 700
-x = (display_width * 0.00000000000000002)
-y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
-
+pygame.init()
 
 def mode_screen(x, y):
-    myImg = pygame.image.load('gameover_screen.png')
+    myImg = pygame.image.load(adress + 'gameover_screen.png')
     SURFACE.blit(myImg, (x, y))
 
 
@@ -38,8 +36,8 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
 
 
 # 버튼 이미지 로딩
-qt = pygame.image.load('quiticon.png').convert_alpha()
-cqt = pygame.image.load('clickedQuitIcon.png').convert_alpha()
+qt = pygame.image.load(adress + 'quiticon.png').convert_alpha()
+cqt = pygame.image.load(adress + 'clickedQuitIcon.png').convert_alpha()
 
 
 def gameOver_screen(indi_score=0000):

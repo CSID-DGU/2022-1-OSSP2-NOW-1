@@ -2,19 +2,18 @@ import pygame
 import sys
 from util.http import *
 from screen_univ_tetro import *
+from util.screen_key import *
 
 # 대학교 선택
 
-display_width = 1250
-display_height = 700
-x = (display_width * 0.00000000000000002)
-y = (display_height * 0.00000000000000002)
 SURFACE = pygame.display.set_mode([display_width, display_height])
+pygame.init()
+
 univs = get_univs()
 
 
 def mode_screen(x, y):
-    myImg = pygame.image.load('screen_seluniv.jpg')
+    myImg = pygame.image.load(adress + 'screen_seluniv.jpg')
     SURFACE.blit(myImg, (x, y))
 
 
@@ -62,16 +61,16 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
                 pygame.display.quit()
 
                 # 버튼 이미지 로딩
-uone = pygame.image.load("univ_one.PNG").convert_alpha()
-cuone = pygame.image.load("clickedUniv_one.PNG").convert_alpha()
-utwo = pygame.image.load("univ_two.PNG").convert_alpha()
-cutwo = pygame.image.load("clickedUniv_two.PNG").convert_alpha()
-uthree = pygame.image.load("univ_three.PNG").convert_alpha()
-cuthree = pygame.image.load("clickedUniv_three.PNG").convert_alpha()
-ufour = pygame.image.load("univ_four.PNG").convert_alpha()
-cufour = pygame.image.load("clickedUniv_four.PNG").convert_alpha()
-quit = pygame.image.load("quitIcon.png").convert_alpha()
-cquit = pygame.image.load("clickedQuitIcon.png").convert_alpha()
+uone = pygame.image.load(adress + "univ_one.PNG").convert_alpha()
+cuone = pygame.image.load(adress + "clickedUniv_one.PNG").convert_alpha()
+utwo = pygame.image.load(adress + "univ_two.PNG").convert_alpha()
+cutwo = pygame.image.load(adress + "clickedUniv_two.PNG").convert_alpha()
+uthree = pygame.image.load(adress + "univ_three.PNG").convert_alpha()
+cuthree = pygame.image.load(adress + "clickedUniv_three.PNG").convert_alpha()
+ufour = pygame.image.load(adress + "univ_four.PNG").convert_alpha()
+cufour = pygame.image.load(adress + "clickedUniv_four.PNG").convert_alpha()
+quit = pygame.image.load(adress + "quitIcon.png").convert_alpha()
+cquit = pygame.image.load(adress + "clickedQuitIcon.png").convert_alpha()
 
 
 def univ_screen():
