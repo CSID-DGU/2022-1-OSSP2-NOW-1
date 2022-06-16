@@ -153,6 +153,7 @@ def login_screen():
         if is_finished == False:
             pygame.display.update()
         elif is_finished == True:
+            pygame.init()
             pygame.display.quit()
 
 

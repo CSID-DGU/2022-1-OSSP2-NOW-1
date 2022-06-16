@@ -8,10 +8,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support.ui import Select
 from webdriver_manager.chrome import ChromeDriverManager
 from util.css_parser import css_parser
 from util.detailed_cource_info import DetailedLecture
 from util.lecture import Lecture
+
 
 
 # 크롬 드라이버 자동으로 설치해주는 매니저
@@ -172,11 +174,15 @@ def get_lectures(browser: WebDriver, time_period: dict[int, str]):
         day_count += 1
     return lec_dict
 
-
 def get_all_tables(browser: WebDriver) -> list[WebElement]:
     """
     유저가 생성해 둔 모든 테이블 반환
     """
+    # Select comboBox = new Select(driver.fineElement(By.id("comboBox")))
+    select = Select(browser.find_element(By.ID, 'semesters'))
+    select.select_by_index(3)
+    sleep(0.5)
+
     data_from = browser.find_element(By.XPATH, "//div[@class='menu']")
     tables: list[WebElement] = data_from.find_elements(By.TAG_NAME, "li")
 
@@ -192,19 +198,16 @@ def get_user_TT_info(id: str, password: str) -> dict[str, list[Lecture]]:
     유저의 시간표 정보를 가져오는 함수.
     '''
     browser = user_login(id, password)
-
-    timetable = browser.find_element(
-        By.XPATH, "//a[@href='/timetable']")  # 시간표 창 클릭
+    timetable = browser.find_element(By.XPATH, "//a[@href='/timetable']")  # 시간표 창 클릭
     timetable.click()
     sleep(2)
     browser.implicitly_wait(3)
-
     ##################################################################
     # 현재 학기의 모든 시간표 가져오기
     tables = get_all_tables(browser)
-
+    
     ret_tables = {}  # 사용자가 만든 시간표들
-
+    
     for t in tables:
         t.click()  # 시간표 클릭
         sleep(0.5)
@@ -398,7 +401,7 @@ def get_lectures_info(id: str, password: str, target: list[str], path: list[str]
 
     return lectures_all_semesters
 
-
+"""
 if __name__ == "__main__":
     # try :
     id = input("id 입력 :")
@@ -420,3 +423,10 @@ if __name__ == "__main__":
             print(lec)
 # except Exception as e:
     # print(e)
+
+"""
+
+if __name__ == "__main__":
+    id = "leeminsuok"
+    password = "052978a"
+    user_login(id, password)
