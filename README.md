@@ -33,3 +33,5 @@ python Pang.py
 ### 조작방법
 ![image](https://user-images.githubusercontent.com/45023828/174065938-bcaad803-d063-4a46-925d-177418e7cfa7.png)
 
+### 서버
+서버에 대해 궁금하시다면 [링크](https://github.com/CSID-DGU/2022-1-OSSP2-NOW-1/tree/server/servers)를 참고하세요.
