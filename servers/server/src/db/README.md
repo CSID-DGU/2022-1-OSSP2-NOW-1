@@ -1,5 +1,5 @@
 # 엔티티 설명
-![엔티티 사이 관계](./images/relation.jpg)
+![엔티티 사이 관계](./images/relation.JPG)
 - University  : 테트로미노 풀이 소속된 대학을 가리키는 엔티티이다.
 - TetroPool : 게임에 실제로 사용되는 테트로미노 풀이다.
 - DetailedLecture : 테트로미노 풀에 속한 각각의 강의를 의미한다.
