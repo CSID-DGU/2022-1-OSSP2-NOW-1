@@ -4,15 +4,16 @@ from functools import partial
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 # from selenium.webdriver.support.expected_conditions
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
 from webdriver_manager.chrome import ChromeDriverManager
-from util.css_parser import css_parser
-from util.detailed_cource_info import DetailedLecture
-from util.lecture import Lecture
+from .css_parser import css_parser
+from .detailed_cource_info import DetailedLecture
+from .lecture import Lecture
 
 
 
@@ -41,12 +42,17 @@ def user_login(id: str, password: str):
     #크롬 설치 여부 검사#
     browser: WebDriver
     try:
-        browser = webdriver.Chrome(
-            service=Service(ChromeDriverManager().install()))
+        options = Options()
+        options.add_argument('--start-maximized')
+        options.add_argument("disable-infobars")
+        options.add_argument("--disable-extensions")
+        options.add_experimental_option('detach', True)
+        # 동작하지 않아, 따로 자신의 버전에 맞게 설치해야 함
+        # service=Service(ChromeDriverManager().install())
+        browser = webdriver.Chrome(options=options)
     except Exception as e:
         # 크롬 브라우저가 없는 상황. 크롬 브라우저를 설치해달라는 메시지 전달.
-        print("최신 크롬 브라우저를 설치해주세요!")
-        return
+        raise NoBrowserError()
 
     ############################################################################
     #사이트 지정 및 화면 사이즈 지정#
@@ -59,6 +65,7 @@ def user_login(id: str, password: str):
 
     idElem = browser.find_element(By.NAME, "userid")
     passwordElem = browser.find_element(By.NAME, "password")  # 비밀번호 입력
+    input('캡차 클릭 후 입력해주세요!')
     loginElem = browser.find_element(
         By.XPATH, "//input[@value='로그인' ] | /input[@class='text']")
     # 아이디, 비밀번호 입력
@@ -181,7 +188,7 @@ def get_all_tables(browser: WebDriver) -> list[WebElement]:
     # 다른 학기 시간표로 이동하기
     select = Select(browser.find_element(By.ID, 'semesters'))
     select.select_by_index(3)
-    sleep(0.5)
+    browser.implicitly_wait(3)
 
     data_from = browser.find_element(By.XPATH, "//div[@class='menu']")
     tables: list[WebElement] = data_from.find_elements(By.TAG_NAME, "li")

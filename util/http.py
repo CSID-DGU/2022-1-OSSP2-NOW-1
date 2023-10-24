@@ -1,11 +1,11 @@
 from typing import Union
 import json
 import requests as req
-from util.detailed_cource_info import DetailedLecture
-from util.errormessage import ErrorMessage
-from util.tetro_pool import TetroPool
-from util.university import University
-from util.user_score import UserScore
+from .detailed_cource_info import DetailedLecture
+from .errormessage import ErrorMessage
+from .tetro_pool import TetroPool
+from .university import University
+from .user_score import UserScore
 
 # 기본 경로
 baseUrl = 'http://ttpang.site'

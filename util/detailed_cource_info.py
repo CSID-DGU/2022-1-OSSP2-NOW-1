@@ -1,4 +1,4 @@
-from util.lecture import Lecture
+from .lecture import Lecture
 
 class DetailedLecture(Lecture):
     '''

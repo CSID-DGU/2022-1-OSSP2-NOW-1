@@ -1,16 +1,15 @@
 import pygame
 import sys
 from util.http import *
-from screen.screen_univ_tetro import *
-from screen.screen_key import *
+from .screen_univ_tetro import *
+from .screen_key import *
 
 # 대학교 선택
 
 SURFACE = pygame.display.set_mode([display_width, display_height])
-pygame.init()
 
-univs = get_univs()
-
+# univs = get_univs()
+univs: list[University] = []
 
 def mode_screen(x, y):
     myImg = pygame.image.load(adress + 'screen_seluniv.jpg')
@@ -33,12 +32,15 @@ def button(x, y, w, h, ic, ac, oneP, clickOne, action=None):
 # 버튼 클릭 수행
     if on_button:
         if click[0] == 1 and action != None:
-            no_univ = str("학교를 추가해 주세요")
+            no_univ_message = "학교를 추가해 주세요"
             no_univ_image = pygame.font.SysFont(
-                'malgungothic', 28).render(no_univ, True, (0, 0, 0))
+                'malgungothic', 28).render(no_univ_message, True, (0, 0, 0))
             if action == "one_univ":
-                print(univs[0].id)
-                univ_tetropool_screen(univs[0].id)
+                if (len(univs) > 0):
+                    # print(univs[1].id)
+                    univ_tetropool_screen(univs[1].id)
+                else:
+                    SURFACE.blit(no_univ_image, (520, y-9))
             elif action == "two_univ":
                 if (len(univs) > 1):
                     # print(univs[1].id)
@@ -115,9 +117,10 @@ def univ_screen():
         button(190, 540, 100, 20, WHITE, WHITE, quit, cquit, "quit")
 
         # 대학교 나타내기
-        univ_str = str(univs[0].name)
-        univ_image = univ_font.render(univ_str, True, (0, 0, 0))
-        SURFACE.blit(univ_image, (530, 220))
+        for i in range(min(len(univs), 4)):
+            univ_str = univs[i].name if len(univs) > 0 else "no university"
+            univ_image = univ_font.render(univ_str, True, (0, 0, 0))
+            SURFACE.blit(univ_image, (530, 220))
 
         pygame.display.update()
         # clock.tick(60)

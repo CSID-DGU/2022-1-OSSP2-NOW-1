@@ -1,7 +1,6 @@
 from tkinter import Canvas, Label, Tk, StringVar, Button, LEFT
-from random import choice, randint
-from lecture import Lecture
-from scrap_table_info import scrap_table_info
+from random import choice
+from .lecture import Lecture
 import random
 COLORS = ["Red", "Yellow","Green"]
 class GameCanvas(Canvas):

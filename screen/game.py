@@ -13,8 +13,6 @@ from screen.playerOne_over import *
 from screen.screen4 import *
 from screen.screen_key import *
 
-pygame.init()
-
 BLOCK_DATA = (
     (
         (0, 0, 8,

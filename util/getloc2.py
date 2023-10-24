@@ -1,7 +1,7 @@
-from util.http import get_tetro
-from util.lecture import Lecture
-from util.rotate_block import idx2loc, rotate_block, print_square
-from util.scrap_table_info import get_user_TT_info
+from .http import get_tetro
+from .lecture import Lecture
+from .rotate_block import idx2loc, rotate_block, print_square
+from .scrap_table_info import get_user_TT_info
 
 
 def round_05(var: float):

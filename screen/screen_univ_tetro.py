@@ -1,4 +1,3 @@
-import idna
 import pygame
 import sys
 from util.http import *
@@ -10,8 +9,8 @@ from screen.screen_key import *
 SURFACE = pygame.display.set_mode([display_width, display_height])
 pygame.init()
 
-univs = get_univs()
-
+# univs = get_univs()
+univs: list[University] = []
 
 def mode_screen(x, y):
     myImg = pygame.image.load(adress + 'indi_tetro_bgr.png')

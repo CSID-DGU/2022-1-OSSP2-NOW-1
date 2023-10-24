@@ -3,7 +3,7 @@
 '''
 
 import json
-from util.scrap_table_info import get_lectures_info
+from .scrap_table_info import get_lectures_info
 
 if __name__ == '__main__':
     id = input("id 입력 :")

@@ -1,7 +1,6 @@
 import pygame
 from random import *
 from pygame.locals import *
-import sys
 from screen.screen2 import *
 from screen.screen_key import *
 

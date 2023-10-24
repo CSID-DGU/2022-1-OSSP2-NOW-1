@@ -1,4 +1,4 @@
-from util.scrap_table_info import *
+from .scrap_table_info import *
 
 lec_locs : list[list[list[int, float,float]]] = []
 lec_name = []

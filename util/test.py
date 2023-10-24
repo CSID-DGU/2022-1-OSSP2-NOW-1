@@ -1,8 +1,8 @@
-from util.detailed_cource_info import DetailedLecture
-from util.errormessage import ErrorMessage
-from util.http import get_tetro, get_scores, get_tetro_list, get_univs, set_score
-from util.tetro_pool import TetroPool
-from util.user_score import UserScore
+from .detailed_cource_info import DetailedLecture
+from .errormessage import ErrorMessage
+from .http import get_tetro, get_scores, get_tetro_list, get_univs, set_score
+from .tetro_pool import TetroPool
+from .user_score import UserScore
 
 # 테트로미노 풀 가져오기
 # 테트로미노 풀의 id 값 받음
