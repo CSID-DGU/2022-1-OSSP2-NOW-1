@@ -1,4 +1,8 @@
 class Lecture:
+    '''
+    @class Lecture
+    @desc 각 강좌 정보를 담고 있는 클래스. 해당 강좌의 시간대 정보를 포함한다.
+    '''
     name: str
     professor: str
     loc: list[tuple[int, float, float]]

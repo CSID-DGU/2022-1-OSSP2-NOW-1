@@ -1,5 +1,5 @@
 from .http import get_tetro
-from .lecture import Lecture
+from .entity.lecture import Lecture
 from .rotate_block import idx2loc, rotate_block, print_square
 from .scrap_table_info import get_user_TT_info
 

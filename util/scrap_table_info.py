@@ -8,12 +8,12 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
-from webdriver_manager.chrome import ChromeDriverManager
+# from selenium.webdriver.chrome.service import Service
+# from webdriver_manager.chrome import ChromeDriverManager
 from .css_parser import css_parser
-from .detailed_cource_info import DetailedLecture
-from .lecture import Lecture
+from .entity.detailed_cource_info import DetailedLecture
+from .entity.lecture import Lecture
 
 
 
