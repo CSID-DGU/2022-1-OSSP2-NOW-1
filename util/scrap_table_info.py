@@ -1,4 +1,3 @@
-from time import sleep
 from typing import Union
 from functools import partial
 from selenium.webdriver.common.by import By
@@ -188,7 +187,7 @@ def get_all_tables(browser: WebDriver) -> list[WebElement]:
     # 다른 학기 시간표로 이동하기
     select = Select(browser.find_element(By.ID, 'semesters'))
     select.select_by_index(3)
-    browser.implicitly_wait(3)
+    browser.implicitly_wait(10)
 
     data_from = browser.find_element(By.XPATH, "//div[@class='menu']")
     tables: list[WebElement] = data_from.find_elements(By.TAG_NAME, "li")
@@ -207,8 +206,7 @@ def get_user_TT_info(id: str, password: str) -> dict[str, list[Lecture]]:
     browser = user_login(id, password)
     timetable = browser.find_element(By.XPATH, "//a[@href='/timetable']")  # 시간표 창 클릭
     timetable.click()
-    sleep(2)
-    browser.implicitly_wait(3)
+    browser.implicitly_wait(10)
     ##################################################################
     # 현재 학기의 모든 시간표 가져오기
     tables = get_all_tables(browser)
@@ -217,9 +215,8 @@ def get_user_TT_info(id: str, password: str) -> dict[str, list[Lecture]]:
     
     for t in tables:
         t.click()  # 시간표 클릭
-        sleep(0.5)
         table_name = t.get_attribute('innerText')
-        browser.implicitly_wait(1)  # 정보를 가져오기 위한 대기 시간
+        browser.implicitly_wait(10)  # 정보를 가져오기 위한 대기 시간
         ##################################################################
         # 시간대 정보 가져오기
         time_period = get_time_period(browser)
@@ -229,7 +226,7 @@ def get_user_TT_info(id: str, password: str) -> dict[str, list[Lecture]]:
         lec_dict = get_lectures(browser, time_period)
         ret_tables[table_name] = lec_dict.values()
 
-    browser.implicitly_wait(3)
+    browser.implicitly_wait(10)
     browser.close()
 
     return ret_tables
@@ -298,10 +295,10 @@ def get_lectures_from_semester(browser: WebDriver, path: list[str]):
             # try:
             for p in path:  # 전공/영역에서 경로 이동.
                 elem = browser.find_element(By.XPATH, f"//li[text() ='{p}']")
-                browser.implicitly_wait(2)
+                browser.implicitly_wait(10)
                 elem.click()
+            browser.implicitly_wait(10)
 
-            sleep(2)
             WebDriverWait(browser, timeout=5).until(lambda d: d.find_element(
                 By.XPATH, '//div[@class="list"]/table/tbody/tr'))  # 리스트 내용이 나올 때까지 대기
             lec_list = browser.find_element(By.XPATH, '//div[@class = "list"]')
@@ -313,7 +310,7 @@ def get_lectures_from_semester(browser: WebDriver, path: list[str]):
 
                 browser.execute_script(
                     'arguments[0].scrollBy(0, arguments[0].scrollHeight);', lec_list)  # 스크롤
-                sleep(3)  # 정보 로딩될 때까지 대기
+                browser.implicitly_wait(10)
                 cond = browser.find_element(
                     By.XPATH, '//div[@class="list"]/table/tfoot').get_attribute('style')  # 끝까지 읽는 조건
                 if cond == 'display: none;':  # 끝까지 읽었으면
@@ -385,7 +382,7 @@ def get_lectures_info(id: str, password: str, target: list[str], path: list[str]
     timetable = browser.find_element(
         By.XPATH, "//a[@href='/timetable']")  # 시간표 창 클릭
     timetable.click()  # 클릭
-    browser.implicitly_wait(3)  # 3초 대기
+    browser.implicitly_wait(10)  # 3초 대기
 
     select, semesters = get_semesters(browser, target)
     # 모든 학기의 모든 강좌 리스트.
@@ -395,11 +392,11 @@ def get_lectures_info(id: str, password: str, target: list[str], path: list[str]
         print(semester[0])
 
         select.click()
-        browser.implicitly_wait(1)
+        browser.implicitly_wait(10)
         # 학기 선택 select 클릭
 
         semester[1].click()
-        browser.implicitly_wait(1)
+        browser.implicitly_wait(10)
         # 해당 학기 클릭
 
         dls = get_lectures_from_semester(browser, path)  # 상세강좌정보들

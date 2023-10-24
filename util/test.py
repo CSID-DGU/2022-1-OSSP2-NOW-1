@@ -1,4 +1,4 @@
-from .detailed_cource_info import DetailedLecture
+from .entity.detailed_cource_info import DetailedLecture
 from .errormessage import ErrorMessage
 from .http import get_tetro, get_scores, get_tetro_list, get_univs, set_score
 from .entity.tetro_pool import TetroPool
